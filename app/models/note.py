@@ -6,8 +6,8 @@ class Note(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
-    user_id = db.Column(db.Text, db.ForeignKey('users.id'), nullable=False)
-    notebook_id = db.Column(db.Text, db.ForeignKey('notebook.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    notebook_id = db.Column(db.Integer, db.ForeignKey('notebook.id'), nullable=False)
     content = db.Column(db.String, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False)
     updatedAt = db.Column(db.DateTime, nullable=False)
