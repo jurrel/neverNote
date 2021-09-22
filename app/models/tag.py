@@ -7,13 +7,13 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(15), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    
-    notes = db.relationship('Note', secondary='tag_notes', backpopulates='tags', lazy=True)
+
+    notes = db.relationship('Note', secondary='tag_notes', back_populates='tags')
     user = db.relationship('User', back_populates='tags')
 
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
-            'user_id': self.user_id, 
+            'user_id': self.user_id,
         }

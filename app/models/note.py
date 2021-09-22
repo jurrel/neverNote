@@ -12,7 +12,7 @@ class Note(db.Model):
     createdAt = db.Column(db.DateTime, nullable=False)
     updatedAt = db.Column(db.DateTime, nullable=False)
     
-    tags = db.relationship('Tag', secondary='tag_notes', back_populates='notes')
+    # tags = db.relationship('Tag', secondary='tag_notes', back_populates='notes')
     #1 user for many notes
     user = db.relationship('User', back_populates='notes')
     # 1 notebook for many notes
