@@ -7,16 +7,16 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    notebook_id = db.Column(db.Integer, db.ForeignKey('notebook.id'), nullable=False)
+    notebook_id = db.Column(db.Integer, db.ForeignKey('notebooks.id'), nullable=False)
     content = db.Column(db.String, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False)
     updatedAt = db.Column(db.DateTime, nullable=False)
     
+    
     # tags = db.relationship('Tag', secondary='tag_notes', back_populates='notes')
-    #1 user for many notes
-    user = db.relationship('User', back_populates='notes')
-    # 1 notebook for many notes
-    notebook = db.relationship('Notebook', back_populates='notes')
+    
+    users = db.relationship('User', back_populates='notes')
+    notebooks = db.relationship('Notebook', back_populates='notes')
     
     def to_dict(self):
         return {
