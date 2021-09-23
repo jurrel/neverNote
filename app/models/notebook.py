@@ -11,7 +11,9 @@ class Notebook(db.Model):
     updatedAt = db.Column(db.DateTime, nullable=False)
     
     users = db.relationship('User', back_populates='notebooks')
-    notes = db.relationship('Note', back_populates='notebooks', lazy=True)
+    notes = db.relationship(
+        'Note', back_populates='notebooks', lazy=True,
+        cascade='all, delete, delete-orphan')
 
     def to_dict(self):
         return {

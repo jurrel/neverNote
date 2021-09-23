@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from flask import Blueprint, jsonify, session, request, render_template, session
+from app.models import User, db, Note, Notebook, Tag
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -24,8 +24,51 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        notebooks = Notebook.query.filter(
+            Notebook.user_id == current_user.id).all()
+        notes = Note.query.filter(
+            Note.user_id == current_user.id).all()
+        tags = Tag.query.filter(Tag.user_id == current_user.id).all()
+
+        data = {
+            'users': current_user.to_dict(),
+            'notebooks': [notebook.to_dict() for notebook in notebooks],
+            'notes': [note.to_dict() for note in notes],
+            'tags': [tag.to_dict() for tag in tags],
+        }
+
+        for notebook in data['notebooks']:
+            note_list = Note.query.filter(Note.notebook_id == notebook['id']).all()
+            notebook['notes'] = [note.to_dict() for note in note_list]
+            break
+
+        return data
     return {'errors': ['Unauthorized']}
+    
+
+
+# @auth_routes.route('/d')
+# def test():
+#     notebooks = Notebook.query.filter(
+#         Notebook.user_id == current_user.id).all()
+#     notes = Note.query.filter(
+#         Note.user_id == current_user.id).all()
+#     tags = Tag.query.filter(Tag.user_id == current_user.id).all()
+
+#     data = {
+#         'users': current_user.to_dict(),
+#         'notebooks': [notebook.to_dict() for notebook in notebooks],
+#         'notes': [note.to_dict() for note in notes],
+#         'tags': [tag.to_dict() for tag in tags],
+#     }
+
+#     for notebook in data['notebooks']:
+#         note_list = Note.query.filter(Note.notebook_id == notebook['id']).all()
+#         notebook['notes'] = [note.to_dict() for note in note_list]
+
+    
+#     # print('dasdata', data)
+#     return data
 
 
 @auth_routes.route('/login', methods=['POST'])
@@ -40,8 +83,27 @@ def login():
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
+
+        notebooks = Notebook.query.filter(user.id == Notebook.user_id).all()
+        notes = Note.query.filter(Note.user_id == user.id).all()
+        tags = Tag.query.filter(Tag.user_id == user.id).all()
+
+        data = {
+            'users': user.to_dict(),
+            'notebooks': [notebook.to_dict() for notebook in notebooks],
+            'notes': [note.to_dict() for note in notes],
+            'tags': [tag.to_dict() for tag in tags],
+        }
+
+        for notebook in data['notebooks']:
+            note_list = Note.query.filter(
+                Note.notebook_id == notebook['id']).all()
+            notebook['notes'] = [note.to_dict() for note in note_list]
+            break
+
         login_user(user)
-        return user.to_dict()
+        print('OOOO YEAH ', data)
+        return data
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
