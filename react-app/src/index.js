@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
-import {createNotebook} from './store/notebook'
+import {createNotebook, editANotebook } from './store/notebook'
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.createNotebook = createNotebook;
+  window.editNotebook = editANotebook;
 }
 
 ReactDOM.render(

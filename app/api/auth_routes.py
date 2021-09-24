@@ -3,6 +3,7 @@ from app.models import User, db, Note, Notebook, Tag
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.forms import LoginForm, NotebookForm
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -142,3 +143,17 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+
+# Edit notebook
+@auth_routes.route('/edit/<int:id>', methods=["PUT"])
+def edit_notebook(id):
+    notebook = Notebook.query.filter(Notebook.id == id).one()
+
+    form = NotebookForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        notebook.title = form.data['title'],
+        notebook.user_id = current_user.id,
+        db.session.commit()
+        return notebook.to_dict()
