@@ -45,15 +45,13 @@ export const createNotebook = (title, user_id) => async(dispatch) => {
             user_id
          }),
     });
-    // if (response.ok) {
-    //     const notebook = await response.json();
-    //     dispatch(addNotebook(notebook))
-    console.log({response: {title, user_id}})
-    // console.log(response)
-    // }
+    if (response.ok) {
+        const notebook = await response.json();
+        dispatch(addNotebook(notebook))
+    }
 }
 
-export const editANotebook = (title, user_id, id ) => async(dispatch) => {
+export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
     const response = await fetch(`/api/auth/edit/${id}`, {
         method: 'PUT',
         headers: {
@@ -61,13 +59,10 @@ export const editANotebook = (title, user_id, id ) => async(dispatch) => {
          },
          body: JSON.stringify({
             id,
-            title: title['title'],
+            title,
             user_id,
          }),
     });
-    // console.log("this is title['title]",title['title'])
-    // console.log("this is title",title)
-    // console.log("this is title[][]",title['title']['title'])
     console.log({response: {title,user_id, id}})
 }
         

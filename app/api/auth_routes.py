@@ -153,7 +153,7 @@ def edit_notebook(id):
     form = NotebookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        notebook.title = form.data['title']['title'],
+        notebook.title = form.data['title'],
         notebook.user_id = current_user.id,
         db.session.commit()
         return notebook.to_dict()
