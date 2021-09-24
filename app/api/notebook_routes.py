@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import db, Notebook
+from flask_wtf import Form
+from wtforms import TextField, BooleanField, PasswordField, TextAreaField, validators
 from app.forms import LoginForm, NotebookForm
 from flask_login import current_user
 
@@ -18,11 +20,11 @@ def get_single_notebook(id):
 # Creating new notebook
 @notebook_routes.route('/newNotebook', methods=['POST'])
 def new_notebook():
-    
-    form = Notebook()
+    form = NotebookForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         notebook = Notebook(
-            title=form.data['title'],
+            title=form.data['title']['title'],
             user_id=current_user.id
         )
         db.session.add(notebook)

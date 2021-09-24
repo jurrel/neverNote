@@ -7,6 +7,7 @@ import signUpPage1 from '../../assets/1.jpg'
 import signUpPage2 from '../../assets/2.jpg'
 import signUpPage3 from '../../assets/3.jpg'
 
+
 import './auth.css'
 
 const LoginForm = () => {
