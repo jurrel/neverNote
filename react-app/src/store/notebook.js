@@ -33,6 +33,7 @@ export const loadAllNotebooksT = () => async dispatch => {
     }
 };
 
+//Create a notebook, WORKING THUNK
 export const createNotebook = (title, user_id) => async(dispatch) => {
     const response = await fetch('/api/notebook_routes/newNotebook', {
         method: 'POST',
@@ -44,10 +45,35 @@ export const createNotebook = (title, user_id) => async(dispatch) => {
             user_id
          }),
     });
+    // if (response.ok) {
+    //     const notebook = await response.json();
+    //     dispatch(addNotebook(notebook))
     console.log({response: {title, user_id}})
     // console.log(response)
+    // }
 }
 
+export const editANotebook = (title, user_id, id ) => async(dispatch) => {
+    const response = await fetch(`/api/auth/edit/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+            id,
+            title: title['title'],
+            user_id,
+         }),
+    });
+    // console.log("this is title['title]",title['title'])
+    // console.log("this is title",title)
+    // console.log("this is title[][]",title['title']['title'])
+    console.log({response: {title,user_id, id}})
+}
+        
+//     console.log({response: {title, user_id}})
+//     // console.log(response)
+// }
 
 //Reducer
 const notebookReducer = (state={}, action) => {

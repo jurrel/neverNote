@@ -32,17 +32,17 @@ def new_notebook():
         return notebook.to_dict()
 
 
-# Edit notebook
-@notebook_routes.route('/edit/<int:id>', methods=["PUT"])
-def edit_notebook(id):
-    notebook = Notebook.query.filter(Notebook.id == id).one()
+# # Edit notebook
+# @notebook_routes.route('/edit/<int:id>', methods=["PUT"])
+# def edit_notebook(id):
+#     notebook = Notebook.query.filter(Notebook.id == id).one()
    
-    form = NotebookForm()
-    if form.validate_on_submit():
-        notebook.title = form.data['title'],
-        notebook.user_id = current_user.id,
-        db.session.commit()
-        return notebook.to_dict()
+#     form = NotebookForm()
+#     if form.validate_on_submit():
+#         notebook.title = form.data['title']['title'],
+#         notebook.user_id = current_user.id,
+#         db.session.commit()
+#         return notebook.to_dict()
 
 # Delete notebook
 @notebook_routes.route('/delete/<int:id>', methods=["DELETE"])
@@ -50,7 +50,7 @@ def delete_notebook(id):
     notebook = Notebook.query.filter(Notebook.id == id).one()
     form = NotebookForm()
     if form.validate_on_submit():
-        notebook.title = form.data['title'],
+        notebook.title = form.data['title']['title'],
         notebook.user_id = current_user.id,
         db.session.commit()
         return notebook.to_dict()
