@@ -1,15 +1,54 @@
-# from flask import Blueprint, request
-# from app.models import Notebook, db
-# from app.forms.note_form import NoteForm
-# from flask_login import current_user
+from flask import Blueprint, jsonify, session, request
+from flask_login import login_required, current_user
+from app.models import db, Notebook
+from app.forms import LoginForm, NotebookForm
+from flask_login import current_user
 
 
-# notebook_routes = Blueprint('notebooks', __name__)
+notebook_routes = Blueprint('notebooks', __name__)
 
-# @notebook_routes.route('/', methods=["GET"])
-# def get_notebooks():
-#     notebooks = Notebook.query.filter(Notebook.user_id == current_user.id).all()
-#     return {'notebooks': [notebook.to_dict() for notebook in notebooks]}
 
-# @notebook_routes.rout e('/create-notebook')
-# def 
+# Read single notebook
+@notebook_routes.route('/<int:id>', methods=["GET"])
+def get_single_notebook(id):
+    notebook = Notebook.query.filter(Notebook.id == id).one()
+    return notebook.to_dict()
+
+
+# Creating new notebook
+@notebook_routes.route('/newNotebook', methods=['POST'])
+def new_notebook():
+    
+    form = Notebook()
+    if form.validate_on_submit():
+        notebook = Notebook(
+            title=form.data['title'],
+            user_id=current_user.id
+        )
+        db.session.add(notebook)
+        db.session.commit()
+        return notebook.to_dict()
+
+
+# Edit notebook
+@notebook_routes.route('/edit/<int:id>', methods=["PUT"])
+def edit_notebook(id):
+    notebook = Notebook.query.filter(Notebook.id == id).one()
+   
+    form = NotebookForm()
+    if form.validate_on_submit():
+        notebook.title = form.data['title'],
+        notebook.user_id = current_user.id,
+        db.session.commit()
+        return notebook.to_dict()
+
+# Delete notebook
+@notebook_routes.route('/delete/<int:id>', methods=["DELETE"])
+def delete_notebook(id):
+    notebook = Notebook.query.filter(Notebook.id == id).one()
+    form = NotebookForm()
+    if form.validate_on_submit():
+        notebook.title = form.data['title'],
+        notebook.user_id = current_user.id,
+        db.session.commit()
+        return notebook.to_dict()
