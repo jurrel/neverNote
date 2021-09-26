@@ -28,8 +28,8 @@ export const loadAllNotebooksT = () => async dispatch => {
     const response = await fetch(`/api/auth`);
 
     if (response.ok) {
-        const comments = await response.json();
-        dispatch(loadAllNotebooks(comments))
+        const notebooks = await response.json();
+        dispatch(loadAllNotebooks(notebooks))
     }
 };
 
@@ -51,6 +51,7 @@ export const createNotebook = (title, user_id) => async(dispatch) => {
     }
 }
 
+//Edit a notebook, WORKING THUNK
 export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
     const response = await fetch(`/api/auth/edit/${id}`, {
         method: 'PUT',
@@ -63,12 +64,33 @@ export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
             user_id,
          }),
     });
-    console.log({response: {title,user_id, id}})
+    if (response.ok) {
+        const notebook = await response.json();
+        dispatch(editNotebook(notebook))
+    }
 }
-        
-//     console.log({response: {title, user_id}})
-//     // console.log(response)
-// }
+///////////////////////////////////////////////////////////
+
+//Delete  a notebook
+export const deleteANotebook = ({id}) => async(dispatch) => {
+    const response = await fetch(`/api/auth/delete/${id}`, {
+        method: "DELETE"
+    })
+    console.log({response})
+
+    // const deleteSingleNotebook = await response.json();
+    // dispatch(deleteNotebook(deleteSingleNotebook))
+}
+
+    
+
+
+
+
+
+
+
+
 
 //Reducer
 const notebookReducer = (state={}, action) => {

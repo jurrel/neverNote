@@ -157,3 +157,14 @@ def edit_notebook(id):
         notebook.user_id = current_user.id,
         db.session.commit()
         return notebook.to_dict()
+
+# Delete Notebook
+@auth_routes.route('/delete/<int:id>', methods=["PUT"])
+def delete_notebook(id):
+    notebook = Notebook.query.filter(Notebook.id == id).one()
+    deleted_notebook = notebook
+    db.session.delete(notebook)
+    db.session.commit()
+    return deleted_notebook.to_dict()
+####################################################################
+
