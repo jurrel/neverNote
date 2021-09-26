@@ -34,7 +34,7 @@ export const loadAllNotebooksT = () => async dispatch => {
 };
 
 //Create a notebook, WORKING THUNK
-export const createNotebook = (title, user_id) => async(dispatch) => {
+export const createNotebook = ({title, user_id}) => async(dispatch) => {
     const response = await fetch('/api/notebook_routes/newNotebook', {
         method: 'POST',
         headers: {
@@ -45,6 +45,7 @@ export const createNotebook = (title, user_id) => async(dispatch) => {
             user_id
          }),
     });
+    console.log({response: {title, user_id}})
     if (response.ok) {
         const notebook = await response.json();
         dispatch(addNotebook(notebook))
