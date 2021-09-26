@@ -3,7 +3,7 @@ from app.models import User, db, Note, Notebook, Tag
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, NotebookForm, NoteForm
+from app.forms import LoginForm
 
 auth_routes = Blueprint('auth', __name__)
 
