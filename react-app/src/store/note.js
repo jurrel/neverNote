@@ -53,21 +53,21 @@ export const createNote = (content, id, notebook_id, title, user_id) => async(di
 //Reducer
 const noteReducer = (state={}, action) => {
     switch(action.type) {
-        case LOAD_ALL_NOTE:
-            const allNote = {...action.note}
-            return {...allNote,...state}
-        case ADD_NOTE:
-            const addNewNote = {...state}
-            addNewNote[action.note.id] = action.note
-            return addNewNote
-        case DELETE_NOTE:
-            const note = {...state}
-            delete note[action.note]
-            return note
-        case EDIT_NOTE:
-            const editNote = {...state}
-            editNote[action.notebook.id] = action.notebook
-            return editNote
+        // case LOAD_ALL_NOTE:
+        //     const allNote = {...action.note}
+        //     return {...allNote,...state}
+        // case ADD_NOTE:
+        //     const addNewNote = {...state}
+        //     addNewNote[action.note.id] = action.note
+        //     return addNewNote
+        // case DELETE_NOTE:
+        //     const note = {...state}
+        //     delete note[action.note]
+        //     return note
+        // case EDIT_NOTE:
+        //     const editNote = {...state}
+        //     editNote[action.notebook.id] = action.notebook
+        //     return editNote
         default:
             return state;
     }
