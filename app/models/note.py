@@ -8,7 +8,7 @@ class Note(db.Model):
     title = db.Column(db.String(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebook_id = db.Column(db.Integer, db.ForeignKey('notebooks.id'), nullable=False)
-    content = db.Column(db.String, nullable=False)
+    content = db.Column(db.Text, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False)
     updatedAt = db.Column(db.DateTime, nullable=False)
     
@@ -22,7 +22,7 @@ class Note(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'user_id': self.user_id, 
+            'user_id': self.user_id,
             'notebook_id': self.notebook_id,
             'content': self.content,
             'createdAt': self.createdAt,

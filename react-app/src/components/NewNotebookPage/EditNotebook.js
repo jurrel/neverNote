@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { createNotebook, editANotebook} from '../../store/notebook';
 
 
-function NewNotebookPage(){
+function EditNotebook(){
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -29,8 +29,7 @@ function NewNotebookPage(){
     }
     return (
         <>
-            {/* shows on postbird, need to add indication that its created and need it to show on page */}
-
+           {/* shows on postbird, need to add indication that its created and need it to show on page */}
             <form onSubmit={handleCreateNotebook} >
                 <h1>NEW NOTEBOOK</h1>
                 <input
@@ -45,4 +44,4 @@ function NewNotebookPage(){
     )
 }
 
-export default NewNotebookPage;
+export default EditNotebook;
