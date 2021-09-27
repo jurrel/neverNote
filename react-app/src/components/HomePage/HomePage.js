@@ -6,10 +6,9 @@ import NavBar from '../NavBar/NavBar';
 import signUpPage2 from '../../assets/2.jpg'
 import signUpPage3 from '../../assets/3.jpg'
 import Notebooks from './Notebook/Notebooks'
-
-import './homepage.css'
 import Sidebar from './Sidebar/Sidebar';
 
+import './homepage.css'
 
 
 function HomePage() {
@@ -19,16 +18,11 @@ function HomePage() {
 
     return(
         <>  
-            <Sidebar/>
+            <div className="main-container">
+                <Sidebar/>
+                {/* <NewNotebookPage/> */}
+            </div>
         {/* <img className="log-in-page-background" src={signUpPage3} alt=""/> */}
-        
-           
-
-
-
-
-
-
             {/* <div className='test_container'>
                 <div className='sidebar'>
                     <h1>go</h1>
@@ -50,11 +44,8 @@ function HomePage() {
                 </Link>
             </div> */}
             {/* <Notebooks/> */}
-            {/* <NewNotebookPage/> */}
         </>
     )
-
-
 }
 
 export default HomePage;

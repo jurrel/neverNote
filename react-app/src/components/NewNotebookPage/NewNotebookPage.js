@@ -12,6 +12,9 @@ function NewNotebookPage(){
 
     const editTitle = (e) => setTitle(e.target.value)
 
+    // useEffect(()=> {
+    //     dispatch(createNotebook())
+    // },[dispatch])
 
     console.log('this is seession', user)
     console.log('this is seession', user['users']['id'])
@@ -30,12 +33,11 @@ function NewNotebookPage(){
     return (
         <>
             {/* shows on postbird, need to add indication that its created and need it to show on page */}
-
             <form onSubmit={handleCreateNotebook} >
                 <h1>NEW NOTEBOOK</h1>
                 <input
                     type="text"
-                    placeholder="Image URL"
+                    placeholder="NOTEBOOK Name"
                     value={title}
                     onChange={editTitle} />
                 <button type="submit" className="submit-btn-upload">Submit</button>

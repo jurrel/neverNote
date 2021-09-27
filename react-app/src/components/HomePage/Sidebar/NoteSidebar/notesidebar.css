@@ -1,0 +1,18 @@
+.note-list{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:0;
+    width:300px;
+    margin-left: 250px;
+    /* padding-left: 100px; */
+    background-color: green;
+    border-right: 1px solid black;
+    align-items: center;
+}
+
+.ellow {
+    align-items: center;
+    flex-direction: column; 
+}

@@ -47,31 +47,6 @@ def authenticate():
     return {'errors': ['Unauthorized']}
     
 
-
-# @auth_routes.route('/d')
-# def test():
-#     notebooks = Notebook.query.filter(
-#         Notebook.user_id == current_user.id).all()
-#     notes = Note.query.filter(
-#         Note.user_id == current_user.id).all()
-#     tags = Tag.query.filter(Tag.user_id == current_user.id).all()
-
-#     data = {
-#         'users': current_user.to_dict(),
-#         'notebooks': [notebook.to_dict() for notebook in notebooks],
-#         'notes': [note.to_dict() for note in notes],
-#         'tags': [tag.to_dict() for tag in tags],
-#     }
-
-#     for notebook in data['notebooks']:
-#         note_list = Note.query.filter(Note.notebook_id == notebook['id']).all()
-#         notebook['notes'] = [note.to_dict() for note in note_list]
-
-    
-#     # print('dasdata', data)
-#     return data
-
-
 @auth_routes.route('/login', methods=['POST'])
 def login():
     """

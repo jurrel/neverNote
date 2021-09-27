@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import signUpPage from '../../assets/signUpPage.jpg'
-import signUpPage1 from '../../assets/1.jpg'
-import signUpPage2 from '../../assets/2.jpg'
-import signUpPage3 from '../../assets/3.jpg'
+import NavBar from '../NavBar/NavBar';
+import signUpPage1 from '../../assets/signUpPage1.jpg'
+import Icon from '../../assets/Icon.png'
+
 
 
 import './auth.css'
@@ -16,6 +16,14 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const demoEmail = 'demo@aa.io';
+  const demoPassword = 'password';
+
+  const demoUser = async(e) => {
+    e.preventDefault();
+    dispatch(login(demoEmail,demoPassword))
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -39,42 +47,50 @@ const LoginForm = () => {
 
   return (
     <>
+      <NavBar/>
       <div>
-        {/* <img className="landing-img" src={signUpPage} alt=""/> */}
         <img className="log-in-page-background" src={signUpPage1} alt=""/>
-        {/* <img className="landing-img" src={signUpPage2} alt=""/> */}
-        {/* <img className="landing-img" src={signUpPage3} alt=""/> */}
-
       </div>
       <div className="log-in-page-form-position">
-        <form onSubmit={onLogin}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              name='email'
-              type='text'
-              placeholder='Email'
-              value={email}
-              onChange={updateEmail}
-            />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={updatePassword}
-            />
-            <button type='submit'>Login</button>
-          </div>
-        </form>
+        <div className="sign-up-border">
+          <img className="icon-log-ing-page" src={Icon} alt=""/>
+          <h1>Nevernote</h1>
+          <h3>Never Forget</h3>
+          <button className="demo-sign-in-button" onClick={demoUser} type='button'>Demo</button>
+          <p className="or-line">____________or____________</p>
+          <form onSubmit={onLogin}>
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <div>
+              <label htmlFor='email'>Email</label>
+              <input
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div>
+              <label htmlFor='password'>Password</label>
+              <input
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+              />
+            </div>
+            <button className="sign-in-button" type='submit'>Sign In</button>
+          </form>
+          <p>Don't have an account?</p>
+          <NavLink to ='/signUp' exact = {true}>
+            Create an acocunt
+          </NavLink>
+        </div>
       </div>
     </>
   );

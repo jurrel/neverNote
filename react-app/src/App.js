@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
-import HomePage from './components/HomePage/HomePage'
+import HomePage from './components/HomePage/HomePage';
+import { LandingPage } from './components/LandingPage/LandingPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 
@@ -25,8 +26,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar/>
       <Switch>
+        {/* <NavBar/> */}
+        <ProtectedRoute exact path="/landing">
+            <LandingPage />
+        </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <HomePage/>
         </ProtectedRoute>

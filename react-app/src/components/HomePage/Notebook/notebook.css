@@ -1,0 +1,9 @@
+.middle-content:hover {
+    color: white;
+    cursor: pointer;
+    background-color: violet;
+}
+
+.tests {
+    background-color: violet;
+}

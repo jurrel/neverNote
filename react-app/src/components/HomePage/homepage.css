@@ -12,9 +12,29 @@
     left: 0;
     flex:0.25;
     background-color: #2f3136;
-    /* z-index: 1; */
+    z-index: 2;
 }
 
 .above {
     z-index: 2;
 }
+
+
+.side_bar_main {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* flex: 1.25; */
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+	width: 233px;
+	height: 100%;
+	background-color: purple;
+}
+.align_the_side_bar {
+	flex: 1;
+}
+
