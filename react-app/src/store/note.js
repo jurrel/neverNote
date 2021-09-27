@@ -1,8 +1,8 @@
 //constnant
-const LOAD_ALL_NOTE = 'comment/LOAD';
-const ADD_NOTE = 'comment/ADD';
-const DELETE_NOTE = 'comment/DELETE';
-const EDIT_NOTE = 'comment/EDIT';
+const LOAD_ALL_NOTE = 'note/LOAD';
+const ADD_NOTE = 'note/ADD';
+const DELETE_NOTE = 'note/DELETE';
+const EDIT_NOTE = 'note/EDIT';
 
 //action creator
 export const loadAllNotes = notes => ({

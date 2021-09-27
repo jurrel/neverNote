@@ -7,6 +7,7 @@ import signUpPage2 from '../../assets/2.jpg'
 import signUpPage3 from '../../assets/3.jpg'
 import Notebooks from './Notebook/Notebooks'
 import Sidebar from './Sidebar/Sidebar';
+import {loadAllNotebooksT} from '../../store/notebook'
 
 import './homepage.css'
 
@@ -14,8 +15,11 @@ import './homepage.css'
 function HomePage() {
     const user = useSelector((state) => state.session.user)
     const dispatch = useDispatch();
-    console.log(user)
-
+    
+    // useEffect(()=>{
+    //     dispatch(loadAllNotebooksT())
+    // },[dispatch])
+    
     return(
         <>  
             <div className="main-container">
