@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import {getNotebooks} from '../../store/notebook';
+import {getNotebooks, deleteANotebook} from '../../store/notebook';
 import NotebookPageMapping from './NotebookPageMapping';
 import './NotebookPage.css'
 
@@ -8,9 +8,13 @@ function NotebookPage() {
     
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
-    const [selectedNotebook, setSelectedNotebook] = useState(1);
-    console.log('What am i clicking', setSelectedNotebook)
+    const notebook = useSelector((state) => state.notebook)
 
+    useEffect(()=> {
+        dispatch(getNotebooks());
+    },[dispatch])
+
+  
 
     return(
         <> 
@@ -25,11 +29,11 @@ function NotebookPage() {
                             </tr>
                         </thead>
                     <tbody className="tbody">
-                        {user.notebooks?.map((notebook)=> (
-                            <div key={notebook.id}>
-                                <NotebookPageMapping notebook={notebook} setSelectedNotebook={setSelectedNotebook} user={user.notebooks} />
-                            </div>
-                        ))}
+                        {/* <Fragment> */}
+                            {notebook.notebooks?.map((notebook)=> (
+                                <NotebookPageMapping key={notebook.id} notebook={notebook} user={user.notebooks} />
+                            ))}
+                        {/* </Fragment> */}
                     </tbody>     
                 </table>
             </div>

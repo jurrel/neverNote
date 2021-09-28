@@ -6,8 +6,7 @@ import './notebook.css'
 function Notebooks() {
     const user = useSelector((state) => state.session.user)
     // const dispatch = useDispatch();
-    console.log('yeah', user.notebooks)
-    const [selectedNotebook, setSelectedNotebook] = useState(1);
+    const [selectedNotebook, setSelectedNotebook] = useState('');
 
     return(
         <>  
