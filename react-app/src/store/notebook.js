@@ -1,13 +1,13 @@
 //constnant
-const LOAD_ALL_NOTEBOOKS = 'notebook/LOAD';
+const SET_NOTEBOOKS = 'notebook/LOAD';
 const ADD_NOTEBOOK = 'notebook/ADD';
 const DELETE_NOTEBOOK = 'notebook/DELETE';
 const EDIT_NOTEBOOK = 'notebook/EDIT';
 const LOAD_NOTEBOOK_ALL_NOTES = 'notebook/LOAD_NOTEBOOK_ALL_NOTES';
 
 //action creator
-export const loadAllNotebooks = notebooks => ({
-    type: LOAD_ALL_NOTEBOOKS,
+export const setNotebooks = notebooks => ({
+    type: SET_NOTEBOOKS,
     notebooks
 })
 
@@ -29,12 +29,12 @@ export const getNotebookAndNotes = notebook => ({
 })
 
 //Thunk
-export const loadAllNotebooksT = () => async dispatch => {
-    const response = await fetch(`/api/notebook_routes/`);
+export const getNotebooks = () => async dispatch => {
+    const response = await fetch('/api/notebook_routes/');
 
     if (response.ok) {
         const notebooks = await response.json();
-        dispatch(loadAllNotebooks(notebooks))
+        dispatch(setNotebooks(notebooks))
     }
 };
 
@@ -95,23 +95,12 @@ export const deleteANotebook = ({id}) => async(dispatch) => {
     // dispatch(deleteNotebook(deleteSingleNotebook))
 }
 
-    
-
-
-
-
-
-
-
-
-
+const initialState = {}
 //Reducer
-const notebookReducer = (state={}, action) => {
-    let newState = {...state}
+const notebookReducer = (state=initialState, action) => {
     switch(action.type) {
-        case LOAD_ALL_NOTEBOOKS:
-            newState = {...action.journals}
-            return newState
+         case SET_NOTEBOOKS:
+            return {...state,...action.notebooks}
         case ADD_NOTEBOOK:
             const addNewNotebook = {...state}
             addNewNotebook[action.notebook.id] = action.notebook

@@ -28,8 +28,8 @@ export const loadAllNoteT = () => async dispatch => {
     const response = await fetch(`/api/auth`);
 
     if (response.ok) {
-        const comments = await response.json();
-        dispatch(loadAllNoteT(comments))
+        const notes = await response.json();
+        dispatch(loadAllNoteT(notes))
     }
 };
 

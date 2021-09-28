@@ -1,8 +1,11 @@
+import { NavLink } from 'react-router-dom';
 function NotebooksSidebar() {
 
     return(
         <>
-          <h1>NOTEBOOK SIDEBAR</h1>  
+          <NavLink to="/notebooks">
+            <h1><i class="fa fa-book"></i> Notebooks</h1>  
+          </NavLink>
         </>
     )
 }

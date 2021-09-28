@@ -7,7 +7,7 @@ import notebookReducer from './notebook'
 
 const rootReducer = combineReducers({
   session,
-  noteReducer,
+  note: noteReducer,
   notebook: notebookReducer,
 });
 
