@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { login } from '../../store/session';
 import NavBar from '../NavBar/NavBar';
 import signUpPage1 from '../../assets/signUpPage1.jpg'
 import Icon from '../../assets/Icon.png'
@@ -14,6 +15,23 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const demoEmail = 'demo@aa.io';
+  const demoPassword = 'password';
+
+  const demoUser = async(e) => {
+    e.preventDefault();
+    dispatch(login(demoEmail,demoPassword))
+  }
+  
+  const onLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -53,6 +71,11 @@ const SignUpForm = () => {
       </div>
       <div className="sign-up-page-form-position">
         <div className='sign-up-border'>
+          <img className="icon-log-ing-page" src={Icon} alt=""/>
+          <h1>Nevernote</h1>
+          <h3>Never Forget</h3>
+          <button className="demo-sign-in-button" onClick={demoUser} type='button'>Demo</button>
+          <p className="or-line">____________or____________</p>
           <form onSubmit={onSignUp}>
             <div>
               {errors.map((error, ind) => (
@@ -60,19 +83,11 @@ const SignUpForm = () => {
               ))}
             </div>
             <div>
-              <label>User Name</label>
-              <input
-                type='text'
-                name='username'
-                onChange={updateUsername}
-                value={username}
-              ></input>
-            </div>
-            <div>
               <label>Email</label>
               <input
                 type='text'
                 name='email'
+                placeholder='Email'
                 onChange={updateEmail}
                 value={email}
               ></input>
@@ -82,6 +97,7 @@ const SignUpForm = () => {
               <input
                 type='password'
                 name='password'
+                placeholder='Password'
                 onChange={updatePassword}
                 value={password}
               ></input>
@@ -91,12 +107,13 @@ const SignUpForm = () => {
               <input
                 type='password'
                 name='repeat_password'
+                placeholder='Repeat Password'
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
                 required={true}
               ></input>
             </div>
-            <button type='submit'>Sign Up</button>
+            <button  className="sign-up-button" type='submit'>Sign Up</button>
           </form>
         </div>
       </div>

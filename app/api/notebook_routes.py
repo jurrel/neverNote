@@ -8,11 +8,32 @@ from flask_login import current_user
 notebook_routes = Blueprint('notebooks', __name__)
 
 
-# Read single notebook
+# Get single Notebook
 @notebook_routes.route('/<int:id>', methods=["GET"])
 def get_single_notebook(id):
     notebook = Notebook.query.filter(Notebook.id == id).one()
     return notebook.to_dict()
+
+
+# Get all Notebook
+@notebook_routes.route('/', methods=["GET"])
+def get_all_notebooks():
+    notebooks = Notebook.query.filter(
+        Notebook.user_id == current_user.id).all()
+    return {'notebooks': [notebook.to_dict() for notebook in notebooks]}
+
+
+# Get notebook with all it's notes
+@notebook_routes.route('/<int:id>/notes', methods=["GET"])
+def get_notebook_notes(id):
+    notebook = Notebook.query.get(id)
+    notes = Note.query.filter(Note.notebook_id == id)
+
+    data = {
+        'notebook': notebook.to_dict(),
+        'notes': [note.to_dict() for note in notes]
+    }
+    return data
 
 
 # Creating new notebook
@@ -29,6 +50,7 @@ def new_note():
         db.session.commit()
         return notebook.to_dict()
 
+
 # Edit notebook
 @notebook_routes.route('/edit/<int:id>', methods=["PUT"])
 def edit_notebook(id):
@@ -41,6 +63,7 @@ def edit_notebook(id):
         notebook.user_id = current_user.id,
         db.session.commit()
         return notebook.to_dict()
+
 
 # Delete Notebook
 @notebook_routes.route('/delete/<int:id>', methods=["DELETE"])

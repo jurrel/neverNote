@@ -1,12 +1,13 @@
 //constnant
-const LOAD_ALL_NOTEBOOKS = 'comment/LOAD';
-const ADD_NOTEBOOK = 'comment/ADD';
-const DELETE_NOTEBOOK = 'comment/DELETE';
-const EDIT_NOTEBOOK = 'comment/EDIT';
+const SET_NOTEBOOKS = 'notebook/LOAD';
+const ADD_NOTEBOOK = 'notebook/ADD';
+const DELETE_NOTEBOOK = 'notebook/DELETE';
+const EDIT_NOTEBOOK = 'notebook/EDIT';
+const LOAD_NOTEBOOK_ALL_NOTES = 'notebook/LOAD_NOTEBOOK_ALL_NOTES';
 
 //action creator
-export const loadAllNotebooks = notebooks => ({
-    type: LOAD_ALL_NOTEBOOKS,
+export const setNotebooks = notebooks => ({
+    type: SET_NOTEBOOKS,
     notebooks
 })
 
@@ -22,16 +23,27 @@ export const editNotebook = notebook => ({
     type: EDIT_NOTEBOOK,
     notebook
 })
+export const getNotebookAndNotes = notebook => ({
+    type: LOAD_NOTEBOOK_ALL_NOTES,
+    notebook
+})
 
 //Thunk
-export const loadAllNotebooksT = () => async dispatch => {
-    const response = await fetch(`/api/auth`);
+export const getNotebooks = () => async dispatch => {
+    const response = await fetch('/api/notebook_routes/');
 
     if (response.ok) {
         const notebooks = await response.json();
-        dispatch(loadAllNotebooks(notebooks))
+        dispatch(setNotebooks(notebooks))
     }
 };
+
+export const notebookAndNotes = (id) => async dispatch => {
+    const response = await fetch(`/api/notebook_routes/${id}/notes`)
+    const data = await response.json()
+    dispatch(getNotebookAndNotes(data))
+}
+
 
 //Create a notebook, WORKING THUNK
 export const createNotebook = ({title, user_id}) => async(dispatch) => {
@@ -83,22 +95,12 @@ export const deleteANotebook = ({id}) => async(dispatch) => {
     // dispatch(deleteNotebook(deleteSingleNotebook))
 }
 
-    
-
-
-
-
-
-
-
-
-
+const initialState = {}
 //Reducer
-const notebookReducer = (state={}, action) => {
+const notebookReducer = (state=initialState, action) => {
     switch(action.type) {
-        case LOAD_ALL_NOTEBOOKS:
-            const allNotebooks = {...action.notebooks}
-            return {...allNotebooks,...state}
+         case SET_NOTEBOOKS:
+            return {...state,...action.notebooks}
         case ADD_NOTEBOOK:
             const addNewNotebook = {...state}
             addNewNotebook[action.notebook.id] = action.notebook

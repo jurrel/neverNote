@@ -3,18 +3,23 @@ import {useSelector, useDispatch} from 'react-redux'
 import { Link, NavLink} from 'react-router-dom';
 import NewNotebookPage from '../NewNotebookPage/NewNotebookPage'
 import NavBar from '../NavBar/NavBar';
-import signUpPage2 from '../../assets/2.jpg'
-import signUpPage3 from '../../assets/3.jpg'
+
+
 import Notebooks from './Notebook/Notebooks'
 import Sidebar from './Sidebar/Sidebar';
+import {getNotebooks} from '../../store/notebook'
 
 import './homepage.css'
 
 
 function HomePage() {
     const user = useSelector((state) => state.session.user)
+    
+    //.notebook is what was used in the rootReducer  
+    const notebooksgetthunk = useSelector((state) => state.notebook)
+    console.log('notebookget thuink', notebooksgetthunk)
     const dispatch = useDispatch();
-    console.log(user)
+    
 
     return(
         <>  
