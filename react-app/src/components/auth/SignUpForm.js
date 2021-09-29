@@ -83,17 +83,15 @@ const SignUpForm = () => {
               ))}
             </div>
             <div>
-              <label>Email</label>
               <input
                 type='text'
                 name='email'
-                placeholder='Email'
+                placeholder='Email address'
                 onChange={updateEmail}
                 value={email}
               ></input>
             </div>
             <div>
-              <label>Password</label>
               <input
                 type='password'
                 name='password'
@@ -103,7 +101,7 @@ const SignUpForm = () => {
               ></input>
             </div>
             <div>
-              <label>Repeat Password</label>
+              {/* <label>Repeat Password</label> */}
               <input
                 type='password'
                 name='repeat_password'
