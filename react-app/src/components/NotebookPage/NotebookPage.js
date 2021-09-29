@@ -11,9 +11,9 @@ function NotebookPage() {
     const user = useSelector((state) => state.session.user)
     const notebook = useSelector((state) => state.notebook)
     console.log('this is gr', notebook)
+    console.log('this is gr2', notebook)
+    
 
-    
-    
 
     useEffect(()=> {
         dispatch(getNotebooks());
@@ -32,11 +32,12 @@ function NotebookPage() {
                             </tr>
                         </thead>
                     <tbody className="tbody">
-                        {/* <Fragment> */}
-                            {notebook.notebooks?.map((notebook)=> (
-                                <NotebookPageMapping key={notebook.id} notebook={notebook} user={user.notebooks} />
-                            ))}
-                        {/* </Fragment> */}
+                        {/* {notebook?.map((notebookI) => (
+                            <NotebookPageMapping key={notebook.id} notebook={notebook} user={user.notebooks} />
+                        ))} */}
+                        {/* {notebook?.map((notebook)=> (
+                            <NotebookPageMapping key={notebook.id} notebook={notebook} user={user.notebooks} />
+                        ))} */}
                     </tbody>     
                 </table>
             </div>
