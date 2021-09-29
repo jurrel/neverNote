@@ -7,6 +7,7 @@ import configureStore from './store';
 import {createNotebook, editANotebook, deleteANotebook } from './store/notebook'
 import {createNote } from './store/note'
 import * as notebookActions from './store/notebook';
+import * as noteActions from './store/note';
 
 const store = configureStore();
 
@@ -17,6 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.deleteANotebook = deleteANotebook;
   window.createNote = createNote;
   window.notebookActions = notebookActions;
+  window.noteActions = noteActions;
 }
 
 ReactDOM.render(

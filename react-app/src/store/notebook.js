@@ -45,7 +45,7 @@ export const notebookAndNotes = (id) => async dispatch => {
 }
 
 
-//Create a notebook, WORKING THUNK
+//Create a notebook
 export const createNotebook = ({title, user_id}) => async(dispatch) => {
     const response = await fetch('/api/notebook_routes/newNotebook', {
         method: 'POST',
@@ -64,7 +64,7 @@ export const createNotebook = ({title, user_id}) => async(dispatch) => {
     }
 }
 
-//Edit a notebook, WORKING THUNK
+//Edit a notebook
 export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
     const response = await fetch(`/api/notebook_routes/edit/${id}`, {
         method: 'PUT',
@@ -83,7 +83,7 @@ export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
     }
 }
 
-//Delete  a notebook
+//Delete notebook
 export const deleteANotebook = (id) => async(dispatch) => {
     const response = await fetch(`/api/notebook_routes/delete/${id}`, {
         method: "DELETE"

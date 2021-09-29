@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {getNotebooks, deleteANotebook} from '../../store/notebook';
 import NotebookPageMapping from './NotebookPageMapping';
+import { useParams } from "react-router-dom";
 import './NotebookPage.css'
 
 function NotebookPage() {
@@ -9,12 +10,12 @@ function NotebookPage() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const notebook = useSelector((state) => state.notebook)
+    const [grabNotebooks, setGrabNotebooks] = useState(notebook)
+    console.log('this is gr', grabNotebooks)
 
     useEffect(()=> {
         dispatch(getNotebooks());
     },[dispatch])
-
-  
 
     return(
         <> 
@@ -44,3 +45,4 @@ function NotebookPage() {
 
 export default NotebookPage
 
+//you're almost there

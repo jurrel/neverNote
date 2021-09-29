@@ -6,13 +6,11 @@ import {deleteANotebook} from '../../store/notebook'
 function NotebookPageMapping({notebook, user}) {
     
     const dispatch = useDispatch();
+
     const handleDeleteButton = async(e) => {
-        // e.preventDefault()
         await dispatch(deleteANotebook(notebook.id))
     }
     
-    //THIS FUNCTION DELETES ALL MY NOTES!!!
-    // useEffect(()=> { //     dispatch(deleteANotebook(notebook.id)); // },[dispatch, notebook.id])
 
     return(
         <>  
@@ -22,6 +20,9 @@ function NotebookPageMapping({notebook, user}) {
                 <td>{notebook.updatedAt}</td>
                 <td>
                     <button type="button" onClick={() => handleDeleteButton(notebook.id)}>Delete Button</button>  
+                </td>
+                <td>
+                    <button type="button" onClick={() => handleDeleteButton(notebook.id)}>Edit Button</button>  
                 </td>
             </tr>
         </>
