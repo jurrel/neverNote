@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux'
 import './notebook.css'
 
-function NotebookMap({notebook, setSelectedNotebook, user}) {
+function NotebookMap({notebook, setSelectedNotebook}) {
     // const dispatch = useDispatch();
-    console.log('YYYYYYY')
     return(
         <>  
             <div className="middle-content" onClick={(e) => setSelectedNotebook(notebook.id)}>
@@ -20,8 +19,3 @@ function NotebookMap({notebook, setSelectedNotebook, user}) {
 
 export default NotebookMap
 
-//  <tr>
-//       <td>{user.id}</td>
-//       <td>{user.name}</td>
-//       <td>{user.email}</td>
-//     </tr>

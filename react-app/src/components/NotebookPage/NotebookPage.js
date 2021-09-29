@@ -1,8 +1,9 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import {getNotebooks, deleteANotebook} from '../../store/notebook';
+import {getNotebooks} from '../../store/notebook';
 import NotebookPageMapping from './NotebookPageMapping';
 import { useParams } from "react-router-dom";
+import NewNotebook from '../NotebookCRUD/NewNotebook'
 import './NotebookPage.css'
 
 function NotebookPage() {
@@ -11,9 +12,7 @@ function NotebookPage() {
     const user = useSelector((state) => state.session.user)
     const userNotebook = useSelector((state) => state.notebook)
     const notebooks = Object.values(userNotebook)
-    // const notebooks = Object.values(userNotebook)
-    // const tttt = useSelector((state) => state.notebook)
-    // console.log('normalized userNotebook', notebooks)
+
     
     useEffect(()=> {
         dispatch(getNotebooks());
@@ -38,11 +37,10 @@ function NotebookPage() {
                     </tbody>     
                 </table>
             </div>
+            <NewNotebook notebooks={notebooks}/>
         </>
     )
 
 }
 
 export default NotebookPage
-
-//you're almost there

@@ -31,7 +31,7 @@ def get_notebook_notes(id):
 
     data = {
         'notebook': notebook.to_dict(),
-        'notes': [note.to_dict() for note in notes]
+        'notes': [note.to_dict() for note in notes]  
     }
     return data
 
