@@ -9,12 +9,12 @@ function NotebookPage() {
     
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
-    const notebook = useSelector((state) => state.notebook)
-    console.log('this is gr', notebook)
-    console.log('this is gr2', notebook)
+    const userNotebook = useSelector((state) => state.notebook)
+    const notebooks = Object.values(userNotebook)
+    // const notebooks = Object.values(userNotebook)
+    // const tttt = useSelector((state) => state.notebook)
+    // console.log('normalized userNotebook', notebooks)
     
-
-
     useEffect(()=> {
         dispatch(getNotebooks());
     },[dispatch])
@@ -32,12 +32,9 @@ function NotebookPage() {
                             </tr>
                         </thead>
                     <tbody className="tbody">
-                        {/* {notebook?.map((notebookI) => (
-                            <NotebookPageMapping key={notebook.id} notebook={notebook} user={user.notebooks} />
-                        ))} */}
-                        {/* {notebook?.map((notebook)=> (
-                            <NotebookPageMapping key={notebook.id} notebook={notebook} user={user.notebooks} />
-                        ))} */}
+                        {notebooks?.map((notebook) => (
+                            <NotebookPageMapping key={notebook.id} notebook={notebook} />
+                        ))}
                     </tbody>     
                 </table>
             </div>

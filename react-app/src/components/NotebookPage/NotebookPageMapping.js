@@ -1,28 +1,33 @@
 import { useState, useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook} from '../../store/notebook'
 
 
 function NotebookPageMapping({notebook}) {
     const dispatch = useDispatch();
-    console.log('hyhhh', notebook)
+    const userNotebook = useSelector((state) => state.notebook)
+    //unNormalizing
+    console.log('This is no', userNotebook)
+    console.log('this is no.id', notebook.id)
 
-    const handleDeleteButton = async(e) => {
-        await dispatch(deleteANotebook(notebook.id))
+    //this is call back of event handler
+    const handleDeleteButton = async() => {
+        await dispatch(deleteANotebook(notebook))
     }
     // console.log(n)
+    
     return(
         <>  
             <tr className="middle-content tbody">
-                {/* <td>{title}</td> */}
+                <td>{notebook.id}</td>
                 <td>{notebook.title}</td>
                 <td>{notebook.createdAt}</td>
-                <td>{notebook.updatedAt}</td>
+                <td>{notebook.updatedAt}</td> 
                 <td>
-                    <button type="button" onClick={() => handleDeleteButton(notebook.id)}>Delete Button</button>  
+                    <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button>  
                 </td>
                 <td>
-                    <button type="button" onClick={() => handleDeleteButton(notebook.id)}>Edit Button</button>  
+                    <button type="button" onClick={() => handleDeleteButton()}>Edit Button</button>  
                 </td>
             </tr>
         </>
