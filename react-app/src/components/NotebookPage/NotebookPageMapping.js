@@ -3,9 +3,11 @@ import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook} from '../../store/notebook'
 
 
-function NotebookPageMapping({notebook, user}) {
-    
+function NotebookPageMapping({notebook}) {
     const dispatch = useDispatch();
+    console.log('hyhhh')
+
+
 
     const handleDeleteButton = async(e) => {
         await dispatch(deleteANotebook(notebook.id))

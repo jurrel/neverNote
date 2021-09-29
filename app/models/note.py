@@ -5,12 +5,12 @@ class Note(db.Model):
     __tablename__ = 'notes'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=False, default='Untitled')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebook_id = db.Column(db.Integer, db.ForeignKey('notebooks.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    createdAt = db.Column(db.DateTime, nullable=True)
-    updatedAt = db.Column(db.DateTime, nullable=True)
+    createdAt = db.Column(db.DateTime, nullable=False)
+    updatedAt = db.Column(db.DateTime, nullable=False)
     
     
     # tags = db.relationship('Tag', secondary='tag_notes', back_populates='notes')

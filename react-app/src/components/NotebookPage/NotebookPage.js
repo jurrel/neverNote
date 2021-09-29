@@ -10,8 +10,10 @@ function NotebookPage() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const notebook = useSelector((state) => state.notebook)
-    const [grabNotebooks, setGrabNotebooks] = useState(notebook)
-    console.log('this is gr', grabNotebooks)
+    console.log('this is gr', notebook)
+
+    
+    
 
     useEffect(()=> {
         dispatch(getNotebooks());
