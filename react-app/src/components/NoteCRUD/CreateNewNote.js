@@ -13,7 +13,7 @@ function CreateNewNote(){
     const [notebookId, setNotebookId] = useState('');
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
-    const editJournal = (e) => setNotebookId(e.target.value)
+    const editNotebook = (e) => setNotebookId(e.target.value)
 
     const handleCreateNote = async(e) => {
         e.preventDefault();
@@ -36,9 +36,9 @@ function CreateNewNote(){
                 {/* NOTICE bottom is temporary */}
                 <input
                     type="text"
-                    placeholder="Journal Id"
+                    placeholder="Notebook"
                     value={notebookId}
-                    onChange={editJournal}
+                    onChange={editNotebook}
                 />
                 {/* NOTICE above code is temporary*/}
                 <input

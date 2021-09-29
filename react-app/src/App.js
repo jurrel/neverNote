@@ -6,12 +6,16 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/HomePage/HomePage';
 import NotebookPage from './components/NotebookPage/NotebookPage';
+import NotePage from './components/NotePage/NotePage';
+import { useSelector } from 'react-redux';
 import { LandingPage } from './components/LandingPage/LandingPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const user = useSelector(state => state.session.user)
+  const auth = user !== null
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,24 +31,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Switch>
-        {/* <NavBar/> */}
-        <ProtectedRoute exact path="/landing">
-            <LandingPage />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <HomePage/>
-        </ProtectedRoute>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/signUp' exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route exact path="/notebooks">
-            <NotebookPage />
-        </Route>
-      </Switch>
+        <NavBar auth={auth}/>
+        <div>
+          <Switch>
+            <ProtectedRoute exact path="/landing">
+                <LandingPage />
+            </ProtectedRoute>
+            <ProtectedRoute path='/' exact={true} >
+              <HomePage/>
+            </ProtectedRoute>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
+            <Route path='/signUp' exact={true}>
+              <SignUpForm />
+            </Route>
+            <ProtectedRoute exact path="/notebooks">
+                <NotebookPage />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/notes">
+                <NotePage />
+            </ProtectedRoute>
+          </Switch>
+        </div>
     </BrowserRouter>
   );
 }

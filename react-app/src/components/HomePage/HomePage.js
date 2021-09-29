@@ -15,7 +15,6 @@ import './homepage.css'
 
 function HomePage() {
     const user = useSelector((state) => state.session.user)
-    console.log('wwww', user.users)
     //.notebook is what was used in the rootReducer  
     const notebooksgetthunk = useSelector((state) => state.notebook)
     const dispatch = useDispatch();
@@ -28,12 +27,15 @@ function HomePage() {
     return(
         <>  
             <div className="main-container">
-                <div className="current-user-on">
+
+            </div>
+            {/* <div className="main-container"> */}
+                {/* <div className="current-user-on">
                     <p>{user.users.email}</p>
-                </div>
+                </div> */}
                 <Sidebar/>    
                 {/* <NewNotebookPage/> */}
-            </div>
+            {/* </div> */}
         {/* <img className="log-in-page-background" src={signUpPage3} alt=""/> */}
             {/* <div className='test_container'>
                 <div className='sidebar'>

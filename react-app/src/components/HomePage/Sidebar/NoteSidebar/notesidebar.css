@@ -7,9 +7,11 @@
     width:300px;
     margin-left: 250px;
     /* padding-left: 100px; */
-    background-color: green;
+    /* background-color: green; */
+    background-color: transparent;
     border-right: 1px solid black;
     align-items: center;
+    z-index: -20;
 }
 
 .ellow {

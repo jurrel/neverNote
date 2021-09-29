@@ -29,7 +29,7 @@ export const getNotes = () => async dispatch => {
 
     if (response.ok) {
         const notes = await response.json();
-        dispatch(setNotes(notes))
+        dispatch(setNotes(notes.notes))
     }
 };
 
@@ -64,7 +64,11 @@ export const deleteANote = (id) => async(dispatch) => {
 const noteReducer = (state={}, action) => {
     switch(action.type) {
         case SET_NOTES :
-            return {...state,...action.note}
+            const newState = {}
+            action.notes.forEach(note => {
+                newState[note.id] = note
+            })
+            return newState
         case ADD_NOTE:
             const addNewNote = {...state}
             addNewNote[action.note.id] = action.note

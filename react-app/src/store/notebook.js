@@ -38,12 +38,6 @@ export const getNotebooks = () => async dispatch => {
     }
 };
 
-// export const notebookAndNotes = (id) => async dispatch => {
-//     const response = await fetch(`/api/notebook_routes/${id}/notes`)
-//     const data = await response.json()
-//     dispatch(getNotebookAndNotes(data))
-// }
-
 
 //Create a notebook
 export const createNotebook = ({title, user_id}) => async(dispatch) => {
@@ -102,7 +96,6 @@ const notebookReducer = (state=initialState, action) => {
             const newState = {}
             console.log("this is action", action)
             action.notebooks.forEach(notebook => {
-                // with .notation we cannot use a variable /
                 newState[notebook.id] = notebook
             });
             return newState
@@ -117,7 +110,6 @@ const notebookReducer = (state=initialState, action) => {
         case EDIT_NOTEBOOK:
             const editNotebook = {...state}
             editNotebook[action.notebook.id] = action.notebook
-            // console.log("this is editNotebook", editNotebook[action.notebook.id])
             return editNotebook
         default:
             return state;

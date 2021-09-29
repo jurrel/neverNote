@@ -6,20 +6,16 @@ import {deleteANotebook} from '../../store/notebook'
 function NotebookPageMapping({notebook}) {
     const dispatch = useDispatch();
     const userNotebook = useSelector((state) => state.notebook)
-    //unNormalizing
-    console.log('This is no', userNotebook)
-    console.log('this is no.id', notebook.id)
+   
 
     //this is call back of event handler
     const handleDeleteButton = async() => {
         await dispatch(deleteANotebook(notebook))
     }
-    // console.log(n)
     
     return(
         <>  
             <tr className="middle-content tbody">
-                <td>{notebook.id}</td>
                 <td>{notebook.title}</td>
                 <td>{notebook.createdAt}</td>
                 <td>{notebook.updatedAt}</td> 

@@ -4,17 +4,16 @@ import { useHistory } from 'react-router-dom'
 import { createNotebook, editANotebook} from '../../store/notebook';
 
 
-function NewNotebook(){
+function NewNotebook({notebooks}){
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector(state => state.session.user)
+    const notebook = useSelector(state => state.session.notebooks)
     const [title, setTitle] = useState('');
 
     const editTitle = (e) => setTitle(e.target.value)
-
-    // useEffect(()=> {
-    //     dispatch(createNotebook())
-    // },[dispatch])
+    console.log('NET', notebook)
+    console.log('NET', user.users.id)
 
     const handleCreateNotebook = async(e) => {
         e.preventDefault();
@@ -30,7 +29,6 @@ function NewNotebook(){
     }
     return (
         <>
-            {/* shows on postbird, need to add indication that its created and need it to show on page */}
             <form onSubmit={handleCreateNotebook} >
                 <h1>NEW NOTEBOOK</h1>
                 <input
@@ -40,7 +38,6 @@ function NewNotebook(){
                     onChange={editTitle} />
                 <button type="submit" className="submit-btn-upload">Submit</button>
             </form>         
-
         </>
     )
 }

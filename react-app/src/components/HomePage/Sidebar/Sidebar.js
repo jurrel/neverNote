@@ -17,7 +17,7 @@ function Sidebar() {
 
     return(
         <>
-            <div className="sidebar-container">
+            {/* <div className="sidebar-container"> */}
                 
                 <div className="sidebar-home">
                     <HomeSidebar/>
@@ -39,7 +39,8 @@ function Sidebar() {
                 </div>
                     <LogoutButton/>   {/*Remove later, just here for convienence*/}
             
-            </div>
+            {/* </div> */}
+            
         </>
     )
 }

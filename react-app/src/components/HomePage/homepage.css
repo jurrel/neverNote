@@ -12,11 +12,11 @@
     left: 0;
     flex:0.25;
     background-color: #2f3136;
-    z-index: 2;
+    z-index: -2;
 }
 
 .above {
-    z-index: 2;
+    z-index: -2;
 }
 .current-user-on {
 	background-color: navajowhite;
@@ -25,7 +25,7 @@
 	/* align-items: center; */
 	/* position: absolute; */
 	left: 100px;
-	z-index: 2;
+	z-index: -12;
 	bottom: 0px;
 	/* height: 75px; */
 	width: 250px;
@@ -46,7 +46,8 @@
 	z-index: 1;
 	width: 233px;
 	height: 100%;
-	background-color: purple;
+	/* background-color: purple; */
+	background-color: white;
 }
 .align_the_side_bar {
 	flex: 1;

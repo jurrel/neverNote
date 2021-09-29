@@ -9,8 +9,8 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebook_id = db.Column(db.Integer, db.ForeignKey('notebooks.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    createdAt = db.Column(db.DateTime, nullable=False)
-    updatedAt = db.Column(db.DateTime, nullable=False)
+    createdAt = db.Column(db.DateTime, nullable=True)
+    updatedAt = db.Column(db.DateTime, nullable=True)
     
     
     # tags = db.relationship('Tag', secondary='tag_notes', back_populates='notes')
