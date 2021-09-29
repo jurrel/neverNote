@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { createNotebook, editANotebook} from '../../store/notebook';
 
 
-function NewNotebookPage(){
+function CreateNewNote(){
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector(state => state.session.user)
@@ -16,6 +16,8 @@ function NewNotebookPage(){
     //     dispatch(createNotebook())
     // },[dispatch])
 
+    console.log('this is seession', user)
+    console.log('this is seession', user['users']['id'])
     const handleCreateNotebook = async(e) => {
         e.preventDefault();
 
@@ -45,4 +47,4 @@ function NewNotebookPage(){
     )
 }
 
-export default NewNotebookPage;
+export default CreateNewNote;

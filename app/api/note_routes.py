@@ -6,11 +6,20 @@ from flask_login import current_user
 
 note_routes = Blueprint("notes", __name__)
 
-# Read single note
+
+# Get all Notes
+@note_routes.route('/', methods=["GET"])
+def get_all_note():
+    notes = Note.query.filter(
+        Note.user_id == current_user.id).all()
+    return {'notes': [note.to_dict() for note in notes]}
+
+
+# Get note
 @note_routes.route('/<int:id>', methods=["GET"])
 def get_single_notebook(id):
-    notebook = Note.query.filter(Note.id == id).one()
-    return notebook.to_dict()
+    note = Note.query.filter(Note.id == id).one()
+    return note.to_dict()
 
 
 # Edit Note
@@ -27,8 +36,9 @@ def edit_notebook(id):
         db.session.commit()
         return note.to_dict()
 
+
 # Delete Notebook
-@note_routes.route('/delete/<int:id>', methods=["PUT"])
+@note_routes.route('/delete/<int:id>', methods=["DELETE"])
 def delete_notebook(id):
     note = Note.query.filter(Note.id == id).one()
     deleted_note = note
