@@ -30,7 +30,7 @@ const NavBar = ({auth, user}) => {
           </NavLink>
       </nav>:
       <div className="nav-bar-container">
-        <h1 className="nav-bar-user-email">{user.users['email']}</h1>
+        <h1 className="nav-bar-user-email">{user?.users?.email}</h1>
         <nav>
               <HomeNavbar/>
               <NotebooksNavbar/>
