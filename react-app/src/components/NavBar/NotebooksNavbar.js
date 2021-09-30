@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-function NotebooksSidebar() {
+function NotebooksNavbar() {
 
     return(
         <>
@@ -10,4 +10,4 @@ function NotebooksSidebar() {
     )
 }
 
-export default NotebooksSidebar;
+export default NotebooksNavbar;
