@@ -93,7 +93,6 @@ const notebookReducer = (state=initialState, action) => {
     switch(action.type) {
          case SET_NOTEBOOKS:
             const newState = {}
-            console.log("this is action", action)
             action.notebooks.forEach(notebook => {
                 newState[notebook.id] = notebook
             });

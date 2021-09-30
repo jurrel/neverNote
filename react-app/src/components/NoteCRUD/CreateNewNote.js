@@ -25,6 +25,7 @@ function CreateNewNote(){
             user_id: user['users']['id']
         }
         let newNote = await dispatch(createNote(payload))
+        console.log('what is newNote', payload)
         if (newNote) {
             history.push('/')
         }
