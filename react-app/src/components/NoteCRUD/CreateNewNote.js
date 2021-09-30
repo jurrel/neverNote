@@ -32,7 +32,7 @@ function CreateNewNote(){
     return (
         <>
             <form onSubmit={handleCreateNote} >
-                <h1>NEW NOTEBOOK</h1>
+                <h1>NEW NOTE</h1>
                 {/* NOTICE bottom is temporary */}
                 <input
                     type="text"

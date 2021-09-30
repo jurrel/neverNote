@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-        <NavBar auth={auth}/>
+        <NavBar auth={auth} user={user}/>
         <div>
           <Switch>
             <ProtectedRoute exact path="/landing">

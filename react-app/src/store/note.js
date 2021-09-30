@@ -10,15 +10,15 @@ export const setNotes = notes => ({
     notes
 })
 
-export const addNotebook = note => ({
+export const addNote = note => ({
     type: ADD_NOTE,
     note
 })
-export const deleteNotebook = note => ({
+export const deleteNote = note => ({
     type: DELETE_NOTE,
     note
 })
-export const editNotebook = note => ({
+export const editNote = note => ({
     type: EDIT_NOTE,
     note
 })
@@ -47,6 +47,10 @@ export const createNote = ({content, id, notebook_id, title, user_id}) => async(
             user_id
          }),
     });
+    if (response.ok) {
+        const note = await response.json();
+        dispatch(addNote(note))
+    }
     console.log({response: {content, id, notebook_id, title, user_id}})
 }
 
@@ -56,7 +60,7 @@ export const deleteANote = (id) => async(dispatch) => {
         method: "DELETE"
     })
     if (response.ok) {
-        dispatch(deleteNotebook(id));
+        dispatch(deleteNote(id));
     }
 }
 
@@ -75,10 +79,11 @@ const noteReducer = (state={}, action) => {
             return addNewNote
         case DELETE_NOTE:
             const note = {...state}
+            delete note[action.id]
             return note
         case EDIT_NOTE:
             const editNote = {...state}
-            editNote[action.notebook.id] = action.notebook
+            editNote[action.note.id] = action.note
             return editNote
         default:
             return state;

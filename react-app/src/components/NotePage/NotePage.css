@@ -1,3 +1,7 @@
 .note-page-container {
     transform: translate(8.80%, 0%);
 }
+.server_name_bottom_bar {
+	border-bottom: 1px solid gray;
+	transform: translate(0%, 0%);
+}

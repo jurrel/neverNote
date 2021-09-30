@@ -11,7 +11,7 @@
         background-color: yellow;
         z-index: 10000;
         /* NOTICE temporary, just using to fix navbar */
-        transform: translate(375%, 0%);
+        transform: translate(725%, 0%);
 }
 
 .note-list{
@@ -26,4 +26,8 @@
     border-right: 1px solid black;
     align-items: center;
     z-index: -20;
+}
+
+.nav-notes-text{
+      text-decoration: none;
 }
