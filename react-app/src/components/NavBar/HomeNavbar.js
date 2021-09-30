@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import './homesidebar.css'
-function HomeSidebar() {
+function HomeNavbar() {
 
     return(
         <>
@@ -13,4 +12,4 @@ function HomeSidebar() {
     )
 }
 
-export default HomeSidebar;
+export default HomeNavbar;

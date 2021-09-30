@@ -12,6 +12,7 @@ function NotebookPage() {
     const user = useSelector((state) => state.session.user)
     const userNotebook = useSelector((state) => state.notebook)
     const notebooks = Object.values(userNotebook)
+    
 
     
     useEffect(()=> {

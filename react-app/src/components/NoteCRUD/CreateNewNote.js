@@ -36,7 +36,7 @@ function CreateNewNote(){
                 {/* NOTICE bottom is temporary */}
                 <input
                     type="text"
-                    placeholder="Notebook"
+                    placeholder="Notebook id"
                     value={notebookId}
                     onChange={editNotebook}
                 />

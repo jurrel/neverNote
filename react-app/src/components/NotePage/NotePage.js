@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {getNotes} from '../../store/note';
 import NotePageMapping from './NotePageMapping'
+import NewNotebook from '../NoteCRUD/CreateNewNote';
 import './NotePage.css'
 import { useParams } from "react-router-dom";
 
@@ -28,6 +29,7 @@ function NotePage() {
                     </div>
                 ))}
             </div>
+            <NewNotebook/>
         </div>
     )
 

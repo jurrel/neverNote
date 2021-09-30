@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { Link, NavLink} from 'react-router-dom';
-import NewNotebook from '../NotebookCRUD/NewNotebook';
+
 import NavBar from '../NavBar/NavBar';
 import CreateNewNote from '../NoteCRUD/CreateNewNote';
 import { getNotebooks } from '../../store/notebook'; 
 
 
 import Notebooks from './Notebook/Notebooks'
-import Sidebar from './Sidebar/Sidebar';
 
 import './homepage.css'
 
@@ -33,7 +32,7 @@ function HomePage() {
                 {/* <div className="current-user-on">
                     <p>{user.users.email}</p>
                 </div> */}
-                <Sidebar/>    
+                {/* <Sidebar/>     */}
                 {/* <NewNotebookPage/> */}
             {/* </div> */}
         {/* <img className="log-in-page-background" src={signUpPage3} alt=""/> */}
