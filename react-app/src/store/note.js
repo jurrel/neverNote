@@ -99,7 +99,7 @@ const noteReducer = (state={}, action) => {
             return addNewNote
         case DELETE_NOTE:
             const note = {...state}
-            delete note[action.id]
+            delete note[action.note]
             return note
         case EDIT_NOTE:
             const editNote = {...state}

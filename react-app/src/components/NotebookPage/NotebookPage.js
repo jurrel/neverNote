@@ -1,15 +1,13 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {getNotebooks} from '../../store/notebook';
 import NotebookPageMapping from './NotebookPageMapping';
-import { useParams } from "react-router-dom";
 import NewNotebook from '../NotebookCRUD/NewNotebook'
 import './NotebookPage.css'
 
 function NotebookPage() {
     
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.session.user)
     const userNotebook = useSelector((state) => state.notebook)
     const notebooks = Object.values(userNotebook)
     

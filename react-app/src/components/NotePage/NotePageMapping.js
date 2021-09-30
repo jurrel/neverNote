@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANote, editANote} from '../../store/note'
+import { useHistory } from 'react-router-dom'
+
 
 function NotePageMapping({note}) {
     const dispatch = useDispatch();
+
     const [title, setTitle] = useState('');
     const user = useSelector(state => state.session.user);
     const [content, setContent] = useState('')
-    console.log('tttt', note)
-    console.log('tttt', note.notebook_id)
+
     const editTitle = (e) => setTitle(e.target.value)
     const editContent = (e) => setContent(e.target.value)
 
     const handleDeleteButton = async() => {
+        console.log('handle delete button', note)
         await dispatch(deleteANote(note))
         
     }
@@ -27,9 +30,8 @@ function NotePageMapping({note}) {
         }
         console.log('payload',payload)
         let updateNote = await dispatch(editANote(payload))
-        // console.log('whatwhat', payload)
         if (updateNote) {
-            // setTitle('');
+            setTitle('');
         }
     }
     return(
@@ -52,7 +54,7 @@ function NotePageMapping({note}) {
                     placeholder="Content"
                     value={content}
                     onChange={editContent} />
-                <button type="submit" className="submit-btn-upload">Submit</button>
+                <button type="submit" className="submit-btn-upload">Submit Edit</button>
             </form>  
             {/* <button type="button" onClick={() => handleEditNote()}>Edit Button</button> */}
         </>

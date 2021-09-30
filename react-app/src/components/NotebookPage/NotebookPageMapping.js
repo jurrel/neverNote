@@ -22,7 +22,6 @@ function NotebookPageMapping({notebook}) {
         }
 
         let updateNotebook = await dispatch(editANotebook(payload))
-        console.log('whatwhat', payload)
         if (updateNotebook) {
             setTitle('');
         }
