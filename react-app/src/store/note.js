@@ -55,12 +55,32 @@ export const createNote = ({content, id, notebook_id, title, user_id}) => async(
 }
 
 //Delete note
-export const deleteANote = (id) => async(dispatch) => {
+export const deleteANote = ({id}) => async(dispatch) => {
     const response = await fetch(`/api/note_routes/delete/${id}`, {
         method: "DELETE"
     })
     if (response.ok) {
         dispatch(deleteNote(id));
+    }
+}
+
+export const editANote = ({title, user_id, id, content,notebook_id} ) => async(dispatch) => {
+    const response = await fetch(`/api/note_routes/edit/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+            id,
+            title,
+            user_id,
+            content,
+            notebook_id,
+         }),
+    });
+    if (response.ok) {
+        const note = await response.json();
+        dispatch(editNote(note))
     }
 }
 

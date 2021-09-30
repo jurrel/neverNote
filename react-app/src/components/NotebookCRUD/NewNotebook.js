@@ -8,7 +8,6 @@ function NewNotebook({notebooks}){
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector(state => state.session.user)
-    const notebook = useSelector(state => state.session.notebooks)
     const [title, setTitle] = useState('');
 
     const editTitle = (e) => setTitle(e.target.value)

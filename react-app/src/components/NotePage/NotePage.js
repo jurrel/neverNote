@@ -4,7 +4,6 @@ import {getNotes} from '../../store/note';
 import NotePageMapping from './NotePageMapping'
 import NewNotebook from '../NoteCRUD/CreateNewNote';
 import './NotePage.css'
-import { useParams } from "react-router-dom";
 
 
 function NotePage() {
@@ -13,7 +12,6 @@ function NotePage() {
     const notes = Object.values(userNote)
     console.log('this is noootes', notes)
 
-    // const note = Object.values(userNotebook)
 
     useEffect(()=> {
         dispatch(getNotes());

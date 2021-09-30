@@ -1,17 +1,16 @@
 .nav-bar-container {
-    background-color: green;
+    background-color: black;
+    /* background-color: green; */
     height: 100%;
-        display: flex;
-        flex-direction: column; 
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 250px;
-        border-right: 1px solid black;
-        background-color: yellow;
-        z-index: 10000;
-        /* NOTICE temporary, just using to fix navbar */
-        transform: translate(725%, 0%);
+    display: flex;
+    flex-direction: column; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    border-right: 1px solid black;
+    /* background-color: yellow; */
+    z-index: 100;
 }
 
 .note-list{
@@ -30,4 +29,18 @@
 
 .nav-notes-text{
       text-decoration: none;
+}
+
+.nav-bar-user-email {
+    color: white;
+}
+
+
+.nav-bar-component:hover{
+    background-color: gray;
+    color: white;
+}
+.fa-gear{
+    color: white;
+    background-color: white;
 }

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook, editANotebook} from '../../store/notebook';
-import EditNotebook from '../NotebookCRUD/EditNotebook';
 
 function NotebookPageMapping({notebook}) {
     const dispatch = useDispatch();
@@ -39,7 +38,7 @@ function NotebookPageMapping({notebook}) {
                     <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button>  
                 </td>
                 <td>
-                    <form onSubmit={handleEditNotebookButton} >
+            <form onSubmit={handleEditNotebookButton} >
                 <h1>Edit Notebook</h1>
                 <textarea
                     type="text"

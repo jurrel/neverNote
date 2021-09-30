@@ -79,7 +79,6 @@ export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
 
 //Delete notebook
 export const deleteANotebook = ({id}) => async(dispatch) => {
-    console.log("this is id", id)
     const response = await fetch(`/api/notebook_routes/delete/${id}`, {
         method: "DELETE"
     })
