@@ -12,8 +12,7 @@ function NewNotebook({notebooks}){
     const [title, setTitle] = useState('');
 
     const editTitle = (e) => setTitle(e.target.value)
-    console.log('NET', notebook)
-    console.log('NET', user.users.id)
+
 
     const handleCreateNotebook = async(e) => {
         e.preventDefault();
@@ -27,6 +26,7 @@ function NewNotebook({notebooks}){
             history.push('/')
         }
     }
+    
     return (
         <>
             <form onSubmit={handleCreateNotebook} >
