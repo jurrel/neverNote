@@ -7,9 +7,9 @@ import { useHistory } from 'react-router-dom'
 function NotePageMapping({note}) {
     const dispatch = useDispatch();
 
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState(note.title);
     const user = useSelector(state => state.session.user);
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState(note.content)
 
     const editTitle = (e) => setTitle(e.target.value)
     const editContent = (e) => setContent(e.target.value)
@@ -35,10 +35,10 @@ function NotePageMapping({note}) {
         }
     }
     return(
-        <>  
-            <h1>
+        <div>  
+            <h2>
                 {note.title}
-            </h1>
+            </h2>
             <p className="note-content">
                 {note.content}
             </p>
@@ -47,17 +47,17 @@ function NotePageMapping({note}) {
                 <input
                     type="text"
                     placeholder="New Title"
-                    value={title}
+                    defaultValue={note.title}
                     onChange={editTitle} />
                 <textarea
                     type="text"
                     placeholder="Content"
-                    value={content}
+                    defaultValue={note.content}
                     onChange={editContent} />
                 <button type="submit" className="submit-btn-upload">Submit Edit</button>
             </form>  
             {/* <button type="button" onClick={() => handleEditNote()}>Edit Button</button> */}
-        </>
+        </div>
     )
 
 }

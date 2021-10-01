@@ -5,7 +5,7 @@ function HomeNavbar() {
 
     return(
         <>
-          <NavLink to="/">
+          <NavLink to="/home">
             <h1 className="nav-bar-component"> 
               <i className="fa fa-home"/> Home
             </h1>

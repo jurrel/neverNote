@@ -7,6 +7,7 @@ import HomeNavbar from './HomeNavbar';
 import NotebooksNavbar from './NotebooksNavbar';
 import NotesNavbar from './NotesNavbar';
 import PersonalLinks from './PersonalLinks';
+import Icon from '../../assets/Icon.png'
 import './NavBar.css'
 const NavBar = ({auth, user}) => {
   const dispatch = useDispatch();
@@ -21,15 +22,22 @@ const NavBar = ({auth, user}) => {
   return (
     <>
       {!auth ?
-      <nav>
-          <button onClick={demoUser} type='button'>Demo</button>
+      <div className="nav-bar-horizontal">
+        <nav>
+          {/* <div>
+            <NavLink to ='/' exact = {true}>
+              <img className='icon-log-horizontal-nav' src={Icon} alt=""/>
+            </NavLink>
+          </div> */}
           <NavLink to ='/login' exact = {true}>
             Login
           </NavLink>
-          <NavLink to ='/signUp' exact = {true}>
-            Sign up for Free
-          </NavLink>
-      </nav>:
+            <NavLink to ='/signUp' exact = {true}>
+              Sign up for Free
+            </NavLink>
+            <button onClick={demoUser} type='button'>Demo</button>
+        </nav>
+      </div>:
       <div className="nav-bar-container">
         <h1 className="nav-bar-user-email">{user?.users?.email}</h1>
         <nav>
