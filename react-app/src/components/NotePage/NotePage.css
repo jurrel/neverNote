@@ -1,12 +1,10 @@
 .note-page-container {
 	left: 300px;
-
+	/* background-color: #1a1a1a; */
 	position: absolute;
+	z-index: -1;
 }
-.server_name_bottom_bar {
-	border-bottom: 1px solid gray;
-	transform: translate(0%, 0%);
-}
+
 .note-content {
 	left: 50px;
 	position: relative;

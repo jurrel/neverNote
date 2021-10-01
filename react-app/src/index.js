@@ -8,6 +8,7 @@ import {createNotebook, editANotebook, deleteANotebook } from './store/notebook'
 import {createNote } from './store/note'
 import * as notebookActions from './store/notebook';
 import * as noteActions from './store/note';
+import { ModalProvider } from "./components/context/Modal";
 
 const store = configureStore();
 
@@ -24,7 +25,9 @@ if (process.env.NODE_ENV !== 'production') {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ModalProvider>
         <App />
+      </ModalProvider>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')
