@@ -46,7 +46,6 @@
 	z-index: 1;
 	width: 233px;
 	height: 100%;
-	/* background-color: purple; */
 	background-color: white;
 }
 .align_the_side_bar {
@@ -61,6 +60,6 @@
 .homepage-main-container, 
 .landing-page {
 	background-color: #d1b8b8;
-	left: 300px;
+	left: 250px;
 	position: absolute;
 }

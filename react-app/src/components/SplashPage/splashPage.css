@@ -1,0 +1,43 @@
+.slogan{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(0%, 20%);
+}
+
+.sign-up-for-free-button {
+    height: 40px;
+    font-weight: 900;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    width: 200px;
+    background-color: #00a82d;
+    font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
+    
+}
+
+.splash-photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    max-width: 60%
+}
+
+.splash-text {
+    gap: 25px;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+        font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
+    height: 100%;
+    width: 240px;
+    z-index: 2;
+    transform: translate(-50%, 15%);
+}
