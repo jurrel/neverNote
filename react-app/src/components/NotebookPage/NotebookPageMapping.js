@@ -30,6 +30,7 @@ function NotebookPageMapping({notebook}) {
                 <td>{notebook.title}</td>
                 <td>{notebook.createdAt}</td>
                 <td>{notebook.updatedAt}</td> 
+                {/* <td>{notes?.context}</td> */}
                 <td>
                     <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button>  
                 </td>
