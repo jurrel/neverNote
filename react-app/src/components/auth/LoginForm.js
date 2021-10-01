@@ -4,6 +4,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import signUpPage1 from '../../assets/signUpPage1.jpg'
 import Icon from '../../assets/Icon.png'
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -15,6 +16,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const demoEmail = 'demo@aa.io';
   const demoPassword = 'password';
@@ -22,11 +24,13 @@ const LoginForm = () => {
   const demoUser = async(e) => {
     e.preventDefault();
     dispatch(login(demoEmail,demoPassword))
+    history.push('/home')
   }
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    history.push('/home')
     if (data) {
       setErrors(data);
     }
@@ -41,7 +45,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (

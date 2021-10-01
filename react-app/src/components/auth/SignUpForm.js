@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session';
+import { useHistory } from 'react-router-dom';
+
 import signUpPage1 from '../../assets/signUpPage1.jpg'
 import Icon from '../../assets/Icon.png'
 
@@ -13,24 +15,19 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
+
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const demoEmail = 'demo@aa.io';
   const demoPassword = 'password';
 
   const demoUser = async(e) => {
     e.preventDefault();
-    dispatch(login(demoEmail,demoPassword))
+    await dispatch(login(demoEmail,demoPassword))
+    history.push('/home')
   }
   
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
-  };
-
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -59,7 +56,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
