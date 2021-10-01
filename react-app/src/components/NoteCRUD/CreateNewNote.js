@@ -30,10 +30,9 @@ function CreateNewNote(){
             id: notebookId,
             user_id: user['users']['id']
         }
-        let newNote = await dispatch(createNote(payload))
-        console.log('what is newNote', payload)
+        let newNote = await dispatch(createNote(payload))        
         if (newNote) {
-            history.push('/')
+            setTitle('')
         }
     }
     return (

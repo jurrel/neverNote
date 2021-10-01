@@ -11,11 +11,11 @@ function NewNotebook({notebooks}){
     const [title, setTitle] = useState('');
 
     const editTitle = (e) => setTitle(e.target.value)
-
-
+ 
+    
     const handleCreateNotebook = async(e) => {
         e.preventDefault();
-
+        
         const payload = {
             title,
             user_id: user['users']['id']

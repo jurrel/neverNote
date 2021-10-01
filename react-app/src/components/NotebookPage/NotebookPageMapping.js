@@ -8,11 +8,10 @@ function NotebookPageMapping({notebook}) {
     const [title, setTitle] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
 
-    //this is call back of event handler
     const handleDeleteButton = async() => {
         await dispatch(deleteANotebook(notebook))
-        
     }
+
     const handleEditNotebookButton = async() => {
        
         const payload = {
@@ -20,13 +19,11 @@ function NotebookPageMapping({notebook}) {
             id: notebook.id,
             user_id: user['users']['id']
         }
-
         let updateNotebook = await dispatch(editANotebook(payload))
         if (updateNotebook) {
             setTitle('');
         }
     }
-    
     return(
         <>  
             <tr className="middle-content tbody">
