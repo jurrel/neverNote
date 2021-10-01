@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { createNotebook, editANotebook} from '../../store/notebook';
+import { createNotebook} from '../../store/notebook';
 
 
-function NewNotebook({notebooks}){
+function NewNotebook(){
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector(state => state.session.user)

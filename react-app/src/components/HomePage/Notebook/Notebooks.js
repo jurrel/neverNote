@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useDispatch, useSelector} from 'react-redux'
+import { useSelector} from 'react-redux'
 import NotebookMap from './NotebookMap'
 import './notebook.css'
 
 function Notebooks() {
     const user = useSelector((state) => state.session.user)
     const userNotebook = useSelector((state) => state.notebook)
-    // const dispatch = useDispatch();
     const [selectedNotebook, setSelectedNotebook] = useState('');
     console.log('This is User from Notebooks', user)
     //Has unnoramlized data and allows to map through

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session';
-import NavBar from '../NavBar/NavBar';
 import signUpPage1 from '../../assets/signUpPage1.jpg'
 import Icon from '../../assets/Icon.png'
 

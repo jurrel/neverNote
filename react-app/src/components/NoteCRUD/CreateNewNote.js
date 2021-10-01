@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { createNote} from '../../store/note';
 import {getNotebooks} from '../../store/notebook'
 
 function CreateNewNote(){
     const dispatch = useDispatch();
-    const history = useHistory();
     const user = useSelector(state => state.session.user);
     const userNotebook = useSelector((state) => state.notebook)
     const notebooks = Object.values(userNotebook)
@@ -15,6 +13,7 @@ function CreateNewNote(){
     const [notebookId, setNotebookId] = useState(user.notebooks[0].id);
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
+    
 
 
     useEffect(()=> {
@@ -63,7 +62,6 @@ function CreateNewNote(){
                 />
                 <button type="submit" className="submit-btn-upload">Submit</button>
             </form>         
-
         </>
     )
 }

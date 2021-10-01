@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANote, editANote} from '../../store/note'
-import { useHistory } from 'react-router-dom'
 
 
 function NotePageMapping({note}) {
@@ -10,6 +9,7 @@ function NotePageMapping({note}) {
     const [title, setTitle] = useState(note.title);
     const user = useSelector(state => state.session.user);
     const [content, setContent] = useState(note.content)
+    
 
     const editTitle = (e) => setTitle(e.target.value)
     const editContent = (e) => setContent(e.target.value)
