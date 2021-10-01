@@ -30,6 +30,7 @@ function NewNotebook({notebooks}){
         <>
             <form onSubmit={handleCreateNotebook} >
                 <h1>NEW NOTEBOOK</h1>
+
                 <input
                     type="text"
                     placeholder="NOTEBOOK Name"

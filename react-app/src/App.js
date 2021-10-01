@@ -7,8 +7,9 @@ import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/HomePage/HomePage';
 import NotebookPage from './components/NotebookPage/NotebookPage';
 import NotePage from './components/NotePage/NotePage';
+import LandingPage from './components/LandingPage/LandingPage';
 import { useSelector } from 'react-redux';
-import { LandingPage } from './components/LandingPage/LandingPage';
+
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 
@@ -34,10 +35,10 @@ function App() {
         <NavBar auth={auth} user={user}/>
         <div>
           <Switch>
-            <ProtectedRoute exact path="/landing">
+            <ProtectedRoute path="/landing">
                 <LandingPage />
             </ProtectedRoute>
-            <ProtectedRoute path='/' exact={true} >
+            <ProtectedRoute path='/home' exact={true} >
               <HomePage/>
             </ProtectedRoute>
             <Route path='/login' exact={true}>

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8021f23c524a4e0b0fb8b085cdded3750e28e036a4f328a9c33ad986fc3b831a"
+            "sha256": "83489e322d0a05513cc34841a0395ebf03c2432051aa5a060580ad8a8767f424"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -166,6 +166,13 @@
             ],
             "index": "pypi",
             "version": "==3.2"
+        },
+        "is-disposable-email": {
+            "hashes": [
+                "sha256:905c84806d8d89c87d77925807a4a2830da6964f89b879a3a9247c314f18e777",
+                "sha256:d31f0200aea99f5f74bf6a6092fc6a65d232d7932a80152a6437e5b8c7884b06"
+            ],
+            "version": "==1.0.0"
         },
         "itsdangerous": {
             "hashes": [
@@ -337,6 +344,14 @@
             ],
             "index": "pypi",
             "version": "==2.3.3"
+        },
+        "wtforms-validators": {
+            "hashes": [
+                "sha256:6bafc63fb4a000d097da010d8e89dddffe93e894f2ff91069117f774b93e1f7c",
+                "sha256:b61e2da9b3cb8ce77e59550168eb9c445b13f4ad3b262c26b0bb2801aed2462e"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
         }
     },
     "develop": {

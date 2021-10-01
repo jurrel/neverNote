@@ -36,10 +36,10 @@ function NotePageMapping({note}) {
     }
     return(
         <>  
-            <p>
+            <h1>
                 {note.title}
-            </p>
-            <p>
+            </h1>
+            <p className="note-content">
                 {note.content}
             </p>
              <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button>

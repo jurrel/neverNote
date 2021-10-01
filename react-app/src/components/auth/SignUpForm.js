@@ -65,7 +65,6 @@ const SignUpForm = () => {
 
   return (
     <>
-      <NavBar/>
       <div>
         <img className="log-in-page-background" src={signUpPage1} alt=""/>
       </div>

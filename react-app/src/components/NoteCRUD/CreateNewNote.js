@@ -2,18 +2,24 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createNote} from '../../store/note';
-
+import {getNotebooks} from '../../store/notebook'
 
 function CreateNewNote(){
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
+    const userNotebook = useSelector((state) => state.notebook)
+    const notebooks = Object.values(userNotebook)
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [notebookId, setNotebookId] = useState('');
+    const [notebookId, setNotebookId] = useState(user.notebooks[0].id);
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
-    const editNotebook = (e) => setNotebookId(e.target.value)
+
+
+    useEffect(()=> {
+        dispatch(getNotebooks());
+    },[dispatch])
 
     const handleCreateNote = async(e) => {
         e.preventDefault();
@@ -34,14 +40,16 @@ function CreateNewNote(){
         <>
             <form onSubmit={handleCreateNote} >
                 <h1>NEW NOTE</h1>
-                {/* NOTICE bottom is temporary */}
-                <input
-                    type="text"
-                    placeholder="Notebook id"
-                    value={notebookId}
-                    onChange={editNotebook}
-                />
-                {/* NOTICE above code is temporary*/}
+               <select 
+               value = {notebookId} 
+               onChange={(e)=> {
+                       const notebookSelect = e.target.value;
+                   setNotebookId(notebookSelect)
+               }}>
+                    {notebooks?.map((notebook) => (
+                        <option value={notebook.id}>{notebook.title}</option>                                  
+                    ))}
+                </select>
                 <input
                     type="text"
                     placeholder="NOTE Title"

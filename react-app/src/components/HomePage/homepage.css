@@ -53,3 +53,14 @@
 	flex: 1;
 }
 
+.main-container {
+	left: 300px;
+	position: absolute;
+}
+
+.homepage-main-container, 
+.landing-page {
+	background-color: #d1b8b8;
+	left: 300px;
+	position: absolute;
+}

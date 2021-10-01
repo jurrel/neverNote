@@ -25,38 +25,9 @@ function HomePage() {
 
     return(
         <>  
-            <div className="main-container">
-
+            <div className="homepage-main-container">
+                <h1>WELCOME TO THE NEW HOMEPAGE</h1>
             </div>
-            {/* <div className="main-container"> */}
-                {/* <div className="current-user-on">
-                    <p>{user.users.email}</p>
-                </div> */}
-                {/* <Sidebar/>     */}
-                {/* <NewNotebookPage/> */}
-            {/* </div> */}
-        {/* <img className="log-in-page-background" src={signUpPage3} alt=""/> */}
-            {/* <div className='test_container'>
-                <div className='sidebar'>
-                    <h1>go</h1>
-                </div>
-            </div> */}
-
-
-
-            {/* <div className='main-container'>
-                <button>Create Notebook Button</button>
-                <Link to='/'>
-                    <span>Notebook</span>
-                </Link>
-                <Link to='/'>
-                    <span>Notes</span>
-                </Link>
-                <Link to='/'>
-                    <span>Tags</span>
-                </Link>
-            </div> */}
-            {/* <Notebooks/> */}
         </>
     )
 }

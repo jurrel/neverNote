@@ -5,7 +5,8 @@ import LogoutButton from '../auth/LogoutButton';
 import { login } from '../../store/session';
 import HomeNavbar from './HomeNavbar';
 import NotebooksNavbar from './NotebooksNavbar';
-import NotesNavbar from './NotesNavbar'
+import NotesNavbar from './NotesNavbar';
+import PersonalLinks from './PersonalLinks';
 import './NavBar.css'
 const NavBar = ({auth, user}) => {
   const dispatch = useDispatch();
@@ -35,7 +36,12 @@ const NavBar = ({auth, user}) => {
               <HomeNavbar/>
               <NotebooksNavbar/>
               <NotesNavbar/>
-              <LogoutButton />
+              <div>
+                <PersonalLinks/>
+              </div>
+              <div>
+                <LogoutButton />
+              </div>
         </nav>
       </div>
       }

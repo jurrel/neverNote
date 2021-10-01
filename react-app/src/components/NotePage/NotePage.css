@@ -8,3 +8,7 @@
 	border-bottom: 1px solid gray;
 	transform: translate(0%, 0%);
 }
+.note-content {
+	left: 50px;
+	position: relative;
+}

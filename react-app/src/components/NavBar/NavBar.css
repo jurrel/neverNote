@@ -44,3 +44,10 @@
     color: white;
     background-color: white;
 }
+
+.personal-links-sidebar{
+    color: white;
+}
+.personal-links-sidebar:hover {
+    background-color: gray;
+}
