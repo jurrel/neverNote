@@ -8,7 +8,6 @@ function Notebooks() {
     const userNotebook = useSelector((state) => state.notebook)
     const [selectedNotebook, setSelectedNotebook] = useState('');
     console.log('This is User from Notebooks', user)
-    //Has unnoramlized data and allows to map through
     console.log('This is user.notebooks from Notebooks', user.notebooks)
     const normalize = Object.values(userNotebook)
     console.log('yett', userNotebook)
@@ -24,7 +23,6 @@ function Notebooks() {
             </div>
         </>
     )
-
 }
 
 export default Notebooks

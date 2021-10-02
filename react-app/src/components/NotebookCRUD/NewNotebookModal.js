@@ -20,7 +20,7 @@ function NewNotebookModal() {
         
         const payload = {
             title,
-            user_id: user['users']['id']
+            user_id: user?.['users']?.['id']
         }
         let newNotebook = await dispatch(createNotebook(payload))
         setShowModal(false);
@@ -43,10 +43,12 @@ function NewNotebookModal() {
 				/><h3 className='new-note-button-text'>New</h3></button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
-					
                     <form 
                         className="new-note-modal"
                         onSubmit={handleCreateNotebook} >
+                            <div>Create new notebook</div>
+                            <div>Notebooks are useful for getting notes around a common topic</div>
+                            <div>Name</div>
                         <input
                             type="text"
                             placeholder="NOTEBOOK Name"

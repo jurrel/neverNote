@@ -1,22 +1,93 @@
+.notebook-page-background {
+  position: absolute;
+  margin: auto 10px;
+  width: auto;
+  background-color: #1a1a1a;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
+}
+
+.note-page-container > h1 {
+  color: white;
+  
+}
+
+.middle-content {
+  display: flex;
+  border-bottom: 1px solid white;
+}
+.middle-content:hover {
+  cursor: pointer;
+}
+
+.notebook-counter {
+  color: white;
+}
+
+.notes-display-font {
+  color: white;
+}
+.note-page-container {
+  position: absolute;
+  margin: auto 10px;
+  width: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+  z-index: 1;
+	right: 0;
+}
+
+.fa-edit, 
+.fa-trash-o, 
+.fa-angle-down,
+.fa-angle-right
+{
+  color: white;
+}
+
+
+
+
+
 .tableContainer {
   width: 75%;
   margin: auto;
   display: flex;
   justify-content: center;
+  color: white;
 }
 
 .table {
   width: 100%;
-  border: thin solid black;
+  border: thin solid white;
   padding: 0.35rem;
   border-radius: 0.25rem;
 }
 
 .thead th {
-  border-bottom: thin solid black;
+  border-bottom: thin solid white;
   padding: 0.35rem;
 }
 
 .tbody td {
   padding: 0.35rem;
+}
+
+
+.notebook-page-click-toggle {
+  display: flex;
+}
+
+.notebook-page-click-toggle-content {
+  display: flex;
+}
+
+.notebook-text, 
+.notebook-text-display, 
+.notebook-page-click-toggle{
+  color: white
 }

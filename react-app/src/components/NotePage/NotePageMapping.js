@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANote, editANote} from '../../store/note';
+import './NotePage.css'
 
 
 function NotePageMapping({note}) {
@@ -41,7 +42,7 @@ function NotePageMapping({note}) {
     }
     return(
         <div>  
-            <h2>
+            <h2 className='notes-display-font'>
                 {note.title}
             </h2>
             <p className="note-content">
@@ -61,12 +62,11 @@ function NotePageMapping({note}) {
                         placeholder="Content"
                         defaultValue={note.content}
                         onChange={editContent} />
-                    <button type="submit" className="submit-btn-upload">Submit Edit</button>
+                    <button type="submit" className="submit-btn-upload">Save</button>
                 </form>  : <></>
             }
         </div>
     )
-
 }
 
 export default NotePageMapping

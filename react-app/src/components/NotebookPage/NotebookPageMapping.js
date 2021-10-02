@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook, editANotebook} from '../../store/notebook';
+import './NotebookPage.css';
 
-function NotebookPageMapping({notebook}) {
+function NotebookPageMapping({notebook, notesList}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const [title, setTitle] = useState('');
+    const [updateNote, setUpdateNote] = useState(false);
+    const [toggleNote, setToggleNote] = useState(false);
     const editTitle = (e) => setTitle(e.target.value)
 
     const handleDeleteButton = async() => {
@@ -17,36 +20,60 @@ function NotebookPageMapping({notebook}) {
         const payload = {
             title,
             id: notebook.id,
-            user_id: user['users']['id']
+            user_id: user?.['users']?.['id']
         }
         let updateNotebook = await dispatch(editANotebook(payload))
         if (updateNotebook) {
             setTitle('');
         }
     }
+    const updateHelperFunction = (e) => {
+        setUpdateNote(!updateNote)
+    }
+
+    const handleToggle = () => {
+        setToggleNote(!toggleNote);
+    }
     return(
         <>  
-            <tr className="middle-content tbody">
-                <td>{notebook.title}</td>
-                <td>{notebook.createdAt}</td>
-                <td>{notebook.updatedAt}</td> 
-                {/* <td>{notes?.context}</td> */}
-                <td>
-                    <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button>  
-                </td>
-                <td>
-            <form onSubmit={handleEditNotebookButton} >
-                <h1>Edit Notebook</h1>
-                <textarea
-                    type="text"
-                    placeholder="New Title"
-                    value={title}
-                    onChange={editTitle} />
-                <button type="submit" className="submit-btn-upload">Submit</button>
-            </form>  
-                </td>
-                {/* <EditNotebook/> */}
-            </tr>
+            <div className="middle-content" >
+                <div className='notebook-page-click-toggle' onClick={() => handleToggle()}><i class="fa fa-angle-right"></i>
+{notebook.title}</div>
+
+                    <div className='notebook-page-click-toggle-content'> 
+                        {toggleNote === true ? 
+                            notesList.map((note, index) => (
+                                        <div key={index}>
+                                            <div className="notebook-text">Title: {note.title}</div>
+                                        </div >
+                                    )) : <></>
+                        }          
+                    </div>
+                <div onClick={() => updateHelperFunction(true)}>
+                        <i
+                            className="fa fa-edit"
+                            onClick={() => updateHelperFunction(true)}
+                            title="Edit Notebook"
+                        />
+                </div>
+                 <div onClick={() => handleDeleteButton()}>
+                        <i
+                            className="fa fa-trash-o"
+                            onClick={() => handleDeleteButton()}
+                            title="Edit Notebook"
+                        />
+                </div>
+                {updateNote  === true ?
+                <form onSubmit={handleEditNotebookButton} >
+                    <input
+                        type="text"
+                        placeholder="New Title"
+                        defaultValue={notebook.title}
+                        onChange={editTitle} />
+                    <button type="submit" className="submit-btn-upload">Submit</button>
+                </form> : <></>} 
+            </div>
+
         </>
     )
 

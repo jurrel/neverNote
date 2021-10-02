@@ -30,10 +30,9 @@ function NewNotebook(){
         <>
             <form onSubmit={handleCreateNotebook} >
                 <h1>NEW NOTEBOOK</h1>
-
-                <input
+                <textarea
                     type="text"
-                    placeholder="NOTEBOOK Name"
+                    placeholder="Notebook Name"
                     value={title}
                     onChange={editTitle} />
                 <button type="submit" className="submit-btn-upload">Submit</button>
