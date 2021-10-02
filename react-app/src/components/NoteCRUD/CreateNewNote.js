@@ -27,7 +27,7 @@ function CreateNewNote(){
             title,
             content,
             id: notebookId,
-            user_id: user['users']['id']
+            user_id: user?.['users']?.['id']
         }
         let newNote = await dispatch(createNote(payload))        
         if (newNote) {
@@ -45,7 +45,7 @@ function CreateNewNote(){
                    setNotebookId(notebookSelect)
                }}>
                     {notebooks?.map((notebook) => (
-                        <option value={notebook.id}>{notebook.title}</option>                                  
+                        <option key={notebook.id}value={notebook.id}>{notebook.title}</option>                                  
                     ))}
                 </select>
                 <input
@@ -54,7 +54,7 @@ function CreateNewNote(){
                     value={title}
                     onChange={editTitle}
                 />
-                <input
+                <textarea
                     type="text"
                     placeholder="Content"
                     value={content}

@@ -4,8 +4,27 @@
 	position: absolute;
 	z-index: -1;
 }
+.note-page-container > h1{
+	color: white;
+}
 
 .note-content {
-	left: 50px;
 	position: relative;
+	border-bottom: 1px solid #262626;
+	color: rgba(255, 255, 255, 0.835);
+}
+
+.note-page-background {
+	position: absolute;
+	margin: auto 10px;
+	width: auto;
+	background-color: #1a1a1a;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	right: 0;
+}
+.note-page-note-counter {
+	color: white;
 }

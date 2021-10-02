@@ -10,20 +10,24 @@ function NotePage() {
     const dispatch = useDispatch();
     const userNote = useSelector((state) => state.note)
     const notes = Object.values(userNote)
+    const noteLength = notes.length
 
     useEffect(()=> {
         dispatch(getNotes());
     },[dispatch])
 
     return(
-        <div className="note-page-container"> 
-          <h1>ALL the Notes display</h1>
-          <div>
-                {notes?.map((note)=> (
-                    <NotePageMapping key={note.id} note={note} />
-                ))}
+        <div className='note-page-background'>
+            <div className="note-page-container"> 
+            <h1 className='note-page-note-counter'>Notes</h1>
+            <div className='note-page-note-counter'>{noteLength} Notes</div>
+            <div>
+                    {notes?.map((note)=> (
+                        <NotePageMapping key={note.id} note={note} />
+                    ))}
+                </div>
+                <NewNotebook/>
             </div>
-            <NewNotebook/>
         </div>
     )
 
