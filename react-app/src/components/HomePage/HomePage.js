@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch} from 'react-redux';
 import { getNotebooks } from '../../store/notebook'; 
+import {getNotes} from '../../store/note'
 import './homepage.css'
 import homepage from '../../assets/home2.jpeg'
 
@@ -11,6 +12,7 @@ function HomePage() {
 
     useEffect(()=> {
         dispatch(getNotebooks());
+        dispatch(getNotes());
     },[dispatch])
     
 
