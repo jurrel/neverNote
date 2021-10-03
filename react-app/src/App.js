@@ -35,7 +35,7 @@ function App() {
         <NavBar auth={auth} user={user}/>
         <div>
           <Switch>
-            <Route  exact={true} path="/">
+            <Route exact={true} path="/">
               <SplashPage/>
             </Route>
             <Route path='/login' exact={true}>

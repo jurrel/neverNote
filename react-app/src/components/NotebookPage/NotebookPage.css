@@ -83,7 +83,9 @@
 }
 
 .notebook-page-click-toggle-content {
+  margin-top: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 .notebook-text, 

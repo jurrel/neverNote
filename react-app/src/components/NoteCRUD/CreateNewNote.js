@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux'
 import { createNote} from '../../store/note';
 import {getNotebooks} from '../../store/notebook'
+import {getNotes} from '../../store/note'
 
 function CreateNewNote(){
     const dispatch = useDispatch();
@@ -10,14 +11,15 @@ function CreateNewNote(){
     const notebooks = Object.values(userNotebook)
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [notebookId, setNotebookId] = useState(user.notebooks[0].id);
+    const [notebookId, setNotebookId] = useState(notebooks?.[0]?.['id']);
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
     
-
+  
 
     useEffect(()=> {
         dispatch(getNotebooks());
+        dispatch(getNotes())
     },[dispatch])
 
     const handleCreateNote = async(e) => {

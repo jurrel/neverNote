@@ -18,7 +18,6 @@ function NotePageMapping({note}) {
     const editContent = (e) => setContent(e.target.value)
 
     const handleDeleteButton = async() => {
-        console.log('handle delete button', note)
         await dispatch(deleteANote(note))
         
     }
@@ -31,7 +30,7 @@ function NotePageMapping({note}) {
             content,
             id: note.id,
             title,
-            user_id: user['users']['id'],
+            user_id: user?.['users']?.['id'],
             notebook_id: note.notebook_id
         }
         console.log('payload',payload)

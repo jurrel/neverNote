@@ -54,7 +54,6 @@ function NewNotebookModal() {
                             placeholder="NOTEBOOK Name"
                             value={title}
                             onChange={editTitle} />
-                        <button type="submit" className="submit-btn-upload">Submit</button>
 						<div>
 							<button className="cancel_button" type="button" onClick={handleCancle}>
 								Cancel

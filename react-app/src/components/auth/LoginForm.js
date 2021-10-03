@@ -45,7 +45,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/home' />;
+    return <NavLink to='/home' />;
   }
 
   return (
