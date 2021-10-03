@@ -50,6 +50,7 @@ export const createNote = ({content, id, notebook_id, title, user_id}) => async(
     if (response.ok) {
         const note = await response.json();
         dispatch(addNote(note))
+        return note
     }
     console.log({response: {content, id, notebook_id, title, user_id}})
 }

@@ -11,11 +11,10 @@ function CreateNewNote(){
     const notebooks = Object.values(userNotebook)
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [notebookId, setNotebookId] = useState(notebooks?.[0]?.['id']);
+    const [notebookId, setNotebookId] = useState(notebooks.[0]?.['id']);
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
     
-  
 
     useEffect(()=> {
         dispatch(getNotebooks());
@@ -31,6 +30,7 @@ function CreateNewNote(){
             id: notebookId,
             user_id: user?.['users']?.['id']
         }
+        console.log('what returns in the payload', payload)
         let newNote = await dispatch(createNote(payload))        
         if (newNote) {
             setTitle('')

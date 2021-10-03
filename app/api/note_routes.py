@@ -2,10 +2,10 @@ from flask import Blueprint, request
 from app.models import Note, db
 from app.forms import NoteForm
 from flask_login import current_user
+from .auth_routes import validation_errors_to_error_messages
 
 
 note_routes = Blueprint("notes", __name__)
-
 
 # Get all Notes
 @note_routes.route('/', methods=["GET"])
@@ -35,6 +35,7 @@ def edit_notebook(id):
         note.notebook_id = form.data['notebook_id']
         db.session.commit()
         return note.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # Delete Notebook

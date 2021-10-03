@@ -9,8 +9,10 @@ function NewNotebookModal() {
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector(state => state.session.user)
+    const [errors, setErrors] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
+   
 
     const editTitle = (e) => setTitle(e.target.value)
  
@@ -22,15 +24,23 @@ function NewNotebookModal() {
             title,
             user_id: user?.['users']?.['id']
         }
-        let newNotebook = await dispatch(createNotebook(payload))
-        setShowModal(false);
-        if (newNotebook) {
-            history.push('/')
+        let data = await dispatch(createNotebook(payload))
+        if (data) {
+            setErrors(data)
+            // console.log('hisssss', data)
+            setShowModal(true);
+        } else {
+            setTitle('')
+            setErrors([])
+            setShowModal(false);
         }
-    }
+    };
+
     const handleCancle = async (e) => {
 		e.preventDefault();
 		setShowModal(false);
+        setTitle('')
+        setErrors([])
 		return;
 	};
 	
@@ -49,16 +59,22 @@ function NewNotebookModal() {
                             <div>Create new notebook</div>
                             <div>Notebooks are useful for getting notes around a common topic</div>
                             <div>Name</div>
+                            <div className='errors'>
+                                {errors.map((error, ind) => (
+                                    <div key={ind}>{error}</div>
+                                    ))}
+                            </div>
                         <input
                             type="text"
                             placeholder="NOTEBOOK Name"
                             value={title}
                             onChange={editTitle} />
 						<div>
-							<button className="cancel_button" type="button" onClick={handleCancle}>
-								Cancel
-							</button>
-							<button className="create_button" type="submit">Create</button>
+                                <button className="cancel_button" type="button" onClick={handleCancle}>
+                                    Cancel
+                                </button>
+                                <button className="create_button" type="submit">Create</button>
+                           
 						</div>
                     </form>       
 				</Modal>
