@@ -23,16 +23,17 @@ const LoginForm = () => {
 
   const demoUser = async(e) => {
     e.preventDefault();
-    dispatch(login(demoEmail,demoPassword))
+    await dispatch(login(demoEmail,demoPassword))
     history.push('/home')
   }
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    history.push('/home')
     if (data) {
       setErrors(data);
+    } else {
+      history.push('/home')
     }
   };
 

@@ -61,10 +61,16 @@ export const createNotebook = ({title, user_id}) => async(dispatch) => {
             user_id
          }),
     });
-    console.log({response: {title, user_id}})
     if (response.ok) {
         const notebook = await response.json();
         dispatch(addNotebook(notebook))
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 }
 

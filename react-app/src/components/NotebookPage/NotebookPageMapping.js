@@ -6,11 +6,15 @@ import './NotebookPage.css';
 function NotebookPageMapping({notebook, notesList}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
+    const userNotebook = useSelector(state => state.notebook)
     const [title, setTitle] = useState('');
     const [updateNote, setUpdateNote] = useState(false);
     const [toggleNote, setToggleNote] = useState(false);
+    const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
+    console.log('this is uesssss', userNotebook)
 
+    console.log(clic)
     const handleDeleteButton = async() => {
         await dispatch(deleteANotebook(notebook))
     }
@@ -34,6 +38,7 @@ function NotebookPageMapping({notebook, notesList}) {
     const handleToggle = () => {
         setToggleNote(!toggleNote);
     }
+
     return(
         <>  
             <div className="middle-content" >
@@ -44,7 +49,7 @@ function NotebookPageMapping({notebook, notesList}) {
                         {toggleNote === true ? 
                             notesList.map((note, index) => (
                                         <div key={index}>
-                                            <div className="notebook-text">Title: {note.title}</div>
+                                            <div onClick={(e) => setClic(note.id)} className="notebook-text">Title: {note.title}</div>
                                         </div >
                                     )) : <></>
                         }          

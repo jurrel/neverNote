@@ -3,6 +3,7 @@ from flask_login import current_user
 from app.models import db, Notebook, Note
 from app.forms import NotebookForm, NoteForm
 from flask_login import current_user
+from .auth_routes import validation_errors_to_error_messages
 
 
 notebook_routes = Blueprint('notebooks', __name__)
@@ -49,6 +50,7 @@ def new_note():
         db.session.add(notebook)
         db.session.commit()
         return notebook.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # Edit notebook
@@ -63,6 +65,7 @@ def edit_notebook(id):
         notebook.user_id = current_user.id,
         db.session.commit()
         return notebook.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # Delete Notebook
@@ -90,3 +93,4 @@ def new_notebook(id):
         db.session.add(notebook)
         db.session.commit()
         return notebook.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

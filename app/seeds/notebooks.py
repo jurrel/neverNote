@@ -8,26 +8,26 @@ def seed_notebooks():
     notebook1 = Notebook(
         title='Notebook1 U1',
         user_id=1,
-        createdAt=now,
-        updatedAt=now,
+        # createdAt=now,
+        # updatedAt=now,
     )
     notebook2 = Notebook(
         title='Notebook2 U1',
         user_id=1,
-        createdAt=now,
-        updatedAt=now,
+        # createdAt=now,
+        # updatedAt=now,
     )
     notebook3 = Notebook(
         title='Notebook3 U1',
         user_id=1,
-        createdAt=now,
-        updatedAt=now,
+        # createdAt=now,
+        # updatedAt=now,
     )
     notebook4 = Notebook(
         title='Notebook1 U2',
         user_id=2,
-        createdAt=now,
-        updatedAt=now,
+        # createdAt=now,
+        # updatedAt=now,
     )
     db.session.add(notebook1)
     db.session.add(notebook2)
