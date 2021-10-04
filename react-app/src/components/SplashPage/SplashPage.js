@@ -15,19 +15,21 @@ function SplashPage() {
                 Already have an account? Log in
             </NavLink>
         </div>
-        <img  className='splash-photo'src={splash} alt=""/>
-        <div className='splash-text'>
-            <div>
-                <h3>WORK ANYWHERE</h3>
-                <p>Keep important notes handy</p>
-            </div>
-            <div>
-                <h3>NEVER FORGET ANYTHING</h3>
-                <p>Keep important notes handy</p>
-            </div>
-            <div>
-                <h3>Have bad memory?</h3>
-                <p>We got you covered</p>
+        <div className="hero-section">
+            <img  className='splash-photo'src={splash} alt=""/>
+            <div className='splash-text'>
+                <div>
+                    <h3>WORK ANYWHERE</h3>
+                    <p>Keep important notes handy</p>
+                </div>
+                <div>
+                    <h3>NEVER FORGET ANYTHING</h3>
+                    <p>Keep important notes handy</p>
+                </div>
+                <div>
+                    <h3>Have bad memory?</h3>
+                    <p>We got you covered</p>
+                </div>
             </div>
         </div>
         

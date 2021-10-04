@@ -23,21 +23,48 @@
 }
 
 .splash-photo {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -20%);
-    max-width: 60%
+    max-width: 60% */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    height:  auto;
+    transform: translate(0%, 20%);
 }
 
 .splash-text {
-    gap: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+     font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
+    /* gap: 25px; */
     border-radius: 5px;
-    position: absolute;
-    right: 0;
-        font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
+    top: 200px;
+    /* position: absolute; */
+    /* right: 0;
+       
     height: 100%;
     width: 240px;
     z-index: 2;
-    transform: translate(-50%, 15%);
+    transform: translate(-50%, 15%); */
+}
+
+.hero-section {
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+
+    .hero-section {
+        flex-direction: column;
+    }
 }

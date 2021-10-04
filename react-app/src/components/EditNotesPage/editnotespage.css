@@ -1,0 +1,30 @@
+.edit-notebook-page-background {
+  position: absolute;
+  margin: auto 10px;
+  width: auto;
+  background-color: #1a1a1a;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
+}
+
+.edit-notebook-page-content{
+    position: relative;
+	left: 300px;
+	color: white;
+    overflow-y: hidden;
+}
+
+.tes {
+    color: yellow;
+    background-color: yellow;
+    text-align: center;
+    z-index: 50000;
+}
+
+
+.input-control {
+    margin: 1rem;;
+}

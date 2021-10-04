@@ -18,9 +18,9 @@ const NavBar = ({auth, user}) => {
   const email = 'demo@aa.io';
   const password = 'password';
   const history = useHistory();
-  const userss = useSelector(state => state.session.user)
+  // const userss = useSelector(state => state.session.user)
   console.log('What is user, getting from App.js', user)
-  console.log('What is usersssssss', userss)
+  // console.log('What is usersssssss', userss)
 
   const demoUser = async(e) => {
     e.preventDefault();

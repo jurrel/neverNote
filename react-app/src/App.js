@@ -8,6 +8,7 @@ import HomePage from './components/HomePage/HomePage';
 import NotebookPage from './components/NotebookPage/NotebookPage';
 import NotePage from './components/NotePage/NotePage';
 import SplashPage from './components/SplashPage/SplashPage';
+import EditNotesPage from './components/EditNotesPage/EditNotesPage';
 import { useSelector } from 'react-redux';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -15,7 +16,7 @@ import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session?.user)
   const auth = user !== null
   const dispatch = useDispatch();
 
@@ -54,6 +55,9 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute exact path="/notes">
                 <NotePage />
+            </ProtectedRoute>
+             <ProtectedRoute exact path="/notes/:id">
+                <EditNotesPage />
             </ProtectedRoute>
           </Switch>
         </div>

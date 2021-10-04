@@ -31,7 +31,7 @@
   color: white;
 }
 .note-page-container {
-  position: absolute;
+  position: relative;
   margin: auto 10px;
   width: auto;
 	top: 0;
@@ -39,9 +39,16 @@
 	left: 0;
   z-index: 1;
 	right: 0;
-  overflow: scroll;
-
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
+
+.note-page-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent; 
+}
+
+
 
 .fa-edit, 
 .fa-trash-o, 
@@ -83,6 +90,10 @@
 .notebook-page-click-toggle {
   display: flex;
 }
+.notebook-page-click-toggle:hover {
+  background-color: gray;
+}
+
 
 .notebook-page-click-toggle-content {
   margin-top: 20px;
@@ -94,4 +105,20 @@
 .notebook-text-display, 
 .notebook-page-click-toggle{
   color: white
+}
+
+
+.edit-comment-errors {
+  color: white;
+  z-index: 50000;
+}
+
+.new-note-button {
+  color: #00a82d;
+  z-index: 500;
+
+}
+.new-note-button:hover {
+  cursor: pointer;
+  color: #028324;
 }

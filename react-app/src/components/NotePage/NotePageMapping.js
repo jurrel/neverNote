@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANote, editANote} from '../../store/note';
+import EditNotesPage from '../EditNotesPage/EditNotesPage'
 import './NotePage.css'
 
 
@@ -17,7 +18,7 @@ function NotePageMapping({note}) {
     const editTitle = (e) => setTitle(e.target.value)
     const editContent = (e) => setContent(e.target.value)
 
-    const handleDeleteButton = async() => {
+     const handleDeleteButton = async() => {
         await dispatch(deleteANote(note))
         
     }
@@ -49,7 +50,10 @@ function NotePageMapping({note}) {
             </p>
              <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button>
              <button type="button" onClick={() => updateHelperFunction()}>Edit Button</button>
-            {updateNote  === true ? 
+            {/* {updateNote  === true ? 
+               <EditNotesPage setUpdateNote={setUpdateNote} note={note.note}/>  : <></>
+            } */}
+             {updateNote  === true ? 
                 <form onSubmit={handleEditNote} >
                     <input
                         type="text"

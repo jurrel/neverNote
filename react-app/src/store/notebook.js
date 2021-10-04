@@ -38,7 +38,6 @@ export const getNotebooks = () => async dispatch => {
     }
 };
 
-//////////
 export const getNotebookAndNotes = ({id}) => async dispatch => {
     const response = await fetch(`/api/notebook_routes/${id}/notes`);
     if (response.ok) {
@@ -46,7 +45,6 @@ export const getNotebookAndNotes = ({id}) => async dispatch => {
         dispatch(setNotebookAndNotes(notebooks))
     }
 };
-///////////////
 
 
 //Create a notebook
@@ -69,8 +67,6 @@ export const createNotebook = ({title, user_id}) => async(dispatch) => {
         if (data.errors) {
           return data.errors;
         }
-    } else {
-        return ['An error occurred. Please try again.']
     }
 }
 
@@ -90,6 +86,11 @@ export const editANotebook = ({title, user_id, id} ) => async(dispatch) => {
     if (response.ok) {
         const notebook = await response.json();
         dispatch(editNotebook(notebook))
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
     }
 }
 

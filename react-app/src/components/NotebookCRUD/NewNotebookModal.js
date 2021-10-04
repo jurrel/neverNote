@@ -7,7 +7,6 @@ import './newnotebookmodal.css'
 
 function NewNotebookModal() {
     const dispatch = useDispatch();
-    const history = useHistory()
     const user = useSelector(state => state.session.user)
     const [errors, setErrors] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -27,7 +26,6 @@ function NewNotebookModal() {
         let data = await dispatch(createNotebook(payload))
         if (data) {
             setErrors(data)
-            // console.log('hisssss', data)
             setShowModal(true);
         } else {
             setTitle('')
@@ -46,19 +44,19 @@ function NewNotebookModal() {
 	
 	return (
 		<>
-            <button className="new-note-button" onClick={() => setShowModal(true)}>
+            <button className="new-notebook-button" onClick={() => setShowModal(true)}>
                 <i
 					className="fa fa-plus plus-icon " 
 					onClick={() => setShowModal(true)}
-				/><h3 className='new-note-button-text'>New</h3></button>
+				/><h3 className='new-notebook-button-text'>New</h3></button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
                     <form 
-                        className="new-note-modal"
+                        className="new-notebook-modal"
                         onSubmit={handleCreateNotebook} >
-                            <div>Create new notebook</div>
+                            <div className="new-notebook-modal-title"> Create new notebook</div>
                             <div>Notebooks are useful for getting notes around a common topic</div>
-                            <div>Name</div>
+                            <div className="new-notebook-modal-title-1">Name</div>
                             <div className='errors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>
@@ -70,10 +68,10 @@ function NewNotebookModal() {
                             value={title}
                             onChange={editTitle} />
 						<div>
-                                <button className="cancel_button" type="button" onClick={handleCancle}>
+                                <button className="new-notebook-modal-cancle-button" type="button" onClick={handleCancle}>
                                     Cancel
                                 </button>
-                                <button className="create_button" type="submit">Create</button>
+                                <button className="new-notebook-modal-cancle-button" type="submit">Create</button>
                            
 						</div>
                     </form>       

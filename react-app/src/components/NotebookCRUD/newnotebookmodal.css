@@ -1,11 +1,12 @@
-.new-note-modal {
+.new-notebook-modal, .new-note-modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 350px;
+    height: 250px;
 	width: 540px;
-    background-color: gray;
+    background-color: #111111;
+    border: 1px solid #007720;
     display: flex;
 	flex-direction: column;
     align-items: center;
@@ -13,9 +14,10 @@
     display: flex;
 	flex-direction: column;
     z-index: 9999;
+    color: white;
 
 }
-.new-note-button {
+.new-notebook-button {
     height: 40px;
     border-radius: 10px;
     z-index: 2;
@@ -25,20 +27,64 @@
     background-color: #00a82d;
 }
 
-.new-note-button:hover {
+.new-notebook-button:hover {
     background-color: #007720;
 }
 .plus-icon {
     margin-right: 200px;
 }
-.new-note-button-text {
+.new-notebook-button-text {
     position: absolute;
     right: 180px;
     top:75px;
 }
 
 .errors {
-    /* color:yellow; */
-    /* background-color: yellow; */
-    /* z-index: 999999; */
+    color:white;
+    z-index: 0;
+}
+
+.new-notebook-modal-title {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.new-notebook-modal-title-1 {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.new-notebook-modal-cancle-button {
+    background-color: #111111;
+	border-color: #7289da;
+	width: 60px;
+	height: 25px;
+	color: white;
+	border-radius: 5px;
+	font-size: 13px;
+	transform: translate(300%, 200%);
+    border: 1px solid white;
+}
+
+.new-notebook-modal-create-button {
+    background-color: #111111;
+	border-color: #7289da;
+	width: 60px;
+	height: 25px;
+	color: white;
+	border-radius: 5px;
+	font-size: 13px;
+	transform: translate(320%, 200%);
+    border: 1px solid white;
+}
+.new-notebook-modal-create-button:hover, 
+.new-notebook-modal-cancle-button:hover {
+    cursor: pointer;
+    background-color: gray;
 }

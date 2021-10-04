@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import {getNotebooks} from '../../store/notebook';
 import {getNotes} from '../../store/note';
 import NotebookPageMapping from './NotebookPageMapping';
-import NewNotebook from '../NotebookCRUD/NewNotebook';
+// import NewNotebook from '../NotebookCRUD/NewNotebook';
 
 import './NotebookPage.css'
 
