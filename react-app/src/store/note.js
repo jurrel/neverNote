@@ -50,13 +50,7 @@ export const createNote = ({content, id, notebook_id, title, user_id}) => async(
         const note = await response.json();
         dispatch(addNote(note))
         return note
-    } else if (response.status < 500) {
-        const data = await response.json();
-        if (data.errors) {
-          return data.errors;
-    }
-    console.log({response: {content, id, notebook_id, title, user_id}})
-    }
+    } 
 }
 
 //Delete note

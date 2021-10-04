@@ -28,3 +28,9 @@
 .note-page-note-counter {
 	color: white;
 }
+
+.note-page-delete:hover,
+.note-page-edit:hover {
+	cursor: pointer;
+	color: gray;
+}

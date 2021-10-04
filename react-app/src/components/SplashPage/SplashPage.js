@@ -18,15 +18,15 @@ function SplashPage() {
         <div className="hero-section">
             <img  className='splash-photo'src={splash} alt=""/>
             <div className='splash-text'>
-                <div>
+                <div className='splash-page-middle-text'>
                     <h3>WORK ANYWHERE</h3>
                     <p>Keep important notes handy</p>
                 </div>
-                <div>
+                <div className='splash-page-middle-text'>
                     <h3>NEVER FORGET ANYTHING</h3>
                     <p>Keep important notes handy</p>
                 </div>
-                <div>
+                <div className='splash-page-middle-text'>
                     <h3>Have bad memory?</h3>
                     <p>We got you covered</p>
                 </div>

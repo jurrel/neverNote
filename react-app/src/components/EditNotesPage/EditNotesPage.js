@@ -1,37 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import {deleteANote, editANote, getNotes, setOneNote} from '../../store/note';
+import { editANote, getNotes} from '../../store/note';
 import { useParams } from 'react-router-dom';
 import './editnotespage.css';
-
+import { Modal } from '../context/Modal';
 
 function EditNotesPage({note, setUpdateNote}) {
     const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
     const notes = useSelector(state => state.note);
     const { id } = useParams();
     const notesTest = useSelector(state => Object.values(state.note).filter(notesTests => (
         notesTests.id ===  +id
     )));
+    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([])
     const user = useSelector(state => state.session.user);
     const [title, setTitle] = useState( notesTest[0]?.title);
     const [content, setContent] = useState(notes?.[id]?.content)
-    // console.log('@@@@@', notesTest)
-    // console.log('thissss', notesTest?.['id'])
-    // console.log('thissss', notesTest?.[id])
-    // console.log('thissss', notesTest?.id)
-    console.log('sdadsadsadsad', notesTest[0]?.title)
 
-    // console.log('what is user_id', user?.['users']?.['id'])
-    // console.log("what is notes?.[id]?.['id']", notes?.[id]?.['id'])
-    // console.log('what is note id', notes?.[id]?.['title'])
-    // const notesss = notesTest.filter(notesTests => (
-    //     notesTests.id ===  +id
-    // )))
-
-    //the + sign turns it into a number
-
-    // console.log('what is this notebook_id', notes?.[id]?.['notebook_id'])
-    console.log('what is this notebookId', notes?.[id]?.content)
 
     const handleEditNote = async(event) => {
        event.preventDefault();
@@ -42,19 +29,37 @@ function EditNotesPage({note, setUpdateNote}) {
             user_id: user?.['users']?.['id'],
             notebook_id: notes?.[id]?.['notebook_id']
         }
-        console.log('@@@@@@',payload)
-        let updateNote = await dispatch(editANote(payload))
-        if (updateNote) {
-            setTitle('');
+        let data = await dispatch(editANote(payload))
+        if (data) {
+            setErrors(data)
+            setShowModal(true);
+        } else {
+            setTitle('')
+            setContent('')
+            setErrors([])
+            setShowModal(false);
         }
-    }
+    };
 
     useEffect((id) => {
         dispatch(getNotes())
-        // dispatch(setOneNote(id))
     }, [dispatch]);
-
+    useEffect(() => {
+        const errors = [];
+        let newTitle = title
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("Title must be 1 to 15 characters")
+        setValidationErrors(errors)
+    }, [title])
+    
     if (!notes) return null;
+
+    const handleCancle = async (e) => {
+		e.preventDefault();
+		setShowModal(false);
+        setTitle('')
+        setContent('')
+		return;
+	};
 
 
 
@@ -65,29 +70,41 @@ function EditNotesPage({note, setUpdateNote}) {
     return(
         <div className='edit-notebook-page-background'>  
             <div className='edit-notebook-page-content'>
-                <div className='tes'>{notes.title}</div>
                 <div>{notes[id]?.title}</div>
                 <div>{notes[id]?.content}</div>
-                <form onSubmit={handleEditNote} >
-                   <div>
-                        <input
-                        type="text"
-                        placeholder="New Title"
-                        devalue={title}
-                        onChange={editTitle} />
-                        </div>
+                <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
+                <h3 onClick={() => setShowModal(!showModal)}>Edit</h3></div>
+			{showModal && (
+				<Modal onClose={() => setShowModal(!showModal)}>
+                    <form className='new-note-modal' onSubmit={handleEditNote} >
+                        <h2>Edit Notebook</h2>
                     <div>
+                        <div className="edit-comment-errors">
+                            {validationErrors?.map((error, int) => (<div key={int}>{error}</div>))}
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="New Title"
+                            devalue={title}
+                            onChange={editTitle} />
+                            </div>
+                        <div>
                         <textarea
+                        rows="18" cols="50"
                         type="text"
                         placeholder="Content"
                         value={content}
                         onChange={editContent} />
                         </div>
-                    <div>
-                        <button type="submit" className="submit-btn-upload">Submit</button>
-                    </div>
-                </form>
-              
+                        <div>
+                            <button type="submit" className="save-button-new-note">Save</button>
+                            <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
+                                        Cancel
+                            </button> 
+                        </div>
+                    </form>
+				</Modal>
+			)}
             </div>
         </div>
     )

@@ -1,12 +1,10 @@
 import { Modal } from '../context/Modal';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { createNotebook} from '../../store/notebook';
-// import { useDispatch, useSelector} from 'react-redux'
 import { createNote} from '../../store/note';
 import {getNotebooks} from '../../store/notebook';
 import {getNotes} from '../../store/note';
+import './createnote.css';
 
 function CreateNewNoteModal() {
     const dispatch = useDispatch();
@@ -29,6 +27,13 @@ function CreateNewNoteModal() {
         dispatch(getNotes())
     },[dispatch])
 
+    useEffect(() => {
+        const errors = [];
+        let newTitle = title
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("Title must be 1 to 15 characters")
+        setValidationErrors(errors)
+    }, [title])
+
     const handleCreateNote = async(e) => {
         e.preventDefault();
 
@@ -39,8 +44,6 @@ function CreateNewNoteModal() {
             user_id: user?.['users']?.['id']
         }
         let data = await dispatch(createNote(payload))   
-        console.log('before payload',showModal )    
-        console.log('what is data', data) 
         if (data) {
             setErrors(data)
             setShowModal(true)
@@ -48,18 +51,12 @@ function CreateNewNoteModal() {
             setTitle('')
             setContent('')
             setErrors([])
-            setShowModal(!showModal);
-            console.log('if fail', showModal)
+            setShowModal(false);
         }
-    }
-    useEffect(() => {
-        const errors = [];
-        let newTitle = title
-        if (newTitle.length < 1 || newTitle.length > 15) errors.push("Title must be 1 to 15 characters")
-        setValidationErrors(errors)
-    }, [title])
+    };
 
     
+
     const handleCancle = async (e) => {
 		e.preventDefault();
 		setShowModal(false);
@@ -75,7 +72,7 @@ function CreateNewNoteModal() {
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
                     <form 
-                    className="new-notebook-modal"
+                    className="new-note-modal"
                     onSubmit={handleCreateNote} >
                         <h1>NEW NOTE</h1>
                         {notebooks.length === 0 ? <div>No Notebook available, please create one</div>: <></>}
@@ -90,22 +87,23 @@ function CreateNewNoteModal() {
                             ))}
                         </select>
                         <div className="edit-comment-errors">
-                            {validationErrors.map((error, int) => (<div key={int}>{error}</div>))}
+                            {validationErrors?.map((error, int) => (<div key={int}>{error}</div>))}
                         </div>
                         <input
                             type="text"
-                            placeholder="NOTE Title"
+                            placeholder="Note Title"
                             value={title}
                             onChange={editTitle}
                         />
                         <textarea
+                            rows="18" cols="50"
                             type="text"
-                            placeholder="Content"
+                            placeholder="What's on your mind?"
                             value={content}
                             onChange={editContent}
                         />
-                        <button type="submit" className="submit-btn-upload">Submit</button>
-                        <button className="cancel_button" type="button" onClick={handleCancle}>
+                        <button disabled={validationErrors.length > 0} type="submit" className="save-button-new-note">Save</button>
+                        <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
                                     Cancel
                         </button>   
                     </form>    

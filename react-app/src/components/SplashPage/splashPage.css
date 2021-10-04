@@ -62,9 +62,14 @@
     align-items: center;
 }
 
+.splash-page-middle-text {
+    border-bottom: 2px solid green;
+}
+
 @media screen and (max-width: 900px) {
 
     .hero-section {
         flex-direction: column;
     }
 }
+

@@ -36,11 +36,11 @@ const NavBar = ({auth, user}) => {
       {!auth ?
       <div className="nav-bar-horizontal">
         <nav>
-          {/* <div>
+          <div className="nav-bar-wrapper">
             <NavLink to ='/' exact = {true}>
               <img className='icon-log-horizontal-nav' src={Icon} alt=""/>
             </NavLink>
-          </div> */}
+          </div>
           <NavLink to ='/login' exact = {true}>
             Login
           </NavLink>

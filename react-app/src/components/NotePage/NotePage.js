@@ -28,7 +28,6 @@ function NotePage() {
                         <NotePageMapping key={note.id} note={note} />
                     ))}
                 </div>
-                {/* <NewNotebook/> */}
             </div>
         </div>
     )
