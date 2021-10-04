@@ -38,22 +38,17 @@ function NotePageMapping({note}) {
     //     }
     // }
     return(
-        <div>  
+        <div className="notes-container">  
+            <div>
             <h2 className='notes-display-font'>
                 {note.title} 
             </h2>
-                {/* <i
-                    className="fa fa-trash-o note-page-delete"
-                    onClick={() => handleDeleteButton()}
-                    title="Edit Note"
-                />   */}
+            
             <p className="note-content">
                 {note.content} 
             </p> 
-
-             {/* <button type="button" onClick={() => handleDeleteButton()}>Delete Button</button> */}
+            </div>
             <EditPageModal note={note}/>
-
         </div>
     )
 }

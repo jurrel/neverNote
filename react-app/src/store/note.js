@@ -33,7 +33,8 @@ export const getNotes = () => async dispatch => {
 };
 
 //Create a note
-export const createNote = ({content, id, notebook_id, title, user_id}) => async(dispatch) => {
+export const createNote = ({content, id, title, user_id}) => async(dispatch) => {
+    debugger;
     const response = await fetch(`/api/notebook_routes/${id}/newNote`, {
         method: 'POST',
         headers: {
@@ -41,7 +42,7 @@ export const createNote = ({content, id, notebook_id, title, user_id}) => async(
          },
          body: JSON.stringify({
             content,
-            notebook_id,
+            id,
             title,
             user_id
          }),

@@ -6,8 +6,8 @@ function SplashPage() {
     <>
         <div className="slogan">
             <h1>TURN NEVER INTO FOREVER!</h1>
-            <h3>Remember everything you need to remember while allowing you to forget whatever you want to forget </h3>
-            <h3>If it is not written down it must not be important</h3>
+            {/* <h3>Remember everything you need to remember while allowing you to forget whatever you want to forget </h3>
+            <h3>If it is not written down it must not be important</h3> */}
             <NavLink  to ='/signUp' exact = {true}>
                 <button className='sign-up-for-free-button'>Sign up for free</button>
             </NavLink>
