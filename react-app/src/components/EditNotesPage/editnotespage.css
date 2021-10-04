@@ -28,3 +28,8 @@
 
 }
 
+.home-body {
+    /* flex: auto;
+    align-items: center; */
+    width: 80%;
+}

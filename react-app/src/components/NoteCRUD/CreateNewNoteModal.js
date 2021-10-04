@@ -36,15 +36,16 @@ function CreateNewNoteModal() {
 
     const handleCreateNote = async(e) => {
         e.preventDefault();
-
+debugger;
         const payload = {
             title,
             content,
-            id: notebooks?.[0]?.['id'], 
+            id: notebookId, 
             user_id: user?.['users']?.['id']
         }
         let data = await dispatch(createNote(payload))   
-        if (data) {
+        
+        if (!data) {
             setErrors(data)
             setShowModal(true)
         } else {
@@ -69,6 +70,7 @@ function CreateNewNoteModal() {
 		<>
             <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
                 <h3 onClick={() => setShowModal(!showModal)}>New Note</h3></div>
+                <div className="line"></div>
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
                     <form 
@@ -82,9 +84,11 @@ function CreateNewNoteModal() {
                             const notebookSelect = e.target.value;
                         setNotebookId(notebookSelect)
                     }}>
-                            {notebooks?.map((notebook) => (
-                                <option key={notebook.id}value={notebook.id}>{notebook.title}</option>                                  
-                            ))}
+                            {notebooks?.map((notebook) => {
+                                return (
+                                    <option key={notebook.id} value={notebook.id}>{notebook.title}</option>                                  
+                                );
+                            })}
                         </select>
                         <div className="edit-comment-errors">
                             {validationErrors?.map((error, int) => (<div key={int}>{error}</div>))}

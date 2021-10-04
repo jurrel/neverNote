@@ -12,6 +12,9 @@
 	position: relative;
 	border-bottom: 1px solid #262626;
 	color: rgba(255, 255, 255, 0.835);
+	word-break: break-all;
+	max-width: 450px;
+	width: 100%;
 }
 
 .note-page-background {
@@ -33,4 +36,9 @@
 .note-page-edit:hover {
 	cursor: pointer;
 	color: gray;
+}
+
+.notes-container {
+	display: flex;
+	justify-content: space-between;
 }

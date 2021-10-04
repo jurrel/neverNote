@@ -11,7 +11,7 @@ function CreateNewNote(){
     const notebooks = Object.values(userNotebook)
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [notebookId, setNotebookId] = useState(notebooks.[0]?.['id']);
+    const [notebookId, setNotebookId] = useState();
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
     

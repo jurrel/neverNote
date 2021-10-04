@@ -3,14 +3,13 @@ import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook, editANotebook} from '../../store/notebook';
 import './NotebookPage.css';
 
-function NotebookPageMapping({notebook, notesList}) {
+function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNotes, index }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const userNotebook = useSelector(state => state.notebook)
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(notebook.title);
     const [updateNote, setUpdateNote] = useState(false);
-    const [toggleNote, setToggleNote] = useState(false);
     const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
     console.log('this is uesssss', userNotebook)
@@ -41,7 +40,7 @@ function NotebookPageMapping({notebook, notesList}) {
      useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle.length < 1 || newTitle.length > 15) errors.push("Title must be 1 to 15 WOOT WOOT")
+        if (newTitle.length < 1 || newTitle.length > 15) errors.push("Title must be 1 to 15")
         setValidationErrors(errors)
     }, [title])
 
@@ -51,9 +50,19 @@ function NotebookPageMapping({notebook, notesList}) {
     }
 
     const handleToggle = () => {
-        setToggleNote(!toggleNote);
+        debugger;
+        const notes = toggleNotes ? toggleNotes.map((toggleState, id) => {
+            if(id === index) {
+                return !toggleState;
+            } else {
+                return toggleState;
+            }
+        }) : [];
+        updateToggleNotes(notes);
     }
 
+    console.log({index: toggleNotes[index]});
+    console.log({notesList});
     return(
         <>  
             <div className="middle-content" >
@@ -61,7 +70,7 @@ function NotebookPageMapping({notebook, notesList}) {
 {notebook.title}</div>
 
                     <div className='notebook-page-click-toggle-content'> 
-                        {toggleNote === true ? 
+                        {toggleNotes && toggleNotes[index] === true ? 
                             notesList.map((note, index) => (
                                         <a key={index} href={`/notes/${note.id}`}> 
                                             <div onClick={(e) => setClic(note.id)} className="notebook-text">Title: {note.title}</div>

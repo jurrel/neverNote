@@ -10,14 +10,15 @@ function EditNotesPage({note, setUpdateNote}) {
     const [showModal, setShowModal] = useState(false);
     const notes = useSelector(state => state.note);
     const { id } = useParams();
+    
     const notesTest = useSelector(state => Object.values(state.note).filter(notesTests => (
         notesTests.id ===  +id
     )));
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
     const user = useSelector(state => state.session.user);
-    const [title, setTitle] = useState( notesTest[0]?.title);
-    const [content, setContent] = useState(notes?.[id]?.content)
+    const [title, setTitle] = useState( notes[id]?.title);
+    const [content, setContent] = useState(notes[id]?.content)
 
 
     const handleEditNote = async(event) => {

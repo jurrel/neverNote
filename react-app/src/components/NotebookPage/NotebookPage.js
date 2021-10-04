@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {getNotebooks} from '../../store/notebook';
 import {getNotes} from '../../store/note';
@@ -10,18 +10,32 @@ import './NotebookPage.css'
 function NotebookPage() {
     
     const dispatch = useDispatch();
+    const userNotes = useSelector((state) => state.note);
+    const notes = Object.values(userNotes);
+    console.log({notes})
+    const [toggleNotes, setToggleNotes] = useState([]);
     const userNotebook = useSelector((state) => state.notebook)
-    const userNotes = useSelector((state) => state.note)
     const notebooks = Object.values(userNotebook)
-    const notes = Object.values(userNotes)
     
-    
-
     const numNotebooks = notebooks.length
+
+    console.log({toggleNotes})
     useEffect(()=> {
         dispatch(getNotebooks());
         dispatch(getNotes());
-    },[dispatch])
+    },[dispatch]);
+
+    useEffect(() => {
+        if(numNotebooks) {
+            setToggleNotes(new Array(numNotebooks).fill(false))
+        }
+    }, [numNotebooks]);
+
+
+    const updateToggleNotes = (notes) => {
+        debugger;
+        setToggleNotes(notes);
+    };
 
     return(
         <> 
@@ -30,12 +44,16 @@ function NotebookPage() {
                     <h1>Notebooks</h1>
                     <div className='notebook-counter'>{numNotebooks} Notebooks</div>
               
-                            {notebooks?.map((notebook) => {
+                            {notebooks?.map((notebook, index) => {
                                 const notesList = notes.filter(note => note.notebook_id === notebook.id);
                                 return (
                                     <NotebookPageMapping
                                     notesList={notesList}
-                                    key={notebook.id} notebook={notebook} />
+                                    key={notebook.id} notebook={notebook} 
+                                     toggleNotes={toggleNotes}
+                                    updateToggleNotes={updateToggleNotes}
+                                    index={index}
+                                    />
                                 );
                             })
                         }

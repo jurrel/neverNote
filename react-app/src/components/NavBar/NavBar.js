@@ -18,9 +18,6 @@ const NavBar = ({auth, user}) => {
   const email = 'demo@aa.io';
   const password = 'password';
   const history = useHistory();
-  // const userss = useSelector(state => state.session.user)
-  console.log('What is user, getting from App.js', user)
-  // console.log('What is usersssssss', userss)
 
   const demoUser = async(e) => {
     e.preventDefault();
@@ -29,18 +26,18 @@ const NavBar = ({auth, user}) => {
   }
 
 
-  console.log('whgat is user', user)
-
   return (
     <>
       {!auth ?
       <div className="nav-bar-horizontal">
-        <nav>
+        <nav className="nav-bar">
           <div className="nav-bar-wrapper">
             <NavLink to ='/' exact = {true}>
               <img className='icon-log-horizontal-nav' src={Icon} alt=""/>
             </NavLink>
           </div>
+
+          <div className="nav-bar-hori">
           <NavLink to ='/login' exact = {true}>
             Login
           </NavLink>
@@ -48,6 +45,7 @@ const NavBar = ({auth, user}) => {
               Sign up for Free
             </NavLink>
             <button onClick={demoUser} type='button'>Demo</button>
+            </div>
         </nav>
       </div>:
       <div className="nav-bar-container">
