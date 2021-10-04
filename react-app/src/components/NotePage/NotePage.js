@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {getNotes} from '../../store/note';
 import NotePageMapping from './NotePageMapping'
-import NewNotebook from '../NoteCRUD/CreateNewNote';
 import CreateNewNoteModal from '../NoteCRUD/CreateNewNoteModal' 
 import './NotePage.css'
 
@@ -22,10 +21,10 @@ function NotePage() {
     return(
         <div className='note-page-background'>
             <div className="note-page-container"> 
-            <h1 className='note-page-note-counter'>Notes</h1>
-            <div className='note-page-note-counter'>{noteLength} Notes</div>
-            <CreateNewNoteModal/>
-            <div>
+                <h1 className='note-page-note-counter'>Notes</h1>
+                <div className='note-page-note-counter'>{noteLength} Notes</div>
+                <CreateNewNoteModal/>
+                <div>
                     {notes?.map((note, index)=> (
                         <NotePageMapping 
                             key={note.id} 

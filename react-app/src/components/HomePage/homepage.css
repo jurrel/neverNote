@@ -42,6 +42,7 @@
 	height: 100%;
 	background-color: white;
 }
+
 .align_the_side_bar {
 	flex: 1;
 }
@@ -67,6 +68,7 @@
 	height: 200px;
 	
 }
+
 .welcome {
 	position: relative;
 	left: 300px;

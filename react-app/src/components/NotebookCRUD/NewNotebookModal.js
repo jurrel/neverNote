@@ -1,7 +1,6 @@
 import { Modal } from '../context/Modal';
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { createNotebook} from '../../store/notebook';
 import './newnotebookmodal.css'
 

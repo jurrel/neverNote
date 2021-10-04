@@ -6,8 +6,9 @@ import './notebook.css'
 function Notebooks() {
     const user = useSelector((state) => state.session.user)
     const userNotebook = useSelector((state) => state.notebook)
-    const [selectedNotebook, setSelectedNotebook] = useState('');
     const normalize = Object.values(userNotebook)
+    const [selectedNotebook, setSelectedNotebook] = useState('');
+    
     return(
         <>  
             <h1>All Notebooks display</h1>
