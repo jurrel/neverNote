@@ -33,7 +33,6 @@ function NotebookPage() {
 
 
     const updateToggleNotes = (notes) => {
-        debugger;
         setToggleNotes(notes);
     };
 

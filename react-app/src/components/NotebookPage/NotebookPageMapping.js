@@ -12,7 +12,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     const [updateNote, setUpdateNote] = useState(false);
     const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
-    console.log('this is uesssss', userNotebook)
+  
 
     const [validationErrors, setValidationErrors] = useState([])
    
@@ -50,7 +50,6 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     }
 
     const handleToggle = () => {
-        debugger;
         const notes = toggleNotes ? toggleNotes.map((toggleState, id) => {
             if(id === index) {
                 return !toggleState;

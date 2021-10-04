@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { login } from '../../store/session';
@@ -9,7 +9,6 @@ import NotesNavbar from './NotesNavbar';
 import PersonalLinks from './PersonalLinks';
 import Icon from '../../assets/Icon.png'
 import NewNotebookModal from '../NotebookCRUD/NewNotebookModal';
-import { signUp } from '../../store/session';
 import { useHistory } from 'react-router-dom';
 
 import './NavBar.css'
@@ -31,7 +30,7 @@ const NavBar = ({auth, user}) => {
       {!auth ?
       <div className="nav-bar-horizontal">
         <nav className="nav-bar">
-          <div className="nav-bar-wrapper">
+          <div>
             <NavLink to ='/' exact = {true}>
               <img className='icon-log-horizontal-nav' src={Icon} alt=""/>
             </NavLink>
@@ -44,13 +43,12 @@ const NavBar = ({auth, user}) => {
             <NavLink to ='/signUp' exact = {true}>
               Sign up for Free
             </NavLink>
-            <button onClick={demoUser} type='button'>Demo</button>
+            <button className='nav-demo-button' onClick={demoUser} type='button'>Demo</button>
             </div>
         </nav>
       </div>:
       <div className="nav-bar-container">
         <h1 className="nav-bar-user-email">{user?.users?.email}</h1>
-        {/* <h1 className="nav-bar-user-email">{user?.email}</h1> */}
         <nav>
               <NewNotebookModal/>
               <HomeNavbar/>

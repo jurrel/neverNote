@@ -36,7 +36,6 @@ function CreateNewNoteModal() {
 
     const handleCreateNote = async(e) => {
         e.preventDefault();
-debugger;
         const payload = {
             title,
             content,

@@ -5,20 +5,18 @@ import { useParams } from 'react-router-dom';
 import './editnotespage.css';
 import { Modal } from '../context/Modal';
 
-function EditNotesPage({note, setUpdateNote}) {
+function EditNotesPage() {
     const dispatch = useDispatch();
-    const [showModal, setShowModal] = useState(false);
     const notes = useSelector(state => state.note);
     const { id } = useParams();
     
-    const notesTest = useSelector(state => Object.values(state.note).filter(notesTests => (
-        notesTests.id ===  +id
-    )));
-    const [errors, setErrors] = useState([]);
-    const [validationErrors, setValidationErrors] = useState([])
+    
+    const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state.session.user);
     const [title, setTitle] = useState( notes[id]?.title);
     const [content, setContent] = useState(notes[id]?.content)
+    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([])
 
 
     const handleEditNote = async(event) => {
@@ -43,8 +41,9 @@ function EditNotesPage({note, setUpdateNote}) {
     };
 
     useEffect((id) => {
-        dispatch(getNotes())
+        dispatch(getNotes(id))
     }, [dispatch]);
+    
     useEffect(() => {
         const errors = [];
         let newTitle = title
@@ -71,10 +70,10 @@ function EditNotesPage({note, setUpdateNote}) {
     return(
         <div className='edit-notebook-page-background'>  
             <div className='edit-notebook-page-content'>
-                <div>{notes[id]?.title}</div>
-                <div>{notes[id]?.content}</div>
+                <h1>{notes[id]?.title}</h1>
                 <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
                 <h3 onClick={() => setShowModal(!showModal)}>Edit</h3></div>
+                <div className="box">{notes[id]?.content}</div>
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
                     <form className='new-note-modal' onSubmit={handleEditNote} >

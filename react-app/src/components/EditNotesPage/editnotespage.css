@@ -13,10 +13,16 @@
 .edit-notebook-page-content{
     position: relative;
 	left: 300px;
+    right: 300px;
 	color: white;
     overflow-y: hidden;
 }
 
+.edit-notebook-page-content h1{
+    text-align: center;
+    width: 60%;
+    text-transform: uppercase;
+}
 
 .input-control {
     margin: 1rem;
@@ -29,7 +35,12 @@
 }
 
 .home-body {
-    /* flex: auto;
-    align-items: center; */
     width: 80%;
+}
+
+.box{
+    border: 2px solid white;
+    height: 500px;
+    word-break: break-all;
+    width: 60%;
 }
