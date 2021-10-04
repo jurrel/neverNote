@@ -12,7 +12,6 @@ function NotebookPage() {
     const dispatch = useDispatch();
     const userNotes = useSelector((state) => state.note);
     const notes = Object.values(userNotes);
-    console.log({notes})
     const [toggleNotes, setToggleNotes] = useState([]);
     const userNotebook = useSelector((state) => state.notebook)
     const notebooks = Object.values(userNotebook)

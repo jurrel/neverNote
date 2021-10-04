@@ -19,15 +19,13 @@
     width: 200px;
     background-color: #00a82d;
     font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
-    
+}
+.sign-up-for-free-button:hover {
+    cursor: pointer;
+    background-color: #007720;
 }
 
 .splash-photo {
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -20%);
-    max-width: 60% */
     display:flex;
     justify-content: center;
     align-items: center;
@@ -41,17 +39,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-     font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
-    /* gap: 25px; */
+    font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
     border-radius: 5px;
     top: 200px;
-    /* position: absolute; */
-    /* right: 0;
-       
-    height: 100%;
-    width: 240px;
-    z-index: 2;
-    transform: translate(-50%, 15%); */
 }
 
 .hero-section {

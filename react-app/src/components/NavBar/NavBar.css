@@ -88,3 +88,9 @@
     background-color: #00a82d;
     color: white;
 }
+.nav-demo-button:hover {
+    background-color: #007720;
+}
+.sign-up-for-free:hover {
+    color: gray;
+}

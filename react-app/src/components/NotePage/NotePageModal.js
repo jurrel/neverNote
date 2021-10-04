@@ -7,7 +7,7 @@ import './NotePage.css'
 function EditPageModal({note}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state?.session.user);
-    const notes = useSelector(state => state.note);
+  
     
     
     const [title, setTitle] = useState(note?.title);
@@ -87,7 +87,7 @@ function EditPageModal({note}) {
                             rows="18" 
                             cols="50"
                             type="text"
-                            placeholder="Content"
+                            placeholder="Let's not forget what's being written in here"
                             defaultValue={note.content}
                             onChange={editContent} />
                         <button type="submit" className="save-button-new-note">Save</button>

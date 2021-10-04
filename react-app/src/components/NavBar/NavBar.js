@@ -37,10 +37,10 @@ const NavBar = ({auth, user}) => {
           </div>
 
           <div className="nav-bar-hori">
-          <NavLink to ='/login' exact = {true}>
+          <NavLink className='log-in' to ='/login' exact = {true}>
             Login
           </NavLink>
-            <NavLink to ='/signUp' exact = {true}>
+            <NavLink  className='sign-up-for-free' to ='/signUp' exact = {true}>
               Sign up for Free
             </NavLink>
             <button className='nav-demo-button' onClick={demoUser} type='button'>Demo</button>

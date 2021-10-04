@@ -92,7 +92,7 @@ function EditNotesPage() {
                         <textarea
                         rows="18" cols="50"
                         type="text"
-                        placeholder="Content"
+                        placeholder="Let's not forget what's being written in here"
                         value={content}
                         onChange={editContent} />
                         </div>

@@ -63,15 +63,14 @@ function NewNotebookModal() {
                             </div>
                         <input
                             type="text"
-                            placeholder="NOTEBOOK Name"
+                            placeholder="Name your notebook"
                             value={title}
                             onChange={editTitle} />
 						<div>
-                                <button className="new-notebook-modal-cancle-button" type="button" onClick={handleCancle}>
-                                    Cancel
-                                </button>
-                                <button className="new-notebook-modal-cancle-button" type="submit">Create</button>
-                           
+                            <button className="new-notebook-modal-cancle-button" type="button" onClick={handleCancle}>
+                                Cancel
+                            </button>
+                            <button className="new-notebook-modal-cancle-button" type="submit">Create</button>
 						</div>
                     </form>       
 				</Modal>

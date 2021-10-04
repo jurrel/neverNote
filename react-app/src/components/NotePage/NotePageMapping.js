@@ -12,13 +12,12 @@ function NotePageMapping({note}) {
     return(
         <div className="notes-container">  
             <div>
-            <h2 className='notes-display-font'>
-                {note.title} 
-            </h2>
-            
-            <p className="note-content">
-                {note.content} 
-            </p> 
+                <h2 className='notes-display-font'>
+                    {note.title} 
+                </h2>
+                <p className="note-content">
+                    {note.content} 
+                </p> 
             </div>
             <EditPageModal note={note}/>
         </div>

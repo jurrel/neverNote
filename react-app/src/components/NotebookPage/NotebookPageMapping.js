@@ -65,18 +65,19 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     return(
         <>  
             <div className="middle-content" >
-                <div className='notebook-page-click-toggle' onClick={() => handleToggle()}><i class="fa fa-angle-right"></i>
-{notebook.title}</div>
-
-                    <div className='notebook-page-click-toggle-content'> 
-                        {toggleNotes && toggleNotes[index] === true ? 
-                            notesList.map((note, index) => (
-                                        <a key={index} href={`/notes/${note.id}`}> 
-                                            <div onClick={(e) => setClic(note.id)} className="notebook-text">Title: {note.title}</div>
-                                        </a >
-                                    )) : <></>
-                        }          
-                    </div>
+                <div className='notebook-page-click-toggle' onClick={() => handleToggle()}>
+                    <i class="fa fa-angle-right"></i>
+                    {notebook.title}
+                </div>
+                <div className='notebook-page-click-toggle-content'> 
+                    {toggleNotes && toggleNotes[index] === true ? 
+                        notesList.map((note, index) => (
+                                    <a key={index} href={`/notes/${note.id}`}> 
+                                        <div onClick={(e) => setClic(note.id)} className="notebook-text">Title: {note.title}</div>
+                                    </a >
+                                )) : <></>
+                    }          
+                </div>
                 <div onClick={() => updateHelperFunction(true)}>
                         <i
                             className="fa fa-edit"
@@ -85,27 +86,28 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                             
                         />
                 </div>
-                 <div onClick={() => handleDeleteButton()}>
-                        <i
-                            className="fa fa-trash-o"
-                            onClick={() => handleDeleteButton()}
-                            title="Edit Notebook"
-                        />
+                <div onClick={() => handleDeleteButton()}>
+                    <i
+                        className="fa fa-trash-o"
+                        onClick={() => handleDeleteButton()}
+                        title="Edit Notebook"
+                    />
                 </div>
                 {updateNote  === true ?
-                <form onSubmit={handleEditNotebookButton} >
-                    <div className='errors'>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                            ))}
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="New Title"
-                        value={title}
-                        onChange={editTitle} />
-                    <button disabled={validationErrors.length > 0} type="submit" className="submit-btn-upload">Submit</button>
-                </form> : <></>} 
+                    <form onSubmit={handleEditNotebookButton} >
+                        <div className='errors'>
+                            {errors.map((error, ind) => (
+                                <div key={ind}>{error}</div>
+                                ))}
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="New Title"
+                            value={title}
+                            onChange={editTitle} />
+                        <button disabled={validationErrors.length > 0} type="submit" className="submit-btn-upload">Submit</button>
+                    </form> : <></>
+                } 
                 <div className="edit-comment-errors">
                         {validationErrors.map((error, int) => (<div key={int}>{error}</div>))}
                 </div>

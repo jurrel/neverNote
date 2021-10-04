@@ -45,9 +45,30 @@
   color: white;
   background-color: #00a82d;
 }
+.demo-sign-in-button:hover,
+.sign-up-button:hover,
+.sign-in-button:hover {
+  cursor: pointer;
+  background-color: #007720;
+}
 
 
 
 .or-line{
+  color: gray;
+}
+
+.log-out-button-nav {
+  background-color: #00a82d;
+  border-radius: 10px;
+  bottom: 0;
+  color: white;
+}
+.log-out-button-nav:hover {
+  background-color: #007720;
+  border-radius: 10px;
+}
+
+.log-in:hover {
   color: gray;
 }

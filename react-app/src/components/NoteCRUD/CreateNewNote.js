@@ -52,13 +52,13 @@ function CreateNewNote(){
                 </select>
                 <input
                     type="text"
-                    placeholder="NOTE Title"
+                    placeholder="Note Title"
                     value={title}
                     onChange={editTitle}
                 />
                 <textarea
                     type="text"
-                    placeholder="Content"
+                    placeholder="Let's not forget what's being written in here"
                     value={content}
                     onChange={editContent}
                 />
