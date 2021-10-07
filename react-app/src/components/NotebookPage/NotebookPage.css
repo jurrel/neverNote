@@ -89,6 +89,7 @@
 
 .notebook-page-click-toggle {
   display: flex;
+  text-decoration: none;
 }
 .notebook-page-click-toggle:hover {
   background-color: gray;
@@ -99,12 +100,14 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
 }
 
 .notebook-text, 
 .notebook-text-display, 
 .notebook-page-click-toggle{
-  color: white
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -128,4 +131,5 @@
     border-bottom: 3px solid white;
     margin: 0 auto;
     width: 100%;
+    text-decoration: none;
 }

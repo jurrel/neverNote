@@ -11,7 +11,7 @@ function SplashPage() {
             <NavLink  to ='/signUp' exact = {true}>
                 <button className='sign-up-for-free-button'>Sign up for free</button>
             </NavLink>
-            <NavLink to ='/login' exact = {true}>
+            <NavLink className='already-have-an-account' to ='/login' exact = {true}>
                 Already have an account? Log in
             </NavLink>
         </div>

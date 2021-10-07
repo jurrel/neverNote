@@ -2,3 +2,7 @@
 body {
     font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
 }
+
+a {
+    text-decoration: none;
+}

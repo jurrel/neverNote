@@ -73,7 +73,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                     {toggleNotes && toggleNotes[index] === true ? 
                         notesList.map((note, index) => (
                                     <a key={index} href={`/notes/${note.id}`}> 
-                                        <div onClick={(e) => setClic(note.id)} className="notebook-text">Title: {note.title}</div>
+                                        <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
                                     </a >
                                 )) : <></>
                     }          

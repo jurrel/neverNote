@@ -68,7 +68,11 @@
   background-color: #007720;
   border-radius: 10px;
 }
+.log-in{
+  font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
+  text-decoration: none;
 
+}
 .log-in:hover {
   color: gray;
 }
