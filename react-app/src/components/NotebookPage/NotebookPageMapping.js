@@ -40,7 +40,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
      useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle.length < 1 || newTitle.length > 15) errors.push("Title must be 1 to 15")
+        if (newTitle.length < 1 || newTitle.length > 15) errors.push("***Title must be 1 to 15")
         setValidationErrors(errors)
     }, [title])
 
@@ -66,8 +66,16 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
         <>  
             <div className="middle-content" >
                 <div className='notebook-page-click-toggle' onClick={() => handleToggle()}>
-                    <i class="fa fa-angle-right"></i>
-                    {notebook.title}
+                    {toggleNotes && toggleNotes[index] === true ?
+                        <div>
+                            <i class="fa fa-angle-down"></i> 
+                            {notebook.title}
+                        </div> : 
+                        <div>
+                            <i class="fa fa-angle-right "></i> 
+                            {notebook.title}
+                        </div>
+                    }
                 </div>
                 <div className='notebook-page-click-toggle-content'> 
                     {toggleNotes && toggleNotes[index] === true ? 

@@ -112,7 +112,7 @@
 
 
 .edit-comment-errors {
-  color: white;
+  color: gray;
   z-index: 50000;
 }
 
