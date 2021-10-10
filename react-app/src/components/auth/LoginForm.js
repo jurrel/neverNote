@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import signUpPage1 from '../../assets/signUpPage1.jpg'
 import Icon from '../../assets/Icon.png'
@@ -46,7 +46,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <NavLink to='/home' />;
+    return <Redirect to='/home' />;
   }
 
   return (

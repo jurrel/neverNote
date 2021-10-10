@@ -44,12 +44,12 @@ function App() {
             <Route path='/login' exact={true}>
               <LoginForm />
             </Route>
-            <ProtectedRoute path='/home' exact={true} >
-              <HomePage/>
-            </ProtectedRoute>
             <Route path='/signUp' exact={true}>
               <SignUpForm />
             </Route>
+            <ProtectedRoute path='/home' exact={true} >
+              <HomePage/>
+            </ProtectedRoute>
             <ProtectedRoute exact path="/notebooks">
                 <NotebookPage />
             </ProtectedRoute>
