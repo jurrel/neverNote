@@ -90,7 +90,11 @@ function CreateNewNoteModal() {
                             })}
                         </select>
                         <div className="edit-comment-errors">
-                            {validationErrors?.map((error, int) => (<div key={int}>{error}</div>))}
+                            {validationErrors?.map((error) => (
+                                <p key={error}>
+                                    {error}
+                                </p>
+                            ))}
                         </div>
                         <input
                             type="text"
@@ -99,7 +103,8 @@ function CreateNewNoteModal() {
                             onChange={editTitle}
                         />
                         <textarea
-                            rows="18" cols="50"
+                            rows="16" 
+                            cols="50"
                             type="text"
                             placeholder="Let's not forget what's being written in here"
                             value={content}

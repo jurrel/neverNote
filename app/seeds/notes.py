@@ -10,40 +10,40 @@ def seed_notes():
       user_id=1,
       notebook_id=1,
       content='THIS IS THE CONTENT IN THE NOTE',
-    #   createdAt=now,
-    #   updatedAt=now
+      createdAt=now,
+      updatedAt=now
     )
     note2 = Note(
         title='2nd page U1',
         user_id=1,
         notebook_id=1,
         content='THIS IS THE CONTENT IN THE NOTE',
-        # createdAt=now,
-        # updatedAt=now
+        createdAt=now,
+        updatedAt=now
     )
     note3 = Note(
         title='3rd page U1',
         user_id=1,
         notebook_id=1,
         content='THIS IS THE CONTENT IN THE NOTE',
-        # createdAt=now,
-        # updatedAt=now
+        createdAt=now,
+        updatedAt=now
     )
     note4 = Note(
         title='1st page U2',
         user_id=2,
         notebook_id=4,
         content='THIS IS THE CONTENT IN THE NOTE',
-        # createdAt=now,
-        # updatedAt=now
+        createdAt=now,
+        updatedAt=now
     )
     note5 = Note(
         title='3rd page U2',
         user_id=2,
         notebook_id=4,
         content='THIS IS THE CONTENT IN THE NOTE',
-        # createdAt=now,
-        # updatedAt=now
+        createdAt=now,
+        updatedAt=now
     )
     db.session.add(note1)
     db.session.add(note2)

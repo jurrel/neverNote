@@ -109,7 +109,11 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                     </form> : <></>
                 } 
                 <div className="edit-comment-errors">
-                        {validationErrors.map((error, int) => (<div key={int}>{error}</div>))}
+                    {validationErrors?.map((error) => (
+                    <p key={error}>
+                        {error}
+                    </p>
+                    ))}
                 </div>
             </div>
 

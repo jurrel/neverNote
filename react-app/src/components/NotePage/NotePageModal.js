@@ -76,7 +76,11 @@ function EditPageModal({note}) {
                     <form className='new-note-modal' onSubmit={handleEditNote} >
                         <h2>Edit Notebook</h2>
                         <div className="edit-comment-errors">
-                            {validationErrors?.map((error, int) => (<div key={int}>{error}</div>))}
+                            {validationErrors?.map((error) => (
+                                <p key={error}>
+                                    {error}
+                                </p>
+                            ))}
                         </div>
                         <input
                             type="text"
@@ -84,7 +88,7 @@ function EditPageModal({note}) {
                             defaultValue={note.title}
                             onChange={editTitle} />
                         <textarea
-                            rows="18" 
+                            rows="16" 
                             cols="50"
                             type="text"
                             placeholder="Let's not forget what's being written in here"
