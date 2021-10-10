@@ -49,8 +49,8 @@ function EditPageModal({note}) {
 		e.preventDefault();
 		setShowModal(false);
         setValidationErrors([])
-        setTitle(title)
-        setContent(content)
+        setTitle(note?.title)
+        setContent(note?.content)
 		return;
 	};
     

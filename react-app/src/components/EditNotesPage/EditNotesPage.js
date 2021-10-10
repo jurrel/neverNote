@@ -18,8 +18,7 @@ function EditNotesPage() {
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
 
-    console.log('notes[id]?.title', notes[id]?.title)
-    console.log('notes[id]?.title', notes[id]?.content)
+   
     const handleEditNote = async(e) => {
        e.preventDefault();
         const payload = {
@@ -53,8 +52,8 @@ function EditNotesPage() {
 		e.preventDefault();
 		setShowModal(false);
         setValidationErrors([]);
-        setTitle(title)
-        setContent(content)
+        setTitle(notes[id]?.title)
+        setContent(notes[id]?.content)
 		return;
 	};
 
@@ -86,7 +85,7 @@ function EditNotesPage() {
                         <input
                             type="text"
                             placeholder="New Title"
-                            defaultValue={title}
+                            defaultValue={notes[id]?.title}
                             onChange={editTitle} />
                             </div>
                         <div>

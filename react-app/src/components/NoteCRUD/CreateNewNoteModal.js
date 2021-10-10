@@ -30,7 +30,7 @@ function CreateNewNoteModal() {
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("Title must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
 
@@ -39,7 +39,7 @@ function CreateNewNoteModal() {
         const payload = {
             title,
             content,
-            id: notebooks?.[0]?.['id'], 
+            id: notebookId, 
             user_id: user?.['users']?.['id']
         }
         let data = await dispatch(createNote(payload))   
@@ -103,7 +103,8 @@ function CreateNewNoteModal() {
                             onChange={editTitle}
                         />
                         <textarea
-                            rows="18" cols="50"
+                            rows="16" 
+                            cols="50"
                             type="text"
                             placeholder="Let's not forget what's being written in here"
                             value={content}
