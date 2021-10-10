@@ -10,11 +10,20 @@
 
 .note-content {
 	position: relative;
-	border-bottom: 1px solid #3a3939;
-	color: rgba(255, 255, 255, 0.835);
+	color: rgba(228, 228, 228, 0.671);
 	word-break: break-all;
 	max-width: 450px;
 	width: 100%;
+	left: 10px;
+}
+.note-time {
+	position: relative;
+	border-bottom: 1px solid #3a3939;
+	color: gray;
+	word-break: break-all;
+	max-width: 450px;
+	width: 100%;
+	font-size: 10px
 }
 
 .note-page-background {

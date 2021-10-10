@@ -1,5 +1,5 @@
 import { Modal } from '../context/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux'
 import { createNotebook} from '../../store/notebook';
 import './newnotebookmodal.css'
@@ -9,10 +9,18 @@ function NewNotebookModal() {
     const user = useSelector(state => state.session.user)
     const [errors, setErrors] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
     const [title, setTitle] = useState('');
    
 
     const editTitle = (e) => setTitle(e.target.value)
+
+    useEffect(() => {
+        const errors = [];
+        let newTitle = title
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
+        setValidationErrors(errors)
+    }, [title])
  
     
     const handleCreateNotebook = async(e) => {
@@ -26,6 +34,7 @@ function NewNotebookModal() {
         if (data) {
             setErrors(data)
             setShowModal(true);
+            console.log('dsadsa', setErrors)
         } else {
             setTitle('')
             setErrors([])
@@ -56,10 +65,12 @@ function NewNotebookModal() {
                             <div className="new-notebook-modal-title"> Create new notebook</div>
                             <div>Notebooks are useful for getting notes around a common topic</div>
                             <div className="new-notebook-modal-title-1">Name</div>
-                            <div className='errors'>
-                                {errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
-                                    ))}
+                            <div className="edit-comment-errors">
+                                {validationErrors?.map((error) => (
+                                    <p key={error}>
+                                        {error}
+                                    </p>
+                                ))}
                             </div>
                         <input
                             type="text"
@@ -70,7 +81,7 @@ function NewNotebookModal() {
                             <button className="new-notebook-modal-cancle-button" type="button" onClick={handleCancle}>
                                 Cancel
                             </button>
-                            <button className="new-notebook-modal-cancle-button" type="submit">Create</button>
+                            <button className="new-notebook-modal-create-button" type="submit">Create</button>
 						</div>
                     </form>       
 				</Modal>

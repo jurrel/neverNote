@@ -40,5 +40,5 @@ Users can go a step further and click the notes related to the notebooks which w
 
 All notes can be seen through the notes tab.
 ![Screen Shot 2021-10-04 at 4 31 39 AM](https://user-images.githubusercontent.com/41484889/135844351-9d7d9d1e-3aa8-444b-b9e7-bbbdd226e2d5.png)
-Any note from this tab can be edited and deleted on the stop. Also if a user wanted to they would be able to create a note for a notebook by clicking the New Note text that is in green. Notes can only be created once a Journal exists. 
+Any note from this tab can be edited and deleted on the stop. Also if a user wanted to they would be able to create a note for a notebook by clicking the New Note text that is in green. Notes can only be created once a Notebook exists. 
 
