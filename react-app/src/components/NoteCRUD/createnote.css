@@ -11,6 +11,8 @@
     bottom: 5%;
     right:7%;
 }
+
+
 .cancel-button-new-note {
     background-color: #111111;
 	width: 60px;
@@ -24,11 +26,16 @@
     left:7%;
 }
 
-.save-button-new-note:hover,
+.save-button-new-note[disabled]{
+    background-color: transparent;
+    color: gray;
+    border: 1px solid gray;
+}
+
+.save-button-new-note:hover:enabled,
 .cancel-button-new-note:hover {
     cursor: pointer;
     background-color: gray;
-
 }
 
  .new-note-modal {

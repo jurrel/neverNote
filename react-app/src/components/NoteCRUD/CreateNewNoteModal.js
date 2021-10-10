@@ -20,7 +20,7 @@ function CreateNewNoteModal() {
     
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
-    console.log('what is user?.users?.id', user?.users?.id)
+    console.log('what is user?.users?.id', notebooks?.[0]?.['id'])
 
     useEffect(()=> {
         dispatch(getNotebooks());
@@ -30,7 +30,7 @@ function CreateNewNoteModal() {
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("Title must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
 
@@ -39,7 +39,7 @@ function CreateNewNoteModal() {
         const payload = {
             title,
             content,
-            id: notebookId, 
+            id: notebooks?.[0]?.['id'], 
             user_id: user?.['users']?.['id']
         }
         let data = await dispatch(createNote(payload))   
@@ -80,7 +80,7 @@ function CreateNewNoteModal() {
                     <select 
                     value = {notebookId} 
                     onChange={(e)=> {
-                            const notebookSelect = e.target.value;
+                        const notebookSelect = e.target.value;
                         setNotebookId(notebookSelect)
                     }}>
                             {notebooks?.map((notebook) => {
@@ -91,9 +91,9 @@ function CreateNewNoteModal() {
                         </select>
                         <div className="edit-comment-errors">
                             {validationErrors?.map((error) => (
-                                <p key={error}>
-                                    {error}
-                                </p>
+                            <p key={error}>
+                                {error}
+                            </p>
                             ))}
                         </div>
                         <input
@@ -103,8 +103,7 @@ function CreateNewNoteModal() {
                             onChange={editTitle}
                         />
                         <textarea
-                            rows="16" 
-                            cols="50"
+                            rows="18" cols="50"
                             type="text"
                             placeholder="Let's not forget what's being written in here"
                             value={content}

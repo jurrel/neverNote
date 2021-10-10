@@ -18,7 +18,7 @@ function NewNotebookModal() {
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***wTitle must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
  

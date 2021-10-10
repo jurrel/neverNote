@@ -6,14 +6,13 @@ import './NotebookPage.css';
 function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNotes, index }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const userNotebook = useSelector(state => state.notebook)
-    const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(notebook.title);
     const [updateNote, setUpdateNote] = useState(false);
     const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
-  
-
+    
+    
+    const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
    
 
@@ -22,8 +21,8 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
         await dispatch(deleteANotebook(notebook))
     }
 
-    const handleEditNotebookButton = async() => {
-       
+    const handleEditNotebookButton = async(e) => {
+       e.preventDefault();
         const payload = {
             title,
             id: notebook.id,
@@ -32,15 +31,17 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
         let data = await dispatch(editANotebook(payload))
         if (data) {
             setErrors(data)
+            setUpdateNote(!updateNote)
         } else {
-            setTitle('')
+            setTitle(title)
             setErrors([])
+            setUpdateNote(!updateNote)
         }
     }
      useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle.length < 1 || newTitle.length > 15) errors.push("***Title must be 1 to 15")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***zTitle must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
 
@@ -103,28 +104,22 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                 </div>
                 {updateNote  === true ?
                     <form onSubmit={handleEditNotebookButton} >
-                        <div className='errors'>
-                            {errors.map((error, ind) => (
-                                <div key={ind}>{error}</div>
-                                ))}
-                        </div>
                         <input
                             type="text"
                             placeholder="New Title"
                             value={title}
                             onChange={editTitle} />
                         <button disabled={validationErrors.length > 0} type="submit" className="submit-btn-upload">Submit</button>
+                        <div className="edit-comment-errors">
+                            {validationErrors?.map((error) => (
+                            <p key={error}>
+                                {error}
+                            </p>
+                            ))}
+                        </div>
                     </form> : <></>
                 } 
-                <div className="edit-comment-errors">
-                    {validationErrors?.map((error) => (
-                    <p key={error}>
-                        {error}
-                    </p>
-                    ))}
-                </div>
             </div>
-
         </>
     )
 

@@ -18,9 +18,10 @@ function EditNotesPage() {
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
 
-
-    const handleEditNote = async(event) => {
-       event.preventDefault();
+    console.log('notes[id]?.title', notes[id]?.title)
+    console.log('notes[id]?.title', notes[id]?.content)
+    const handleEditNote = async(e) => {
+       e.preventDefault();
         const payload = {
             content,
             id,
@@ -29,14 +30,9 @@ function EditNotesPage() {
             notebook_id: notes?.[id]?.['notebook_id']
         }
         let data = await dispatch(editANote(payload))
-        if (data) {
+        if (!data) {
             setErrors(data)
-            setShowModal(true);
-        } else {
-            setTitle('')
-            setContent('')
-            setErrors([])
-            setShowModal(false);
+            setShowModal(!showModal)
         }
     };
 
@@ -47,7 +43,7 @@ function EditNotesPage() {
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***RTitle must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
     
@@ -56,8 +52,9 @@ function EditNotesPage() {
     const handleCancle = async (e) => {
 		e.preventDefault();
 		setShowModal(false);
-        setTitle('')
-        setContent('')
+        setValidationErrors([]);
+        setTitle(title)
+        setContent(content)
 		return;
 	};
 
@@ -89,19 +86,20 @@ function EditNotesPage() {
                         <input
                             type="text"
                             placeholder="New Title"
-                            devalue={title}
+                            defaultValue={title}
                             onChange={editTitle} />
                             </div>
                         <div>
                         <textarea
-                        rows="16" cols="50"
+                        rows="16" 
+                        cols="50"
                         type="text"
                         placeholder="Let's not forget what's being written in here"
-                        value={content}
+                        defaultValue={notes[id]?.content}
                         onChange={editContent} />
                         </div>
                         <div>
-                            <button type="submit" className="save-button-new-note">Save</button>
+                            <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
                             <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
                                         Cancel
                             </button> 
