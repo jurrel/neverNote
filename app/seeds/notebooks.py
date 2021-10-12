@@ -1,27 +1,38 @@
 from app.models import db, Notebook
+from datetime import datetime
+
+now = datetime.now()
+
 
 def seed_notebooks():
     notebook1 = Notebook(
-        title='Animals',
+        title='Notebook1 U1',
         user_id=1,
         # createdAt=now,
         # updatedAt=now,
     )
     notebook2 = Notebook(
-        title='Pokemon',
+        title='Notebook2 U1',
         user_id=1,
         # createdAt=now,
         # updatedAt=now,
     )
     notebook3 = Notebook(
-        title='Games',
+        title='Notebook3 U1',
         user_id=1,
+        # createdAt=now,
+        # updatedAt=now,
+    )
+    notebook4 = Notebook(
+        title='Notebook1 U2',
+        user_id=2,
         # createdAt=now,
         # updatedAt=now,
     )
     db.session.add(notebook1)
     db.session.add(notebook2)
     db.session.add(notebook3)
+    db.session.add(notebook4)
 
     db.session.commit()
 
