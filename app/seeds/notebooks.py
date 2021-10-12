@@ -24,7 +24,7 @@ def seed_notebooks():
         # updatedAt=now,
     )
     notebook4 = Notebook(
-        title='Notebook1 U2',
+        title='Notebook4',
         user_id=2,
         # createdAt=now,
         # updatedAt=now,

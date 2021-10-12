@@ -31,17 +31,17 @@ def seed_notes():
     )
     note4 = Note(
         title='1st page U2',
-        user_id=2,
-        notebook_id=4,
+        user_id=1,
+        notebook_id=3,
         content='THIS IS THE CONTENT IN THE NOTE',
         createdAt=now,
         updatedAt=now
     )
     note5 = Note(
-        title='3rd page U2',
-        user_id=2,
-        notebook_id=4,
-        content='THIS IS THE CONTENT IN THE NOTE',
+        title='Store',
+        user_id=1,
+        notebook_id=2,
+        content='Going to the store to get eggs',
         createdAt=now,
         updatedAt=now
     )
