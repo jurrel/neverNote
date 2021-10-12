@@ -6,42 +6,42 @@ now = datetime.now()
 
 def seed_notes():
     note1 = Note(
-      title='1st page U1',
+      title='Dogs',
       user_id=1,
       notebook_id=1,
-      content='THIS IS THE CONTENT IN THE NOTE',
+      content='Dogs are very cute',
       createdAt=now,
       updatedAt=now
     )
     note2 = Note(
-        title='2nd page U1',
+        title='Cats',
         user_id=1,
         notebook_id=1,
-        content='THIS IS THE CONTENT IN THE NOTE',
+        content='Cats go meow',
         createdAt=now,
         updatedAt=now
     )
     note3 = Note(
-        title='3rd page U1',
+        title='Dinosaurs',
         user_id=1,
         notebook_id=1,
-        content='THIS IS THE CONTENT IN THE NOTE',
+        content='Dinosaurs go rawr',
         createdAt=now,
         updatedAt=now
     )
     note4 = Note(
-        title='1st page U2',
-        user_id=2,
-        notebook_id=4,
-        content='THIS IS THE CONTENT IN THE NOTE',
+        title='Pikachu',
+        user_id=1,
+        notebook_id=2,
+        content='Look it is a Pikachu',
         createdAt=now,
         updatedAt=now
     )
     note5 = Note(
-        title='3rd page U2',
-        user_id=2,
-        notebook_id=4,
-        content='THIS IS THE CONTENT IN THE NOTE',
+        title='Games to play',
+        user_id=1,
+        notebook_id=3,
+        content='Maplestory is a game I want to play',
         createdAt=now,
         updatedAt=now
     )
