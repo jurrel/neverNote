@@ -26,7 +26,8 @@ function EditNotesPage() {
             id,
             title,
             user_id: user?.['users']?.['id'],
-            notebook_id: notes?.[id]?.['notebook_id']
+            notebook_id: notes?.[id]?.['notebook_id'],
+            updatedAt: Date.now(),
         }
         let data = await dispatch(editANote(payload))
         if (!data) {
@@ -34,7 +35,7 @@ function EditNotesPage() {
             setShowModal(!showModal)
         }
     };
-
+// 1633852559184
     useEffect((id) => {
         dispatch(getNotes(id))
     }, [dispatch]);
