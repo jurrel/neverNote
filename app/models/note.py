@@ -10,8 +10,8 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebook_id = db.Column(db.Integer, db.ForeignKey('notebooks.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    createdAt = db.Column(db.DateTime, default=datetime.now().strftime("%b %-d %Y, %H:%M:%S"))
-    updatedAt = db.Column(db.DateTime, onupdate=datetime.now().strftime("%b %-d %Y, %H:%M:%S"))
+    createdAt = db.Column(db.DateTime, default=datetime.now().strftime("%b %-d %Y, %H:%M:%S"), nullable=False)
+    updatedAt = db.Column(db.DateTime, default=datetime.now().strftime("%b %-d %Y, %H:%M:%S"), onupdate=datetime.now().strftime("%b %-d %Y, %H:%M:%S"), nullable=False)
     
     
     # tags = db.relationship('Tag', secondary='tag_notes', back_populates='notes')
