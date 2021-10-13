@@ -32,6 +32,9 @@ function EditNotesPage() {
         if (!data) {
             setErrors(data)
             setShowModal(!showModal)
+        } else {
+            setContent()
+            setTitle()
         }
     };
 
