@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { editANote, getNotes} from '../../store/note';
 import { useParams } from 'react-router-dom';
-// import './editnotespage.css';
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
 import { Modal } from '../context/Modal';
