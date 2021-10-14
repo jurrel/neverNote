@@ -75,9 +75,10 @@ function NotePageMapping({note}) {
 
 
     const editTitle = (e) => setTitle(e.target.value)
-    const typedContent = (value) => {
-        setContent(value)
-    }
+    const editContent = (e) => setContent(e.target.value)
+    // const typedContent = (value) => {
+    //     setContent(value)
+    // }
 
   
     return(
@@ -94,7 +95,7 @@ function NotePageMapping({note}) {
                         <p className="note-time">
                             {note?.updatedAt === null ?
                                 note?.createdAt.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16):
-                                note?.updatedAt.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16)
+                                note?.updatedAt.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16)
                             } 
                         </p> 
                     </div>
@@ -121,11 +122,13 @@ function NotePageMapping({note}) {
                                         onChange={editTitle} />
                                 </div>
                                 <div>
-                                    <ReactQuill
+                                    <textarea 
+                                        rows="16" 
+                                        cols="50"
                                         type="text"
                                         placeholder="Let's not forget what's being written in here"
                                         value={content}
-                                        onChange={typedContent}
+                                        onChange={editContent}
                                     />
                                 </div>
                                 <div>
@@ -141,17 +144,19 @@ function NotePageMapping({note}) {
             </div>
         </div>
     )
+
+
+    ///////////REACT QUILL NOT WORKING ON UPLOAD
     // return(
     //     <div >
     //         <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
     //             <div>
     //                 <div>
     //                     <h2 className='notes-display-font'>
-    //                         {note.title}
-    //                         {console.log('yet', note.id)} 
+    //                         {remoteHTMLTags(note?.title)}
     //                     </h2>
     //                     <p className="note-content">
-    //                         {note.content} 
+    //                         {remoteHTMLTags(note?.content)} 
     //                     </p> 
     //                     <p className="note-time">
     //                         {note?.updatedAt === null ?
@@ -164,39 +169,41 @@ function NotePageMapping({note}) {
     //         </div>
     //         <div >  
     //             <div>
-    //             {showModal && (
-    //                     <form className='new-note-modal' onSubmit={handleEditNote} >
-    //                         <h2>{note.id}</h2>
-    //                         <div>
-    //                             <div className="edit-comment-errors">
-    //                                 {validationErrors?.map((error) => (
-    //                                     <p key={error}>
-    //                                         {error}
-    //                                     </p>
-    //                                 ))}
+    //                 {showModal && (
+    //                     <Modal onClose={() => setShowModal(!showModal)}>
+    //                         <form className='note-page-edit-modal' onSubmit={handleEditNote} >
+    //                             <h2>{note.title}</h2>
+    //                             <div>
+    //                                 <div className="edit-comment-errors">
+    //                                     {validationErrors?.map((error) => (
+    //                                         <p key={error}>
+    //                                             {error}
+    //                                         </p>
+    //                                     ))}
+    //                                 </div>
+    //                                 <input
+    //                                     type="text"
+    //                                     placeholder="New Title"
+    //                                     defaultValue={notes[id]?.title}
+    //                                     onChange={editTitle} />
     //                             </div>
-    //                             <input
-    //                                 type="text"
-    //                                 placeholder="New Title"
-    //                                 defaultValue={notes[id]?.title}
-    //                                 onChange={editTitle} />
-    //                         </div>
-    //                         <div>
-    //                             <ReactQuill
-    //                                 type="text"
-    //                                 placeholder="Let's not forget what's being written in here"
-    //                                 value={content}
-    //                                 onChange={newContent}
-    //                             />
-    //                         </div>
-    //                         <div>
-    //                             <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
-    //                             <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
-    //                                         Cancel
-    //                             </button> 
-    //                         </div>
-    //                     </form>
-    //             )}
+    //                             <div>
+    //                                 <ReactQuill
+    //                                     type="text"
+    //                                     placeholder="Let's not forget what's being written in here"
+    //                                     value={content}
+    //                                     onChange={typedContent}
+    //                                 />
+    //                             </div>
+    //                             <div>
+    //                                 <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
+    //                                 <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
+    //                                             Cancel
+    //                                 </button> 
+    //                             </div>
+    //                         </form>
+    //                     </Modal>
+    //                 )}
     //             </div>
     //         </div>
     //     </div>
