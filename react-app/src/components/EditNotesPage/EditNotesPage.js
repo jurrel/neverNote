@@ -10,11 +10,14 @@ function EditNotesPage() {
     const notes = useSelector(state => state.note);
     const { id } = useParams();
     
-    
+    const remoteHTMLTags =  (str) => {
+        return str?.replace(/<[^>]*>?/gm, '');
+    };
+
     const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state.session.user);
     const [title, setTitle] = useState( notes[id]?.title);
-    const [content, setContent] = useState(notes[id]?.content)
+    const [content, setContent] = useState(remoteHTMLTags(notes[id]?.content))
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
 
@@ -45,7 +48,7 @@ function EditNotesPage() {
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***RTitle must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***RZTitle must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
     
@@ -56,7 +59,7 @@ function EditNotesPage() {
 		setShowModal(false);
         setValidationErrors([]);
         setTitle(notes[id]?.title)
-        setContent(notes[id]?.content)
+        setContent(remoteHTMLTags(notes[id]?.content))
 		return;
 	};
 
@@ -72,7 +75,7 @@ function EditNotesPage() {
                 <h1>{notes[id]?.title}</h1>
                 <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
                 <h3 onClick={() => setShowModal(!showModal)}>Edit</h3></div>
-                <div className="box">{notes[id]?.content}</div>
+                <div className="box">{remoteHTMLTags(notes[id]?.content)}</div>
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
                     <form className='new-note-modal' onSubmit={handleEditNote} >
@@ -97,7 +100,7 @@ function EditNotesPage() {
                         cols="50"
                         type="text"
                         placeholder="Let's not forget what's being written in here"
-                        defaultValue={notes[id]?.content}
+                        defaultValue={remoteHTMLTags(notes?.[id]?.content)}
                         onChange={editContent} />
                         </div>
                         <div>
