@@ -39,7 +39,7 @@ function CreateNewNoteModal() {
         const payload = {
             title,
             content,
-            id: notebookId, 
+            id: notebooks?.[0]?.['id'], 
             user_id: user?.['users']?.['id']
         }
         let data = await dispatch(createNote(payload))   

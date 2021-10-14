@@ -54,6 +54,7 @@
 
 
 .nav-bar-user-email {
+    padding-left: 10px;
     color: white;
     text-overflow: ellipsis;
     overflow: hidden;
