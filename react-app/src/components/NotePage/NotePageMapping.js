@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { editANote, getNotes} from '../../store/note';
+import { editANote, getNotes, deleteANote} from '../../store/note';
 import { useParams } from 'react-router-dom';
 // import './editnotespage.css';
 // import ReactQuill from 'react-quill'
@@ -67,10 +67,15 @@ function NotePageMapping({note}) {
 		e.preventDefault();
 		setShowModal(false);
         setValidationErrors([]);
-        setTitle(title)
+        setTitle(note?.title)
         setContent(content)
 		return;
 	};
+
+     const handleDeleteButton = async() => {
+        await dispatch(deleteANote(note))
+        
+    }
 
 
 
@@ -97,7 +102,12 @@ function NotePageMapping({note}) {
                                 note?.createdAt.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16):
                                 note?.updatedAt.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16)
                             } 
-                        </p> 
+                        </p>
+                        <i
+                        className="fa fa-trash-o"
+                        onClick={() => handleDeleteButton()}
+                        title="Edit Notebook"
+                    /> 
                     </div>
                 </div>
             </div>
@@ -118,7 +128,7 @@ function NotePageMapping({note}) {
                                     <input
                                         type="text"
                                         placeholder="New Title"
-                                        defaultValue={notes[id]?.title}
+                                        value={title}
                                         onChange={editTitle} />
                                 </div>
                                 <div>
