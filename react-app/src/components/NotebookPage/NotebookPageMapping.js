@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook, editANotebook} from '../../store/notebook';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './NotebookPage.css';
 
 function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNotes, index }) {
@@ -61,8 +62,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
         updateToggleNotes(notes);
     }
 
-    console.log({index: toggleNotes[index]});
-    console.log({notesList});
+
     return(
         <>
             <div className="middle-content" >
@@ -81,9 +81,11 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                 <div className='notebook-page-click-toggle-content'>
                     {toggleNotes && toggleNotes[index] === true ?
                         notesList.map((note, index) => (
-                                    <a key={index} href={`/notes/${note.id}`}>
-                                        <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
-                                    </a >
+                                    <BrowserRouter>
+                                        <a key={index} href={`/notes/${note.id}`}>
+                                            <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
+                                        </a >
+                                    </BrowserRouter>
                                 )) : <></>
                     }
                 </div>

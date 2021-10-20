@@ -42,7 +42,6 @@ export const getANote = (id) => async dispatch => {
     const response = await fetch(`/api/note_routes/${id}`);
     if (response.ok) {
       const note = await response.json();
-      console.log('dsa',note)
         dispatch(setSingleNote(note))
     }
 };
@@ -108,13 +107,7 @@ const noteReducer = (state={}, action) => {
                 newState[note.id] = note
             })
             return newState
-        // case SET_SINGLE_NOTE:
-        //     console.log('what is single', action.note)
-        //     const single = {...state};
-        //     // console.log('this is action', action.note)
-        //     return {...action.note}
         case SET_SINGLE_NOTE:
-            console.log('what is single', action.note)
             const single = {...action.note};
             return single
         case ADD_NOTE:

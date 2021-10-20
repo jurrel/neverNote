@@ -17,14 +17,14 @@ function NotePageMapping({note}) {
     const notes = useSelector(state => state.note);
 
 
-    const remoteHTMLTags =  (str) => {
-        return str?.replace(/<[^>]*>?/gm, '');
-    };
+    // const remoteHTMLTags =  (str) => {
+    //     return str?.replace(/<[^>]*>?/gm, '');
+    // };
 
 
     const [showModal, setShowModal] = useState(false);
-    const [title, setTitle] = useState( note?.title);
-    const [content, setContent] = useState(remoteHTMLTags(note?.content))
+    const [title, setTitle] = useState(note?.title);
+    const [content, setContent] = useState(note?.content)
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
 
@@ -67,8 +67,8 @@ function NotePageMapping({note}) {
 		e.preventDefault();
 		setShowModal(false);
         setValidationErrors([]);
-        setTitle(note?.title)
-        setContent(remoteHTMLTags(note?.content))
+        setTitle((note?.title))
+        setContent((note?.content))
 		return;
 	};
 
@@ -229,9 +229,6 @@ function NotePageMapping({note}) {
                 <div>
                     <div>
                         <h2 className='notes-display-font'>
-                            {console.log('this is just note', note)}
-                            {console.log('this is before parse', note?.title)}
-                            {console.log('this is after parse', parse(note?.title))}
                             {parse(note?.title)}
                         </h2>
                         <i
