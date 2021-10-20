@@ -10,13 +10,13 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     const [updateNote, setUpdateNote] = useState(false);
     const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
-    
-    
+
+
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
-   
 
-  
+
+
     const handleDeleteButton = async() => {
         await dispatch(deleteANotebook(notebook))
     }
@@ -64,35 +64,35 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     console.log({index: toggleNotes[index]});
     console.log({notesList});
     return(
-        <>  
+        <>
             <div className="middle-content" >
                 <div className='notebook-page-click-toggle' onClick={() => handleToggle()}>
                     {toggleNotes && toggleNotes[index] === true ?
                         <div>
-                            <i class="fa fa-angle-down"></i> 
+                            <i class="fa fa-angle-down"></i>
                             {notebook.title}
-                        </div> : 
+                        </div> :
                         <div>
-                            <i class="fa fa-angle-right "></i> 
+                            <i class="fa fa-angle-right "></i>
                             {notebook.title}
                         </div>
                     }
                 </div>
-                <div className='notebook-page-click-toggle-content'> 
-                    {toggleNotes && toggleNotes[index] === true ? 
+                <div className='notebook-page-click-toggle-content'>
+                    {toggleNotes && toggleNotes[index] === true ?
                         notesList.map((note, index) => (
-                                    <a key={index} href={`/notes/${note.id}`}> 
+                                    <a key={index} href={`/notes/${note.id}`}>
                                         <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
                                     </a >
                                 )) : <></>
-                    }          
+                    }
                 </div>
                 <div onClick={() => updateHelperFunction(true)}>
                         <i
                             className="fa fa-edit"
                             onClick={() => updateHelperFunction(true)}
                             title="Edit Notebook"
-                            
+
                         />
                 </div>
                 <div onClick={() => handleDeleteButton()}>
@@ -118,7 +118,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                             ))}
                         </div>
                     </form> : <></>
-                } 
+                }
             </div>
         </>
     )
@@ -126,5 +126,3 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
 }
 
 export default NotebookPageMapping
-
-

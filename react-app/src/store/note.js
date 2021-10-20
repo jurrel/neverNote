@@ -1,4 +1,5 @@
 const SET_NOTES  = 'note/LOAD';
+const SET_SINGLE_NOTE  = 'note/LOADSINGLENOTE';
 const ADD_NOTE = 'note/ADD';
 const DELETE_NOTE = 'note/DELETE';
 const EDIT_NOTE = 'note/EDIT';
@@ -7,6 +8,11 @@ const EDIT_NOTE = 'note/EDIT';
 export const setNotes = notes => ({
     type: SET_NOTES,
     notes
+})
+
+export const setSingleNote = note => ({
+  type: SET_SINGLE_NOTE,
+  note
 })
 
 export const addNote = note => ({
@@ -22,13 +28,22 @@ export const editNote = note => ({
     note
 })
 
-//Thunk working 
+//Thunk working
 export const getNotes = () => async dispatch => {
     const response = await fetch(`/api/note_routes/`);
 
     if (response.ok) {
         const notes = await response.json();
         dispatch(setNotes(notes.notes))
+    }
+};
+
+export const getANote = (id) => async dispatch => {
+    const response = await fetch(`/api/note_routes/${id}`);
+    if (response.ok) {
+      const note = await response.json();
+      console.log('dsa',note)
+        dispatch(setSingleNote(note))
     }
 };
 
@@ -50,7 +65,7 @@ export const createNote = ({content, id, title, user_id}) => async(dispatch) => 
         const note = await response.json();
         dispatch(addNote(note))
         return note
-    } 
+    }
 }
 
 //Delete note
@@ -64,7 +79,7 @@ export const deleteANote = ({id}) => async(dispatch) => {
 }
 
 export const editANote = ({title, user_id, id, content,notebook_id} ) => async(dispatch) => {
-    const response = await fetch(`/api/note_routes/edit/${id}`, {
+  const response = await fetch(`/api/note_routes/edit/${id}`, {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
@@ -88,10 +103,20 @@ const noteReducer = (state={}, action) => {
     switch(action.type) {
         case SET_NOTES :
             const newState = {}
+            // console.log('this is action', action)
             action.notes.forEach(note => {
                 newState[note.id] = note
             })
             return newState
+        // case SET_SINGLE_NOTE:
+        //     console.log('what is single', action.note)
+        //     const single = {...state};
+        //     // console.log('this is action', action.note)
+        //     return {...action.note}
+        case SET_SINGLE_NOTE:
+            console.log('what is single', action.note)
+            const single = {...action.note};
+            return single
         case ADD_NOTE:
             const addNewNote = {...state}
             addNewNote[action.note.id] = action.note

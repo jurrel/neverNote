@@ -18,18 +18,25 @@ function NotePageMapping({note}) {
     const { id } = useParams();
     console.log('notemapping', notes)
     console.log('notemapping note', note)
-    
+
     const remoteHTMLTags =  (str) => {
-        return str.replace(/<[^>]*>?/gm, '');
+        return str?.replace(/<[^>]*>?/gm, '');
     };
-   
+
+
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState( note?.title);
     const [content, setContent] = useState(remoteHTMLTags(note?.content))
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
+    console.log('note.title', note?.title)
+    console.log('what is title', title)
 
-    console.log('what is note', note.title)
+    useEffect(() => {
+        dispatch(getNotes())
+        setTitle(note?.title)
+    }, [dispatch, note?.title]);
+
     const handleEditNote = async(e) => {
        e.preventDefault();
         const payload = {
@@ -49,17 +56,14 @@ function NotePageMapping({note}) {
         }
     };
 
-    useEffect((id) => {
-        dispatch(getNotes(id))
-    }, [dispatch]);
-    
+
     useEffect(() => {
         const errors = [];
         let newTitle = title
         if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***RTitle must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
-    
+
     if (!notes) return null;
 
     const handleCancle = async (e) => {
@@ -67,13 +71,13 @@ function NotePageMapping({note}) {
 		setShowModal(false);
         setValidationErrors([]);
         setTitle(note?.title)
-        setContent(content)
+        setContent(remoteHTMLTags(note?.content))
 		return;
 	};
 
      const handleDeleteButton = async() => {
         await dispatch(deleteANote(note))
-        
+
     }
 
 
@@ -84,7 +88,7 @@ function NotePageMapping({note}) {
         setContent(value)
     }
 
-  
+
     // return(
     //     <div >
     //         <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
@@ -94,23 +98,23 @@ function NotePageMapping({note}) {
     //                         {remoteHTMLTags(note?.title)}
     //                     </h2>
     //                     <p className="note-content">
-    //                         {remoteHTMLTags(note?.content)} 
-    //                     </p> 
+    //                         {remoteHTMLTags(note?.content)}
+    //                     </p>
     //                     <p className="note-time">
     //                         {note?.updatedAt === null ?
     //                             note?.createdAt.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16):
     //                             note?.updatedAt.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16)
-    //                         } 
+    //                         }
     //                     </p>
     //                     <i
     //                     className="fa fa-trash-o"
     //                     onClick={() => handleDeleteButton()}
     //                     title="Edit Notebook"
-    //                 /> 
+    //                 />
     //                 </div>
     //             </div>
     //         </div>
-    //         <div >  
+    //         <div >
     //             <div>
     //                 {showModal && (
     //                     <Modal onClose={() => setShowModal(!showModal)}>
@@ -131,8 +135,8 @@ function NotePageMapping({note}) {
     //                                     onChange={editTitle} />
     //                             </div>
     //                             <div>
-    //                                 <textarea 
-    //                                     rows="16" 
+    //                                 <textarea
+    //                                     rows="16"
     //                                     cols="50"
     //                                     type="text"
     //                                     placeholder="Let's not forget what's being written in here"
@@ -144,7 +148,7 @@ function NotePageMapping({note}) {
     //                                 <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
     //                                 <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
     //                                             Cancel
-    //                                 </button> 
+    //                                 </button>
     //                             </div>
     //                         </form>
     //                     </Modal>
@@ -165,18 +169,18 @@ function NotePageMapping({note}) {
                             {remoteHTMLTags(note?.title)}
                         </h2>
                         <p className="note-content">
-                            {remoteHTMLTags(note?.content)} 
-                        </p> 
+                            {remoteHTMLTags(note?.content)}
+                        </p>
                         <p className="note-time">
                             {note?.updatedAt === null ?
-                                note?.createdAt.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16):
-                                note?.updatedAt.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16)
-                            } 
-                        </p> 
+                                note?.createdAt?.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16):
+                                note?.updatedAt?.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16)
+                            }
+                        </p>
                     </div>
                 </div>
             </div>
-            <div >  
+            <div >
                 <div>
                     {showModal && (
                         <Modal onClose={() => setShowModal(!showModal)}>
@@ -193,11 +197,12 @@ function NotePageMapping({note}) {
                                     <input
                                         type="text"
                                         placeholder="New Title"
-                                        defaultValue={notes[id]?.title}
+                                        defaultValue={title}
                                         onChange={editTitle} />
                                 </div>
                                 <div>
                                     <ReactQuill
+                                        className='quill'
                                         type="text"
                                         placeholder="Let's not forget what's being written in here"
                                         value={content}
@@ -208,7 +213,7 @@ function NotePageMapping({note}) {
                                     <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
                                     <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
                                                 Cancel
-                                    </button> 
+                                    </button>
                                 </div>
                             </form>
                         </Modal>
@@ -220,5 +225,3 @@ function NotePageMapping({note}) {
 }
 
 export default NotePageMapping
-
- 
