@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { Link, NavLink} from 'react-router-dom';
-
 import {getNotes} from '../../store/note';
 import NotePageMapping from './NotePageMapping'
 import CreateNewNoteModal from '../NoteCRUD/CreateNewNoteModal'
@@ -31,7 +29,7 @@ function NotePage() {
     //             <div className='note-page-note-counter'>{noteLength} Notes</div>
     //             <CreateNewNoteModal/>
     //             <div>
-    //                 {notes?.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))?.map((note)=> (
+    //                 {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=> (
 
     //                     <NavLink to={`/notes/${note.id}`}>
     //                         <NotePageMapping
@@ -47,8 +45,32 @@ function NotePage() {
     /***************************ABOVE**************************** */
 
 
-    /***************************BELOW**************************** */
-    return(
+    //CURRENT ONE
+    // /***************************BELOW**************************** */
+    // return(
+    //     <div className='note-page-background'>
+    //         <div className="note-page-container">
+    //             <h1 className='note-page-note-counter'>Notes</h1>
+    //             <div className='note-page-note-counter'>{noteLength} Notes</div>
+    //             <CreateNewNoteModal/>
+    //             <div className='app-sidebar-notes' >
+    //                 {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=> (
+    //                     <NotePageMapping
+    //                         key={note.id}
+    //                         note={note}
+    //                         setNoteId={setNoteId}
+    //                     />
+    //                 ))}
+    //             </div>
+    //         </div>
+    //     </div>
+    // )
+    // /***************************ABOVE**************************** */
+
+
+       ///FOR TESTING
+      /***************************BELOW**************************** */
+      return(
         <div className='note-page-background'>
             <div className="note-page-container">
                 <h1 className='note-page-note-counter'>Notes</h1>
@@ -56,17 +78,20 @@ function NotePage() {
                 <CreateNewNoteModal/>
                 <div className='app-sidebar-notes' >
                     {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=> (
-                        <NotePageMapping
-                            key={note.id}
-                            note={note}
-                            setNoteId={setNoteId}
-                        />
+                        <div >
+                            <NotePageMapping
+                                key={note.id}
+                                note={note}
+                                setNoteId={setNoteId}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
         </div>
     )
     /***************************ABOVE**************************** */
+
 
 
 }
