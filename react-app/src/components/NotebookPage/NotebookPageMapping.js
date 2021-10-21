@@ -6,23 +6,24 @@ import './NotebookPage.css';
 function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNotes, index }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
+    const userNotebook = useSelector(state => state.notebook)
+    const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(notebook.title);
     const [updateNote, setUpdateNote] = useState(false);
     const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
+  
 
-
-    const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
+   
 
-
-
+  
     const handleDeleteButton = async() => {
         await dispatch(deleteANotebook(notebook))
     }
 
-    const handleEditNotebookButton = async(e) => {
-       e.preventDefault();
+    const handleEditNotebookButton = async() => {
+       
         const payload = {
             title,
             id: notebook.id,
@@ -31,17 +32,15 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
         let data = await dispatch(editANotebook(payload))
         if (data) {
             setErrors(data)
-            setUpdateNote(!updateNote)
         } else {
-            setTitle(title)
+            setTitle('')
             setErrors([])
-            setUpdateNote(!updateNote)
         }
     }
      useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***zTitle must be 1 to 15 characters")
+        if (newTitle.length < 1 || newTitle.length > 15) errors.push("Title must be 1 to 15")
         setValidationErrors(errors)
     }, [title])
 
@@ -64,35 +63,27 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     console.log({index: toggleNotes[index]});
     console.log({notesList});
     return(
-        <>
+        <>  
             <div className="middle-content" >
                 <div className='notebook-page-click-toggle' onClick={() => handleToggle()}>
-                    {toggleNotes && toggleNotes[index] === true ?
-                        <div>
-                            <i class="fa fa-angle-down"></i>
-                            {notebook.title}
-                        </div> :
-                        <div>
-                            <i class="fa fa-angle-right "></i>
-                            {notebook.title}
-                        </div>
-                    }
+                    <i class="fa fa-angle-right"></i>
+                    {notebook.title}
                 </div>
-                <div className='notebook-page-click-toggle-content'>
-                    {toggleNotes && toggleNotes[index] === true ?
+                <div className='notebook-page-click-toggle-content'> 
+                    {toggleNotes && toggleNotes[index] === true ? 
                         notesList.map((note, index) => (
-                                    <a key={index} href={`/notes/${note.id}`}>
+                                    <a key={index} href={`/notes/${note.id}`}> 
                                         <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
                                     </a >
                                 )) : <></>
-                    }
+                    }          
                 </div>
                 <div onClick={() => updateHelperFunction(true)}>
                         <i
                             className="fa fa-edit"
                             onClick={() => updateHelperFunction(true)}
                             title="Edit Notebook"
-
+                            
                         />
                 </div>
                 <div onClick={() => handleDeleteButton()}>
@@ -104,25 +95,29 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                 </div>
                 {updateNote  === true ?
                     <form onSubmit={handleEditNotebookButton} >
+                        <div className='errors'>
+                            {errors.map((error, ind) => (
+                                <div key={ind}>{error}</div>
+                                ))}
+                        </div>
                         <input
                             type="text"
                             placeholder="New Title"
                             value={title}
                             onChange={editTitle} />
                         <button disabled={validationErrors.length > 0} type="submit" className="submit-btn-upload">Submit</button>
-                        <div className="edit-comment-errors">
-                            {validationErrors?.map((error) => (
-                            <p key={error}>
-                                {error}
-                            </p>
-                            ))}
-                        </div>
                     </form> : <></>
-                }
+                } 
+                <div className="edit-comment-errors">
+                        {validationErrors.map((error, int) => (<div key={int}>{error}</div>))}
+                </div>
             </div>
+
         </>
     )
 
 }
 
 export default NotebookPageMapping
+
+

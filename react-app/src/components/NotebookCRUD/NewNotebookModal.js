@@ -11,21 +11,21 @@ function NewNotebookModal() {
     const [showModal, setShowModal] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [title, setTitle] = useState('');
-   
+
 
     const editTitle = (e) => setTitle(e.target.value)
 
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***wTitle must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
- 
-    
+
+
     const handleCreateNotebook = async(e) => {
         e.preventDefault();
-        
+
         const payload = {
             title,
             user_id: user?.['users']?.['id']
@@ -34,7 +34,6 @@ function NewNotebookModal() {
         if (data) {
             setErrors(data)
             setShowModal(true);
-            console.log('dsadsa', setErrors)
         } else {
             setTitle('')
             setErrors([])
@@ -49,17 +48,17 @@ function NewNotebookModal() {
         setErrors([])
 		return;
 	};
-	
+
 	return (
 		<>
             <button className="new-notebook-button" onClick={() => setShowModal(true)}>
                 <i
-					className="fa fa-plus plus-icon " 
+					className="fa fa-plus plus-icon "
 					onClick={() => setShowModal(true)}
 				/><h3 className='new-notebook-button-text'>New</h3></button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
-                    <form 
+                    <form
                         className="new-notebook-modal"
                         onSubmit={handleCreateNotebook} >
                             <div className="new-notebook-modal-title"> Create new notebook</div>
@@ -83,7 +82,7 @@ function NewNotebookModal() {
                             </button>
                             <button className="new-notebook-modal-create-button" type="submit">Create</button>
 						</div>
-                    </form>       
+                    </form>
 				</Modal>
 			)}
 		</>

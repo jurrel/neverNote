@@ -56,3 +56,6 @@
     z-index: 1;
     color: white;
 }
+.edit-comment-errors {
+  color: gray;
+}

@@ -4,33 +4,30 @@ import { editANote, getNotes, getANote} from '../../store/note';
 import { useParams } from 'react-router-dom';
 import './editnotespage.css';
 import { Modal } from '../context/Modal';
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css';
+
 
 function EditNotesPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const notes = useSelector(state => state.note);
+    const note = useSelector(state => state.note);
+    // console.log('What is the type of note?.content', typeof note?.content)
+    // console.log(parse(JSON.stringify(note?.content)))
 
-    const remoteHTMLTags =  (str) => {
-        return str?.replace(/<[^>]*>?/gm, '');
-    };
-    useEffect(() => {
-        dispatch(getANote(id))
-        setTitle(notes?.title)
-        setContent(remoteHTMLTags(notes?.content))
-    }, [dispatch, id, notes?.title, notes?.content]);
-
-
-
-
+    // const remoteHTMLTags =  (str) => {
+        //     return str?.replace(/<[^>]*>?/gm, '');
+        // };
     const [showModal, setShowModal] = useState(false);
-    const [content, setContent] = useState(remoteHTMLTags(notes?.content))
-
-    const [title, setTitle] = useState(notes.title);
+    const [content, setContent] = useState(note?.content)
+    const [title, setTitle] = useState(note?.title);
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
 
+
+    useEffect(() => {
+        dispatch(getANote(id))
+        setTitle(note?.title)
+        setContent(note?.content)
+    }, [dispatch, id, note?.title, note?.content]);
 
 
 
@@ -40,8 +37,8 @@ function EditNotesPage() {
             content,
             id,
             title,
-            user_id: notes?.id,
-            notebook_id: notes?.notebook_id
+            user_id: note?.id,
+            notebook_id: note?.notebook_id
         }
         let data = await dispatch(editANote(payload))
         if (!data) {
@@ -61,32 +58,33 @@ function EditNotesPage() {
         setValidationErrors(errors)
     }, [title])
 
-    if (!notes) return null;
+    if (!note) return null;
 
     const handleCancel = async (e) => {
 		e.preventDefault();
 		setShowModal(false);
         setValidationErrors([]);
-        setTitle(notes?.title)
-        setContent(remoteHTMLTags(notes?.content))
+        setTitle(note?.title)
+        setContent(note?.content)
 		return;
 	};
 
 
 
     const editTitle = (e) => setTitle(e.target.value)
-    const typedContent = (value) => {
-        setContent(remoteHTMLTags(value))
-    }
+    const editContent = (e) => setContent(e.target.value)
+
 
 
     return(
         <div className='edit-notebook-page-background'>
             <div className='edit-notebook-page-content'>
-                <h1>{notes?.title}</h1>
+                <h1>{note?.title}</h1>
                 <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
                 <h3 onClick={() => setShowModal(!showModal)}>Edit</h3></div>
-                <div className="box">{remoteHTMLTags(notes?.content)}</div>
+                <div className="box">{content}</div>
+                {console.log('this is note?.content', note?.content)}
+                {console.log('this is note?.content type',  typeof note?.content)}
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
                     <form className='new-note-modal' onSubmit={handleEditNote} >
@@ -106,11 +104,11 @@ function EditNotesPage() {
                             onChange={editTitle} />
                             </div>
                         <div>
-                        <ReactQuill
+                        <textarea
                         type="text"
                         placeholder="Let's not forget what's being written in here"
                         defaultValue={content}
-                        onChange={typedContent} />
+                        onChange={editContent} />
                         </div>
                         <div>
                             <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>

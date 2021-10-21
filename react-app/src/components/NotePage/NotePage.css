@@ -10,20 +10,11 @@
 
 .note-content {
 	position: relative;
-	color: rgba(228, 228, 228, 0.671);
-	word-break: break-all;
-	max-width: 450px;
-	width: 100%;
-	left: 10px;
-}
-.note-time {
-	position: relative;
 	border-bottom: 1px solid #3a3939;
-	color: gray;
+	color: rgba(255, 255, 255, 0.835);
 	word-break: break-all;
 	max-width: 450px;
 	width: 100%;
-	font-size: 10px
 }
 
 .note-page-background {
@@ -51,45 +42,3 @@
 	display: flex;
 	justify-content: space-between;
 }
-
-
-/* .note-page-edit-modal {
-	flex-direction: column;
-	grid-gap: 25px;
-	gap: 25px;
-	border-radius: 5px;
-	overflow-y: scroll;
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 100%;
-	width: 35%;
-	background-color: blue;
-	z-index: 2;
-} */
-
-.note-page-edit-modal {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	height: 500px;
-	width: 540px;
-	background-color: #111111;
-	border: 1px solid #007720;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 5px;
-	display: flex;
-	flex-direction: column;
-	z-index: 1;
-	color: white;
-}
-
-.quill{
-	color: white;
-	height: 100px;
-
-}
-

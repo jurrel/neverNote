@@ -46,6 +46,3 @@ def delete_notebook(id):
     db.session.delete(note)
     db.session.commit()
     return deleted_note.to_dict()
-
-
-

@@ -17,10 +17,9 @@ function CreateNewNoteModal() {
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
     const [notebookId, setNotebookId] = useState(notebooks?.[0]?.['id']);
-    
+
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
-    console.log('what is user?.users?.id', notebooks?.[0]?.['id'])
 
     useEffect(()=> {
         dispatch(getNotebooks());
@@ -39,11 +38,11 @@ function CreateNewNoteModal() {
         const payload = {
             title,
             content,
-            id: notebookId, 
+            id: notebookId,
             user_id: user?.['users']?.['id']
         }
-        let data = await dispatch(createNote(payload))   
-        
+        let data = await dispatch(createNote(payload))
+
         if (!data) {
             setErrors(data)
             setShowModal(true)
@@ -55,7 +54,7 @@ function CreateNewNoteModal() {
         }
     };
 
-    
+
 
     const handleCancle = async (e) => {
 		e.preventDefault();
@@ -64,7 +63,7 @@ function CreateNewNoteModal() {
         setContent('')
 		return;
 	};
-	
+
 	return (
 		<>
             <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
@@ -72,20 +71,20 @@ function CreateNewNoteModal() {
                 <div className="line"></div>
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
-                    <form 
+                    <form
                     className="new-note-modal"
                     onSubmit={handleCreateNote} >
                         <h1>NEW NOTE</h1>
                         {notebooks.length === 0 ? <div>No Notebook available, please create one</div>: <></>}
-                    <select 
-                    value = {notebookId} 
+                    <select
+                    value = {notebookId}
                     onChange={(e)=> {
                         const notebookSelect = e.target.value;
                         setNotebookId(notebookSelect)
                     }}>
                             {notebooks?.map((notebook) => {
                                 return (
-                                    <option key={notebook.id} value={notebook.id}>{notebook.title}</option>                                  
+                                    <option key={notebook.id} value={notebook.id}>{notebook.title}</option>
                                 );
                             })}
                         </select>
@@ -103,7 +102,7 @@ function CreateNewNoteModal() {
                             onChange={editTitle}
                         />
                         <textarea
-                            rows="16" 
+                            rows="16"
                             cols="50"
                             type="text"
                             placeholder="Let's not forget what's being written in here"
@@ -113,8 +112,8 @@ function CreateNewNoteModal() {
                         <button disabled={validationErrors.length > 0} type="submit" className="save-button-new-note">Save</button>
                         <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
                                     Cancel
-                        </button>   
-                    </form>    
+                        </button>
+                    </form>
 				</Modal>
 			)}
 		</>
