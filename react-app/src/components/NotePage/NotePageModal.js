@@ -1,11 +1,13 @@
 import { Modal } from '../context/Modal';
 import { useDispatch, useSelector} from 'react-redux';
+import { useHistory } from 'react-router';
 import {deleteANote, editANote} from '../../store/note';
 import { useState, useEffect } from 'react';
 import './NotePage.css'
 
 function EditPageModal({note}) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector(state => state?.session.user);
   
     
@@ -17,14 +19,17 @@ function EditPageModal({note}) {
     const [validationErrors, setValidationErrors] = useState([])
 
 
-
+    useEffect(() => {
+        setContent(note?.content)
+        setTitle(note?.title)
+    }, [dispatch, note?.title, note?.content])
 
     const editTitle = (e) => setTitle(e.target.value)
     const editContent = (e) => setContent(e.target.value)
 
     const handleDeleteButton = async() => {
         await dispatch(deleteANote(note))
-        
+        history.push('/notes')
     }
 
 
@@ -46,8 +51,9 @@ function EditPageModal({note}) {
     const handleCancle = async (e) => {
 		e.preventDefault();
 		setShowModal(false);
-        setTitle('')
-        setContent('')
+        setValidationErrors([]);
+        setTitle(note?.title)
+        setContent(note?.content)
 		return;
 	};
      useEffect(() => {

@@ -107,7 +107,7 @@ const noteReducer = (state={}, action) => {
             })
             return newState
         case SET_SINGLE_NOTE:
-            const single = {...action.note};
+            const single = {...state,...action.note}
             return single
         case ADD_NOTE:
             const addNewNote = {...state}

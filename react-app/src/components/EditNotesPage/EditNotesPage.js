@@ -1,7 +1,8 @@
 import { useState, useEffect, setState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { editANote, getNotes, getANote} from '../../store/note';
+import { editANote, deleteANote, getANote} from '../../store/note';
 import { useParams } from 'react-router-dom';
+import EditPageModal from '../NotePage/NotePageModal';
 import './editnotespage.css';
 import { Modal } from '../context/Modal';
 
@@ -60,19 +61,11 @@ function EditNotesPage() {
 
     if (!note) return null;
 
-    const handleCancel = async (e) => {
-		e.preventDefault();
-		setShowModal(false);
-        setValidationErrors([]);
-        setTitle(note?.title)
-        setContent(note?.content)
-		return;
-	};
+   
 
 
 
-    const editTitle = (e) => setTitle(e.target.value)
-    const editContent = (e) => setContent(e.target.value)
+
 
 
 
@@ -80,45 +73,9 @@ function EditNotesPage() {
         <div className='edit-notebook-page-background'>
             <div className='edit-notebook-page-content'>
                 <h1>{note?.title}</h1>
-                <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
-                <h3 onClick={() => setShowModal(!showModal)}>Edit</h3></div>
+                
                 <div className="box">{content}</div>
-                {console.log('this is note?.content', note?.content)}
-                {console.log('this is note?.content type',  typeof note?.content)}
-			{showModal && (
-				<Modal onClose={() => setShowModal(!showModal)}>
-                    <form className='new-note-modal' onSubmit={handleEditNote} >
-                        <h2>Edit NotebookS</h2>
-                    <div>
-                        <div className="edit-comment-errors">
-                            {validationErrors?.map((error) => (
-                                <p key={error}>
-                                    {error}
-                                </p>
-                            ))}
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="New Title"
-                            defaultValue={title}
-                            onChange={editTitle} />
-                            </div>
-                        <div>
-                        <textarea
-                        type="text"
-                        placeholder="Let's not forget what's being written in here"
-                        defaultValue={content}
-                        onChange={editContent} />
-                        </div>
-                        <div>
-                            <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
-                            <button className="cancel-button-new-note" type="button" onClick={handleCancel}>
-                                        Cancel
-                            </button>
-                        </div>
-                    </form>
-				</Modal>
-			)}
+			<EditPageModal note={note}/>
             </div>
         </div>
     )
