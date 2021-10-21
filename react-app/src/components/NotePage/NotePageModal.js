@@ -73,16 +73,18 @@ function EditPageModal({note}) {
   
     return(
         <div >  
-                <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
-                    <h3 onClick={() => setShowModal(!showModal)}>
-                        <i className="fa fa-edit note-page-edit"></i>
-                    </h3>
+                <div>
+                    <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
+                        <h3 onClick={() => setShowModal(!showModal)}>
+                            <i className="fa fa-edit note-page-edit"></i>
+                        <i
+                            className="fa fa-trash-o note-page-delete"
+                            onClick={() => handleDeleteButton()}
+                            title="Edit Note"
+                        />  
+                        </h3>
+                    </div>
                 </div>
-                <i
-                    className="fa fa-trash-o note-page-delete"
-                    onClick={() => handleDeleteButton()}
-                    title="Edit Note"
-                />  
 			{showModal && (
 				<Modal onClose={() => setShowModal(!showModal)}>
                     <form className='new-note-modal' onSubmit={handleEditNote} >

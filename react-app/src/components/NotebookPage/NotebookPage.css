@@ -48,6 +48,10 @@
     background: transparent; 
 }
 
+.side-by {
+  display: flex;
+  flex-direction: row;
+}
 
 
 .fa-edit, 
@@ -132,4 +136,11 @@
     margin: 0 auto;
     width: 100%;
     text-decoration: none;
+}
+
+.submit-btn-upload {
+  background-color: #111111;
+  color: white;
+	border-radius: 5px;
+  border: 1px solid #007720;
 }

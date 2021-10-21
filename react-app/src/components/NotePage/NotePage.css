@@ -30,6 +30,8 @@
 }
 .note-page-note-counter {
 	color: white;
+	display: flex;
+	flex-direction: row;
 }
 
 .note-page-delete:hover,
@@ -41,6 +43,8 @@
 .notes-container {
 	display: flex;
 	justify-content: space-between;
+    align-items: space-between;
+	flex-direction: row;
 }
 
 .quill {
