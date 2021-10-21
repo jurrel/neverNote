@@ -42,3 +42,10 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.quill {
+	color: white;
+	max-height: 200px;
+	max-width:500px ;
+	/* overflow-y:scroll; */
+}

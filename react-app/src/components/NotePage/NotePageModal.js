@@ -3,6 +3,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router';
 import {deleteANote, editANote} from '../../store/note';
 import { useState, useEffect } from 'react';
+import parser from 'html-react-parser'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css';
 import './NotePage.css'
 
 function EditPageModal({note}) {
@@ -25,7 +28,10 @@ function EditPageModal({note}) {
     }, [dispatch, note?.title, note?.content])
 
     const editTitle = (e) => setTitle(e.target.value)
-    const editContent = (e) => setContent(e.target.value)
+    // const editContent = (e) => setContent(e.target.value)
+    const typedContent = (value) => {
+        setContent(value)
+    }
 
     const handleDeleteButton = async() => {
         await dispatch(deleteANote(note))
@@ -89,13 +95,12 @@ function EditPageModal({note}) {
                             placeholder="New Title"
                             defaultValue={note.title}
                             onChange={editTitle} />
-                        <textarea
-                            rows="18" 
-                            cols="50"
+                        <ReactQuill
+                            className="quill"
                             type="text"
                             placeholder="Let's not forget what's being written in here"
                             defaultValue={note.content}
-                            onChange={editContent} />
+                            onChange={typedContent} />
                         <button type="submit" className="save-button-new-note">Save</button>
                         <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
                             Cancel

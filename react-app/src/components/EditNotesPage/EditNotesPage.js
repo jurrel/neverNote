@@ -3,6 +3,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import { editANote, deleteANote, getANote} from '../../store/note';
 import { useParams } from 'react-router-dom';
 import EditPageModal from '../NotePage/NotePageModal';
+import parser from 'html-react-parser'
+
+
 import './editnotespage.css';
 import { Modal } from '../context/Modal';
 
@@ -17,6 +20,8 @@ function EditNotesPage() {
     // const remoteHTMLTags =  (str) => {
         //     return str?.replace(/<[^>]*>?/gm, '');
         // };
+    const string = 'string'
+
     const [showModal, setShowModal] = useState(false);
     const [content, setContent] = useState(note?.content)
     const [title, setTitle] = useState(note?.title);
@@ -63,18 +68,12 @@ function EditNotesPage() {
 
    
 
-
-
-
-
-
-
     return(
         <div className='edit-notebook-page-background'>
             <div className='edit-notebook-page-content'>
                 <h1>{note?.title}</h1>
                 
-                <div className="box">{content}</div>
+                <div className="box">{typeof content === typeof string ?parser(content) : <></>}</div>
 			<EditPageModal note={note}/>
             </div>
         </div>
