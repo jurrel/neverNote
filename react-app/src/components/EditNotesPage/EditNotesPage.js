@@ -6,23 +6,20 @@ import './editnotespage.css';
 import { Modal } from '../context/Modal';
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
+import EditPageModal from '../NotePage/NotePageModal';
 import parse from 'html-react-parser';
 
 function EditNotesPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const note = useSelector(state => state.note);
-    // console.log('What is the type of note?.content', typeof note?.content)
-    // console.log(parse(JSON.stringify(note?.content)))
 
-    // const remoteHTMLTags =  (str) => {
-        //     return str?.replace(/<[^>]*>?/gm, '');
-        // };
     const [showModal, setShowModal] = useState(false);
-    const [content, setContent] = useState(note?.content)
+    const [content, setContent] = useState(note?.content);
     const [title, setTitle] = useState(note.title);
     const [errors, setErrors] = useState([]);
-    const [validationErrors, setValidationErrors] = useState([])
+    const [validationErrors, setValidationErrors] = useState([]);
+    const string = 'string';
 
 
     useEffect(() => {
@@ -32,29 +29,25 @@ function EditNotesPage() {
     }, [dispatch, id, note?.title, note?.content]);
 
 
+    // const handleEditNote = async(e) => {
+    //    e.preventDefault();
+    //     const payload = {
+    //         content,
+    //         id,
+    //         title,
+    //         user_id: note?.id,
+    //         notebook_id: note?.notebook_id
+    //     }
 
-    // console.log('this is hi', (JSON.stringify(note?.content)))
-    console.log('this is parse from edit notes',parse('<p>sibling 1</p><p>sibling 2</p>'))
-
-
-    const handleEditNote = async(e) => {
-       e.preventDefault();
-        const payload = {
-            content,
-            id,
-            title,
-            user_id: note?.id,
-            notebook_id: note?.notebook_id
-        }
-        let data = await dispatch(editANote(payload))
-        if (!data) {
-            setErrors(data)
-            setShowModal(!showModal)
-        } else {
-            setContent(content)
-            setTitle(title)
-        }
-    };
+    //     let data = await dispatch(editANote(payload))
+    //     if (!data) {
+    //         setErrors(data)
+    //         setShowModal(!showModal)
+    //     } else {
+    //         setContent(content)
+    //         setTitle(title)
+    //     }
+    // };
 
 
     useEffect(() => {
@@ -66,66 +59,15 @@ function EditNotesPage() {
 
     if (!note) return null;
 
-    const handleCancel = async (e) => {
-		e.preventDefault();
-		setShowModal(false);
-        setValidationErrors([]);
-        setTitle(note?.title)
-        setContent(note?.content)
-		return;
-	};
-
-
-
-    const editTitle = (e) => setTitle(e.target.value)
-    const typedContent = (value) => {
-        setContent(value)
-    }
-
 
     return(
         <div className='edit-notebook-page-background'>
             <div className='edit-notebook-page-content'>
                 <h1>{note?.title}</h1>
-                <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
-                <h3 onClick={() => setShowModal(!showModal)}>Edit</h3></div>
-                <div className="box">{content}</div>
-                {console.log('this is note?.content', note?.content)}
-                {console.log('this is note?.content type',  typeof note?.content)}
-			{showModal && (
-				<Modal onClose={() => setShowModal(!showModal)}>
-                    <form className='new-note-modal' onSubmit={handleEditNote} >
-                        <h2>Edit NotebookS</h2>
-                    <div>
-                        <div className="edit-comment-errors">
-                            {validationErrors?.map((error) => (
-                                <p key={error}>
-                                    {error}
-                                </p>
-                            ))}
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="New Title"
-                            defaultValue={title}
-                            onChange={editTitle} />
-                            </div>
-                        <div>
-                        <ReactQuill
-                        type="text"
-                        placeholder="Let's not forget what's being written in here"
-                        defaultValue={content}
-                        onChange={typedContent} />
-                        </div>
-                        <div>
-                            <button disabled={validationErrors.length > 0}type="submit" className="save-button-new-note">Save</button>
-                            <button className="cancel-button-new-note" type="button" onClick={handleCancel}>
-                                        Cancel
-                            </button>
-                        </div>
-                    </form>
-				</Modal>
-			)}
+                <div className="box">
+                    {typeof content === typeof string ? parse(content) : <></>}
+                </div>
+                <EditPageModal note={note}/>
             </div>
         </div>
     )

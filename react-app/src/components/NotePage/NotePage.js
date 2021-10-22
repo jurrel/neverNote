@@ -20,56 +20,7 @@ function NotePage() {
         dispatch(getNotes());
     },[dispatch])
 
-   /***************************BELOW**************************** */
-   //clicking note automatically directs to /note page
-    // return(
-    //     <div className='note-page-background'>
-    //         <div className="note-page-container">
-    //             <h1 className='note-page-note-counter'>Notes</h1>
-    //             <div className='note-page-note-counter'>{noteLength} Notes</div>
-    //             <CreateNewNoteModal/>
-    //             <div>
-    //                 {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=> (
 
-    //                     <NavLink to={`/notes/${note.id}`}>
-    //                         <NotePageMapping
-    //                             key={note.id}
-    //                             note={note}
-    //                         />
-    //                     </NavLink>
-    //                 ))}
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
-    /***************************ABOVE**************************** */
-
-
-    //CURRENT ONE
-    // /***************************BELOW**************************** */
-    // return(
-    //     <div className='note-page-background'>
-    //         <div className="note-page-container">
-    //             <h1 className='note-page-note-counter'>Notes</h1>
-    //             <div className='note-page-note-counter'>{noteLength} Notes</div>
-    //             <CreateNewNoteModal/>
-    //             <div className='app-sidebar-notes' >
-    //                 {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=> (
-    //                     <NotePageMapping
-    //                         key={note.id}
-    //                         note={note}
-    //                         setNoteId={setNoteId}
-    //                     />
-    //                 ))}
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
-    // /***************************ABOVE**************************** */
-
-
-       ///FOR TESTING
-      /***************************BELOW**************************** */
       return(
         <div className='note-page-background'>
             <div className="note-page-container">
