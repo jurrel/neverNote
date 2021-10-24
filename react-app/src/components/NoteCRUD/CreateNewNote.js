@@ -14,8 +14,8 @@ function CreateNewNote(){
     const [notebookId, setNotebookId] = useState();
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
-    
 
+    console.log('james')
     useEffect(()=> {
         dispatch(getNotebooks());
         dispatch(getNotes())
@@ -31,7 +31,7 @@ function CreateNewNote(){
             user_id: user?.['users']?.['id']
         }
         console.log('what returns in the payload', payload)
-        let newNote = await dispatch(createNote(payload))        
+        let newNote = await dispatch(createNote(payload))
         if (newNote) {
             setTitle('')
         }
@@ -40,14 +40,14 @@ function CreateNewNote(){
         <>
             <form onSubmit={handleCreateNote} >
                 <h1>NEW NOTE</h1>
-               <select 
-               value = {notebookId} 
+               <select
+               value = {notebookId}
                onChange={(e)=> {
                        const notebookSelect = e.target.value;
                    setNotebookId(notebookSelect)
                }}>
                     {notebooks?.map((notebook) => (
-                        <option key={notebook.id}value={notebook.id}>{notebook.title}</option>                                  
+                        <option key={notebook.id}value={notebook.id}>{notebook.title}</option>
                     ))}
                 </select>
                 <input
@@ -63,7 +63,7 @@ function CreateNewNote(){
                     onChange={editContent}
                 />
                 <button type="submit" className="submit-btn-upload">Submit</button>
-            </form>         
+            </form>
         </>
     )
 }

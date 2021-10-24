@@ -8,14 +8,14 @@ import NotebookPageMapping from './NotebookPageMapping';
 import './NotebookPage.css'
 
 function NotebookPage() {
-    
+
     const dispatch = useDispatch();
     const userNotes = useSelector((state) => state.note);
     const notes = Object.values(userNotes);
     const [toggleNotes, setToggleNotes] = useState([]);
     const userNotebook = useSelector((state) => state.notebook)
     const notebooks = Object.values(userNotebook)
-    
+
     const numNotebooks = notebooks.length
 
     console.log({toggleNotes})
@@ -36,19 +36,19 @@ function NotebookPage() {
     };
 
     return(
-        <> 
+        <>
             <div className="notebook-page-background">
-                <div className="note-page-container">
+                <div className="notebook-page-container">
                     <h1>Notebooks</h1>
                     <div className='notebook-counter'>{numNotebooks} Notebooks</div>
-              
+
                             {notebooks?.map((notebook, index) => {
                                 const notesList = notes.filter(note => note.notebook_id === notebook.id);
                                 return (
                                     <NotebookPageMapping
                                     notesList={notesList}
-                                    key={notebook.id} notebook={notebook} 
-                                     toggleNotes={toggleNotes}
+                                    key={notebook.id} notebook={notebook}
+                                    toggleNotes={toggleNotes}
                                     updateToggleNotes={updateToggleNotes}
                                     index={index}
                                     />

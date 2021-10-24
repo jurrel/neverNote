@@ -9,10 +9,16 @@
   z-index: 1;
   right: 0;
 }
+.notebook-page-container{
+  left: 300px;
+	background-color: #1a1a1a;
+	position: absolute;
+	z-index: -1;
+}
 
-.note-page-container > h1 {
+.notebook-page-container > h1 {
   color: white;
-  
+
 }
 
 .middle-content {
@@ -39,19 +45,19 @@
 	left: 0;
   z-index: 1;
 	right: 0;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
 .note-page-container::-webkit-scrollbar {
     width: 0;
-    background: transparent; 
+    background: transparent;
 }
 
 
 
-.fa-edit, 
-.fa-trash-o, 
+.fa-edit,
+.fa-trash-o,
 .fa-angle-down,
 .fa-angle-right
 {
@@ -103,8 +109,8 @@
   text-decoration: none;
 }
 
-.notebook-text, 
-.notebook-text-display, 
+.notebook-text,
+.notebook-text-display,
 .notebook-page-click-toggle{
   color: white;
   text-decoration: none;
@@ -128,7 +134,7 @@
 
 .line {
   max-width: 1200px;
-    border-bottom: 3px solid white;
+    border-bottom: 1px solid #f7f7f7;
     margin: 0 auto;
     width: 100%;
     text-decoration: none;

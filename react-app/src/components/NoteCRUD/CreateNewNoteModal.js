@@ -6,17 +6,22 @@ import {getNotebooks} from '../../store/notebook';
 import {getNotes} from '../../store/note';
 import './createnote.css';
 
-function CreateNewNoteModal() {
+function CreateNewNoteModal({notes, userNote, currentUserId, notebooks}) {
+
     const dispatch = useDispatch();
+    const notesByUser = Object.values(userNote)
+
+
     const [showModal, setShowModal] = useState(false);
-    const user = useSelector(state => state.session.user);
-    const userNotebook = useSelector((state) => state.notebook)
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
-    const notebooks = Object.values(userNotebook)
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [notebookId, setNotebookId] = useState(notebooks?.[0]?.['id']);
+    const [notebookId, setNotebookId] = useState(notebooks?.[0]?.id);
+    console.log('notebooksod', notebooks?.[0]?.id)
+    console.log('notebooksod note', notes)
+    console.log('notebooksod notebooks', notebooks)
+    console.log('notebooksod userNote', userNote)
 
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
@@ -24,7 +29,8 @@ function CreateNewNoteModal() {
     useEffect(()=> {
         dispatch(getNotebooks());
         dispatch(getNotes())
-    },[dispatch])
+        setNotebookId(notesByUser?.[0]?.notebook_id)
+    },[dispatch, notesByUser?.[0]?.notebook_id])
 
     useEffect(() => {
         const errors = [];
@@ -39,7 +45,7 @@ function CreateNewNoteModal() {
             title,
             content,
             id: notebookId,
-            user_id: user?.['users']?.['id']
+            user_id: currentUserId
         }
         let data = await dispatch(createNote(payload))
 
@@ -47,8 +53,8 @@ function CreateNewNoteModal() {
             setErrors(data)
             setShowModal(true)
         } else {
-            setTitle('')
-            setContent('')
+            setTitle()
+            setContent()
             setErrors([])
             setShowModal(false);
         }
@@ -61,6 +67,7 @@ function CreateNewNoteModal() {
 		setShowModal(false);
         setTitle('')
         setContent('')
+        setNotebookId(notebooks?.[0]?.id)
 		return;
 	};
 

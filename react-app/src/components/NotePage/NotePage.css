@@ -1,19 +1,64 @@
-.note-page-container {
-	left: 300px;
-	/* background-color: #1a1a1a; */
+.note-page-background {
 	position: absolute;
-	z-index: -1;
+	margin: auto 10px;
+	width: auto;
+	background-color: #1a1a1a;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
-.note-page-container > h1{
+
+.note-page-container {
+	left: 15%;
+	position: absolute;
+	width:100%;
+  height: 100%;
+  border-right: 1px solid white;
+	display: flex;
+	overflow-x: hidden;
+}
+
+.note-side-bar {
+  width: 20%;
+  height: 100vh;
+  border-right: 1px solid white;
+}
+
+.note-page-edit-form {
+  width: 55%;
+}
+
+.note-page-edit-form-layout {
+  padding: 10px;
+}
+
+.note-page-edit-form-layout input {
+  display: block;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  width: 113.5%;
+  padding: 10px;
+}
+
+.react-quill {
+	display: block;
 	color: white;
+  width: 115%;
+	height: 100%;
+}
+
+.note-page-edit-form-layout input {
+  height: 50px;
+  font-size: 50px;
 }
 
 .note-content {
 	position: relative;
 	color: rgba(228, 228, 228, 0.671);
 	word-break: break-all;
-	max-width: 450px;
-	width: 100%;
+	max-width: 400px;
+	width: 90%;
 	left: 10px;
 }
 .note-time {
@@ -26,17 +71,7 @@
 	font-size: 10px
 }
 
-.note-page-background {
-	position: absolute;
-	margin: auto 10px;
-	width: auto;
-	background-color: #1a1a1a;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 1;
-	right: 0;
-}
+
 .note-page-note-counter {
 	color: white;
 }
@@ -91,6 +126,63 @@
 
 .quill{
 	color: white;
-	height: 700px;
+	height: 40em;
+	/* height: 100%; */
+}
 
+.selected-note.active {
+  background: gray;
+}
+
+
+.cancel-button-new-not {
+	background-color: #111111;
+	width: 60px;
+	height: 25px;
+	color: white;
+	border-radius: 5px;
+	font-size: 13px;
+	border: 1px solid white;
+	position:absolute;
+	bottom: 5%;
+	left:32%;
+	z-index: 50;
+}
+
+
+.cancel-button-new-not:hover {
+	cursor: pointer;
+	background-color: gray;
+}
+
+.save-button-notes-page {
+	background-color: #111111;
+	width: 60px;
+	height: 25px;
+	color: white;
+	border-radius: 5px;
+	font-size: 13px;
+	border: 1px solid white;
+	position:absolute;
+	bottom: 5%;
+	left:80%;
+	z-index: 50;
+}
+
+.save-button-notes-page:hover:enabled,
+.cancel-button-new-note:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.save-button-notes-page[disabled]{
+	background-color: transparent;
+	color: gray;
+	border: 1px solid gray;
+}
+
+
+.notes-scrollbar {
+  height: 100%;
+  overflow-y: scroll;
 }

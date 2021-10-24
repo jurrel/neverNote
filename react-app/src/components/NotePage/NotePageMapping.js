@@ -11,17 +11,14 @@ import 'react-quill/dist/quill.snow.css';
 
 
 
-function NotePageMapping({note}) {
+function NotePageMapping({note, activeNote, setActiveNote}) {
     const dispatch = useDispatch();
-    const notes = useSelector(state => state.note);
-
     const string = 'string'
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState(note?.title);
     const [content, setContent] = useState(note?.content)
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
-
 
     useEffect(() => {
         dispatch(getNotes())
@@ -35,7 +32,8 @@ function NotePageMapping({note}) {
             id: note.id,
             title,
             user_id: note?.['id'],
-            notebook_id: note?.['notebook_id']
+            notebook_id: note?.['notebook_id'],
+            updatedAt: Date.now(),
         }
         let data = await dispatch(editANote(payload))
         if (!data) {
@@ -54,7 +52,7 @@ function NotePageMapping({note}) {
         setValidationErrors(errors)
     }, [title])
 
-    if (!notes) return null;
+    if (!note) return null;
 
     const handleCancel = async (e) => {
 		e.preventDefault();
@@ -92,8 +90,8 @@ function NotePageMapping({note}) {
                         </p>
                         <p className="note-time">
                             {note?.updatedAt === null ?
-                                note?.createdAt?.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16):
-                                note?.updatedAt?.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16)
+                                note?.createdAt?.substr(7,4) + ' ' + note?.createdAt?.slice(5,7) + ' ' + note?.createdAt?.slice(12,16) + note?.createdAt?.substr(16):
+                                note?.updatedAt?.substr(7,4) + ' ' + note?.updatedAt?.slice(5,7) + ' ' + note?.updatedAt?.slice(12,16) + ' ' + note?.updatedAt?.substr(16)
                             }
                         </p>
                     </div>
@@ -101,7 +99,7 @@ function NotePageMapping({note}) {
             </div>
             <div >
                 <div>
-                    {showModal && (
+                    {/* {showModal && (
                         <Modal onClose={() => setShowModal(!showModal)}>
                             <form className='note-page-edit-modal' onSubmit={handleEditNote} >
                                 <h2>{note.title}</h2>
@@ -137,7 +135,7 @@ function NotePageMapping({note}) {
                                 </div>
                             </form>
                         </Modal>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>
