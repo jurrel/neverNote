@@ -18,6 +18,7 @@
 
 }
 .new-notebook-button {
+    padding: 10px;
     height: 40px;
     border-radius: 10px;
     z-index: 2;
@@ -30,13 +31,15 @@
 .new-notebook-button:hover {
     background-color: #007720;
 }
+
 .plus-icon {
     margin-right: 200px;
 }
 .new-notebook-button-text {
     position: absolute;
     right: 180px;
-    top:75px;
+    top:85px;
+    left:15%;
 }
 
 .errors {
@@ -85,8 +88,19 @@
     left:85%;
 }
 
-.new-notebook-modal-create-button:hover, 
+.new-notebook-modal-create-button:hover,
 .new-notebook-modal-cancle-button:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+
+.new-notebook-modal-create-button[disabled]{
+    background-color: transparent;
+    color: gray;
+    border: 1px solid gray;
+}
+.new-notebook-modal-create-button:hover:enabled {
     cursor: pointer;
     background-color: gray;
 }

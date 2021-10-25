@@ -47,7 +47,8 @@ function NotebookPage() {
                                 return (
                                     <NotebookPageMapping
                                     notesList={notesList}
-                                    key={notebook.id} notebook={notebook}
+                                    key={notebook.id}
+                                    notebook={notebook}
                                     toggleNotes={toggleNotes}
                                     updateToggleNotes={updateToggleNotes}
                                     index={index}

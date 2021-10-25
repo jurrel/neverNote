@@ -6,8 +6,8 @@ function HomeNavbar() {
     return(
         <>
           <NavLink to="/home">
-            <h1 className="nav-bar-component"> 
-              <i className="fa fa-home nav-bar-component"/> Home
+            <h1 className="nav-bar-component">
+              <i className="fa fa-home"/> Home
             </h1>
           </NavLink>
         </>

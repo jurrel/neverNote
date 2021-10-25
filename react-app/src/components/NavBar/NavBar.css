@@ -1,4 +1,5 @@
 .nav-bar-container {
+    padding: 10px;
     background-color: black;
     height: 100%;
     display: flex;
@@ -6,9 +7,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 15%;
+    width: 14%;
     border-right: 1px solid black;
     z-index: 100;
+    font-family: "Soleil_Medium",Helvetica,Arial,sans-serif;
+    font-weight: bold;
 }
 
 .nav-bar-horizontal {

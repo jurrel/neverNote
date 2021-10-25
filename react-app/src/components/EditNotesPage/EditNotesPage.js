@@ -3,27 +3,32 @@ import { useDispatch, useSelector} from 'react-redux';
 import { editANote, getNotes, getANote} from '../../store/note';
 import { useParams } from 'react-router-dom';
 import './editnotespage.css';
-import { Modal } from '../context/Modal';
-import ReactQuill from 'react-quill'
+// import { Modal } from '../context/Modal';
+// import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
 import EditPageModal from '../NotePage/NotePageModal';
 import parse from 'html-react-parser';
+
+
+import {getNotebookAndNotes} from '../../store/notebook';
 
 function EditNotesPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const note = useSelector(state => state.note);
+    const notet = useSelector(state => state.notebook);
 
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
     const [content, setContent] = useState(note?.content);
     const [title, setTitle] = useState(note.title);
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([]);
     const string = 'string';
 
-
+    console.log('weeew', note)
     useEffect(() => {
         dispatch(getANote(id))
+        dispatch(getNotebookAndNotes());
         setTitle(note?.title)
         setContent(note?.content)
     }, [dispatch, id, note?.title, note?.content]);

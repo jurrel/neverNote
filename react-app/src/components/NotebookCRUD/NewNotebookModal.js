@@ -18,7 +18,7 @@ function NewNotebookModal() {
     useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***wTitle must be 1 to 15 characters")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***Title must be 1 to 15 characters")
         setValidationErrors(errors)
     }, [title])
 
@@ -80,7 +80,7 @@ function NewNotebookModal() {
                             <button className="new-notebook-modal-cancle-button" type="button" onClick={handleCancle}>
                                 Cancel
                             </button>
-                            <button className="new-notebook-modal-create-button" type="submit">Create</button>
+                            <button  disabled={validationErrors.length > 0} className="new-notebook-modal-create-button" type="submit">Create</button>
 						</div>
                     </form>
 				</Modal>
