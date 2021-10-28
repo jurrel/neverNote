@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { editANote, getNotes, deleteANote} from '../../store/note';
 
-import './NotePage.css'
 import parse from 'html-react-parser';
-import 'react-quill/dist/quill.snow.css';
+import './NotePage.css'
 
 
 
@@ -13,8 +12,6 @@ function NotePageMapping({note, activeNote, setActiveNote}) {
     const string = 'string'
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState(note?.title);
-    const [content, setContent] = useState(note?.content)
-    const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([])
 
     useEffect(() => {

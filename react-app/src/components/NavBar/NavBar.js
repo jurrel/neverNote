@@ -10,7 +10,7 @@ import PersonalLinks from './PersonalLinks';
 import Icon from '../../assets/Icon.png'
 import NewNotebookModal from '../NotebookCRUD/NewNotebookModal';
 import { useHistory } from 'react-router-dom';
-
+import SearchBar from './Searchbar'
 import './NavBar.css'
 const NavBar = ({auth, user}) => {
   const dispatch = useDispatch();
@@ -51,6 +51,7 @@ const NavBar = ({auth, user}) => {
         <h1 className="nav-bar-user-email">{user?.users?.email} </h1>
         <nav>
               <NewNotebookModal/>
+              <SearchBar/>
               <HomeNavbar/>
               <NotebooksNavbar/>
               <NotesNavbar/>

@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import './NotebookAllNotesPage.css'
 import NotebookAllNotesPageMapping from './NotebookAllNotesPageMapping'
 import NotePageEdit from '../NotePage/NotePageEdit';
+import {getNotes} from '../../store/note';
+
 function NotebookAllNotesPage(){
   const dispatch = useDispatch();
   const userNotebook = useSelector((state) => state.notebook)
@@ -18,6 +20,7 @@ function NotebookAllNotesPage(){
 
   useEffect(()=> {
     dispatch(getNotebookAndNotes(id));
+    dispatch(getNotes());
   },[dispatch]);
 
   const handleNoteClick = (noteId) => {
@@ -35,7 +38,7 @@ function NotebookAllNotesPage(){
         <div className="notebook-all-notes-pages-container">
           <div className="notebook-all-notes-sidebar">
             <h1>hi</h1>
-            <div className="notes-scrollbar">
+            <div className="notebook-all-notes-scrollbar">
               {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=>{
                   return  (
                       <div className={`selected-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>
@@ -44,7 +47,6 @@ function NotebookAllNotesPage(){
                               handleNoteClick={handleNoteClick}
                               noteId={note.id}
                               note={note}
-
                           />
                       </div>
                   );

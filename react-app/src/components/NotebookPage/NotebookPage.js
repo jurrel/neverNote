@@ -35,6 +35,7 @@ function NotebookPage() {
         setToggleNotes(notes);
     };
 
+    console.log('user', userNotebook)
     return(
         <>
             <div className="notebook-page-background">
