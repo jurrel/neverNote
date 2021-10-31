@@ -5,28 +5,28 @@ import { editANote, getNotes, deleteANote} from '../../store/note';
 import ReactQuill from 'react-quill'
 
 function NotePageEdit({activeNote, setActiveNote}) {
-  // if(!activeNote) return <div className="no-active-note">No Note Selected</div>
-
   const dispatch = useDispatch();
+
   const [title, setTitle] = useState(activeNote?.title );
   const [content, setContent] = useState(activeNote?.title)
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([])
 
-    useEffect(() => {
+  useEffect(() => {
         dispatch(getNotes())
         setValidationErrors([]);
         setTitle(activeNote?.title)
         setContent(activeNote?.content)
     }, [dispatch, activeNote?.title, activeNote?.content]);
 
-    useEffect(() => {
-      const errors = [];
-      let newTitle = title
-      if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***RsssTitle must be 1 to 15 characters")
-      setValidationErrors(errors)
+  useEffect(() => {
+    const errors = [];
+    let newTitle = title
+    if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("***RsssTitle must be 1 to 15 characters")
+    setValidationErrors(errors)
   }, [title])
 
+  if(!activeNote) return <div className="no-active-note">No Note Selected</div>
   const handleEditNote = async(e) => {
     e.preventDefault();
       const payload = {

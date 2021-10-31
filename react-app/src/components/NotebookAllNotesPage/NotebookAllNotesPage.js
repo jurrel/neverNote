@@ -39,7 +39,7 @@ function NotebookAllNotesPage(){
           <div className="notebook-all-notes-sidebar">
             <h1>hi</h1>
             <div className="notebook-all-notes-scrollbar">
-              {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=>{
+            {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=>{
                   return  (
                       <div className={`selected-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>
                           <NotebookAllNotesPageMapping
