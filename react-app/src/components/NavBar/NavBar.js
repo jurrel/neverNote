@@ -10,7 +10,6 @@ import PersonalLinks from './PersonalLinks';
 import Icon from '../../assets/Icon.png'
 import NewNotebookModal from '../NotebookCRUD/NewNotebookModal';
 import { useHistory } from 'react-router-dom';
-
 import './NavBar.css'
 const NavBar = ({auth, user}) => {
   const dispatch = useDispatch();

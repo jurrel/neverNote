@@ -38,7 +38,7 @@ export const getNotebooks = () => async dispatch => {
     }
 };
 
-export const getNotebookAndNotes = ({id}) => async dispatch => {
+export const getNotebookAndNotes = (id) => async dispatch => {
     const response = await fetch(`/api/notebook_routes/${id}/notes`);
     if (response.ok) {
         const notebooks = await response.json();
@@ -126,14 +126,23 @@ const notebookReducer = (state=initialState, action) => {
             const editNotebook = {...state}
             editNotebook[action.notebook.id] = action.notebook
             return editNotebook
+        // case LOAD_NOTEBOOK_ALL_NOTES:
+        //     const loadNotesAndNotebooks = {}
+        //     action.notebook.notes.forEach(note => {
+        //         loadNotesAndNotebooks[note.id] = note
+        //     });
+        //     return loadNotesAndNotebooks
+        // case LOAD_NOTEBOOK_ALL_NOTES:
+        //     const loadNotesAndNotebooks = {}
+        //     action.notebook.notes.forEach(note => {
+        //         loadNotesAndNotebooks[note.id] = note
+        //     });
+        //     return loadNotesAndNotebooks
         case LOAD_NOTEBOOK_ALL_NOTES:
-            const loadNotesAndNotebooks = {}
-            loadNotesAndNotebooks[action.notebook.notes.id] = action.notebook.notes
-            action.notebook.notes.forEach(note => {
-                loadNotesAndNotebooks[note.id] = note
-            });
+            const loadNotesAndNotebooks = {...state}
+            loadNotesAndNotebooks["notebook"] = action.notebook.notebook
+            loadNotesAndNotebooks["notes"] = action.notebook.notes
             return loadNotesAndNotebooks
-
         default:
             return state;
     }

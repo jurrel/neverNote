@@ -3,7 +3,6 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router';
 import {deleteANote, editANote} from '../../store/note';
 import { useState, useEffect } from 'react';
-import parser from 'html-react-parser'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
 import './NotePage.css'
@@ -12,9 +11,9 @@ function EditPageModal({note}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state?.session.user);
-  
-    
-    
+
+
+
     const [title, setTitle] = useState(note?.title);
     const [content, setContent] = useState(note?.content)
     const [showModal, setShowModal] = useState(false);
@@ -28,7 +27,6 @@ function EditPageModal({note}) {
     }, [dispatch, note?.title, note?.content])
 
     const editTitle = (e) => setTitle(e.target.value)
-    // const editContent = (e) => setContent(e.target.value)
     const typedContent = (value) => {
         setContent(value)
     }
@@ -40,7 +38,6 @@ function EditPageModal({note}) {
 
 
    const handleEditNote = async() => {
-       
         const payload = {
             content,
             id: note.id,
@@ -70,9 +67,9 @@ function EditPageModal({note}) {
     }, [title])
 
 
-  
+
     return(
-        <div >  
+        <div >
                 <div>
                     <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
                         <h3 onClick={() => setShowModal(!showModal)}>
@@ -81,7 +78,7 @@ function EditPageModal({note}) {
                             className="fa fa-trash-o note-page-delete"
                             onClick={() => handleDeleteButton()}
                             title="Edit Note"
-                        />  
+                        />
                         </h3>
                     </div>
                 </div>
@@ -106,7 +103,7 @@ function EditPageModal({note}) {
                         <button type="submit" className="save-button-new-note">Save</button>
                         <button className="cancel-button-new-note" type="button" onClick={handleCancle}>
                             Cancel
-                        </button> 
+                        </button>
                     </form>
 				</Modal>
 			)}
@@ -115,5 +112,3 @@ function EditPageModal({note}) {
 }
 
 export default EditPageModal
-
- 

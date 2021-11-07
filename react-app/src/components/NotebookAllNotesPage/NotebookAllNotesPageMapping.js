@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useDispatch} from 'react-redux';
-import { getNotes, deleteANote} from '../../store/note';
+import { useDispatch, useSelector} from 'react-redux';
+import { editANote, getNotes, deleteANote} from '../../store/note';
 
 import parse from 'html-react-parser';
-import './NotePage.css'
 
-
-
-function NotePageMapping({note}) {
+function NotebookAllNotesPageMapping({note}) {
     const dispatch = useDispatch();
     const string = 'string'
     const [showModal, setShowModal] = useState(false);
@@ -16,7 +13,6 @@ function NotePageMapping({note}) {
 
     useEffect(() => {
         dispatch(getNotes())
-        setTitle(note?.title)
     }, [dispatch, note?.title]);
 
 
@@ -33,6 +29,7 @@ function NotePageMapping({note}) {
      const handleDeleteButton = async() => {
         await dispatch(deleteANote(note))
     }
+
     return(
         <>
             <div className="new-note-button" onClick={() => setShowModal(!showModal)}>
@@ -61,4 +58,4 @@ function NotePageMapping({note}) {
     )
 }
 
-export default NotePageMapping
+export default NotebookAllNotesPageMapping

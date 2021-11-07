@@ -77,8 +77,8 @@ export const deleteANote = ({id}) => async(dispatch) => {
     }
 }
 
-export const editANote = ({title, user_id, id, content,notebook_id} ) => async(dispatch) => {
-  const response = await fetch(`/api/note_routes/edit/${id}`, {
+export const editANote = ({title, user_id, id, content,notebook_id, updatedAt} ) => async(dispatch) => {
+    const response = await fetch(`/api/note_routes/edit/${id}`, {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,8 @@ export const editANote = ({title, user_id, id, content,notebook_id} ) => async(d
             user_id,
             content,
             notebook_id,
-         }),
+            updatedAt,
+        }),
     });
     if (response.ok) {
         const note = await response.json();
@@ -107,7 +108,7 @@ const noteReducer = (state={}, action) => {
             })
             return newState
         case SET_SINGLE_NOTE:
-            const single = {...state,...action.note}
+            const single = {...action.note};
             return single
         case ADD_NOTE:
             const addNewNote = {...state}

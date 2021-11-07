@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {deleteANotebook, editANotebook} from '../../store/notebook';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './NotebookPage.css';
 
 function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNotes, index }) {
@@ -12,18 +13,18 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
     const [updateNote, setUpdateNote] = useState(false);
     const [clic, setClic] = useState('');
     const editTitle = (e) => setTitle(e.target.value)
-  
+
 
     const [validationErrors, setValidationErrors] = useState([])
-   
 
-  
+
+
     const handleDeleteButton = async() => {
         await dispatch(deleteANotebook(notebook))
     }
 
     const handleEditNotebookButton = async() => {
-       
+
         const payload = {
             title,
             id: notebook.id,
@@ -40,7 +41,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
      useEffect(() => {
         const errors = [];
         let newTitle = title
-        if (newTitle.length < 1 || newTitle.length > 15) errors.push("Title must be 1 to 15")
+        if (newTitle?.length < 1 || newTitle?.length > 15) errors.push("Title must be 1 to 15")
         setValidationErrors(errors)
     }, [title])
 
@@ -60,30 +61,31 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
         updateToggleNotes(notes);
     }
 
-    console.log({index: toggleNotes[index]});
-    console.log({notesList});
+
     return(
-        <>  
+        <>
             <div className="middle-content" >
                 <div className='notebook-page-click-toggle' onClick={() => handleToggle()}>
                     <i class="fa fa-angle-right"></i>
                     {notebook.title}
                 </div>
-                <div className='notebook-page-click-toggle-content'> 
-                    {toggleNotes && toggleNotes[index] === true ? 
+                <div className='notebook-page-click-toggle-content'>
+                    {toggleNotes && toggleNotes[index] === true ?
                         notesList.map((note, index) => (
-                                    <a key={index} href={`/notes/${note.id}`}> 
-                                        <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
-                                    </a >
+                                    <BrowserRouter>
+                                        <a key={index} href={`/notes/${note.id}`}>
+                                            <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
+                                        </a >
+                                    </BrowserRouter>
                                 )) : <></>
-                    }          
+                    }
                 </div>
                 <div onClick={() => updateHelperFunction(true)}>
                         <i
                             className="fa fa-edit"
                             onClick={() => updateHelperFunction(true)}
                             title="Edit Notebook"
-                            
+
                         />
                 </div>
                 <div onClick={() => handleDeleteButton()}>
@@ -107,7 +109,7 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                             onChange={editTitle} />
                         <button disabled={validationErrors.length > 0} type="submit" className="submit-btn-upload">Submit</button>
                     </form> : <></>
-                } 
+                }
                 <div className="edit-comment-errors">
                         {validationErrors.map((error, int) => (<div key={int}>{error}</div>))}
                 </div>
@@ -119,5 +121,3 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
 }
 
 export default NotebookPageMapping
-
-

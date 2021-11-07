@@ -80,7 +80,7 @@ function NewNotebookModal() {
                             <button className="new-notebook-modal-cancle-button" type="button" onClick={handleCancle}>
                                 Cancel
                             </button>
-                            <button className="new-notebook-modal-create-button" type="submit">Create</button>
+                            <button  disabled={validationErrors.length > 0} className="new-notebook-modal-create-button" type="submit">Create</button>
 						</div>
                     </form>
 				</Modal>

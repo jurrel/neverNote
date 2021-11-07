@@ -9,6 +9,7 @@ import NotebookPage from './components/NotebookPage/NotebookPage';
 import NotePage from './components/NotePage/NotePage';
 import SplashPage from './components/SplashPage/SplashPage';
 import EditNotesPage from './components/EditNotesPage/EditNotesPage';
+import NotebookAllNotesPage from './components/NotebookAllNotesPage/NotebookAllNotesPage';
 import { useSelector } from 'react-redux';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -36,7 +37,6 @@ function App() {
   return (
     <BrowserRouter>
         <NavBar auth={auth} user={user}/>
-        <div>
           <Switch>
             <Route exact={true} path="/">
               <SplashPage/>
@@ -51,16 +51,18 @@ function App() {
               <HomePage/>
             </ProtectedRoute>
             <ProtectedRoute exact path="/notebooks">
-                <NotebookPage />
+              <NotebookPage />
             </ProtectedRoute>
             <ProtectedRoute exact path="/notes">
-                <NotePage />
+              <NotePage />
             </ProtectedRoute>
-             <ProtectedRoute exact path="/notes/:id">
-                <EditNotesPage />
+            <ProtectedRoute exact path="/notes/:id">
+              <EditNotesPage />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/:id/notes">
+              <NotebookAllNotesPage />
             </ProtectedRoute>
           </Switch>
-        </div>
     </BrowserRouter>
   );
 }
