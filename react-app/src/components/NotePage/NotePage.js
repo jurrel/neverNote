@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import {getNotes} from '../../store/note';
 import NotePageMapping from './NotePageMapping'
 import CreateNewNoteModal from '../NoteCRUD/CreateNewNoteModal' 
-import './NotePage.css'
+import './NotePage.css';
 
 
 function NotePage() {
