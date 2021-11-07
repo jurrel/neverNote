@@ -15,7 +15,6 @@ function CreateNewNote(){
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)
 
-    console.log('james')
     useEffect(()=> {
         dispatch(getNotebooks());
         dispatch(getNotes())
@@ -43,8 +42,8 @@ function CreateNewNote(){
                <select
                value = {notebookId}
                onChange={(e)=> {
-                       const notebookSelect = e.target.value;
-                   setNotebookId(notebookSelect)
+                const notebookSelect = e.target.value;
+                setNotebookId(notebookSelect)
                }}>
                     {notebooks?.map((notebook) => (
                         <option key={notebook.id}value={notebook.id}>{notebook.title}</option>

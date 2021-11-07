@@ -33,7 +33,6 @@ function NotePageMapping({note}) {
      const handleDeleteButton = async() => {
         await dispatch(deleteANote(note))
     }
-    console.log('dsda', note)
     return(
         <>
             <div className="new-note-button" onClick={() => setShowModal(!showModal)}>

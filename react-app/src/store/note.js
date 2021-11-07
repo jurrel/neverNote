@@ -78,7 +78,6 @@ export const deleteANote = ({id}) => async(dispatch) => {
 }
 
 export const editANote = ({title, user_id, id, content,notebook_id, updatedAt} ) => async(dispatch) => {
-    debugger;
     const response = await fetch(`/api/note_routes/edit/${id}`, {
         method: 'PUT',
         headers: {

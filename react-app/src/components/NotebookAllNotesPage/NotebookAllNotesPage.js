@@ -4,47 +4,47 @@ import {getNotebookAndNotes} from '../../store/notebook';
 import { useParams } from 'react-router-dom';
 import './NotebookAllNotesPage.css'
 import NotebookAllNotesPageMapping from './NotebookAllNotesPageMapping'
-import NotePageEdit from '../NotePage/NotePageEdit';
 import {getNotes} from '../../store/note';
+import NotebookAllNotesEditPage from './NotebookAllNotesEditPage'
 
 function NotebookAllNotesPage(){
   const dispatch = useDispatch();
   const userNotebook = useSelector((state) => state.notebook)
-  const notes = Object.values(userNotebook)
-  const [activeNote, setActiveNote] = useState(notes?.[0])
-  const [selectedNote, setSelectedNote] = useState(notes.length > 0 ? notes?.[0]: null);
+  const notes = useSelector((state) => state.notebook.notes)
+  console.log('yeeeet', userNotebook)
+  const [activeNote, setActiveNote] = useState('')
+
+  const [title, setTitle] = useState(activeNote?.title );
 
   const { id } = useParams();
 
+  const sortedNotes = notes?.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))
 
 
-  useEffect(()=> {
-    dispatch(getNotebookAndNotes(id));
-    dispatch(getNotes());
-  },[dispatch]);
 
-  const handleNoteClick = (noteId) => {
-    const selectedNote = notes.find(note => note.id === noteId);
-    setSelectedNote(selectedNote);
-};
-
+  // console.log('yettie', userNotes)
 
   const getActiveNote = () => {
-    return notes.find((note) => note.id === activeNote);
+    return notes?.find((note) => note?.id === activeNote);
   }
+  useEffect(()=> {
+    dispatch(getNotebookAndNotes(id));
+    dispatch(getNotes())
+  },[dispatch,setTitle,title]);
 
+    console.log('what is active', activeNote?.content)
+    console.log('go')
     return (
       <div className="notebook-all-notes-pages-background">
         <div className="notebook-all-notes-pages-container">
           <div className="notebook-all-notes-sidebar">
-            <h1>hi</h1>
+            <h1>{userNotebook?.notebook?.title}</h1>
             <div className="notebook-all-notes-scrollbar">
-            {notes?.sort((a, b) => b.updatedAt?.localeCompare(a.updatedAt))?.map((note)=>{
+            {sortedNotes?.map((note)=>{
                   return  (
                       <div className={`selected-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>
                           <NotebookAllNotesPageMapping
                               key={note.id}
-                              handleNoteClick={handleNoteClick}
                               noteId={note.id}
                               note={note}
                           />
@@ -53,8 +53,10 @@ function NotebookAllNotesPage(){
               })}
             </div>
           </div>
-          <NotePageEdit
-            activeNote= {getActiveNote()}
+          <NotebookAllNotesEditPage
+            setActiveNote= {getActiveNote()}
+            setTitle= {setTitle}
+            title = {title}
           />
         </div>
       </div>

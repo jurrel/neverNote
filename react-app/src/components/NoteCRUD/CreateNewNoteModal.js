@@ -17,7 +17,6 @@ function CreateNewNoteModal({notes, currentUserId, notebooks}) {
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
     const [notebookId, setNotebookId] = useState(notebooks?.[0]?.id);
-    console.log('createnewnotemodal', notebooks?.[0]?.id)
 
     const editContent = (e) => setContent(e.target.value)
     const editTitle = (e) => setTitle(e.target.value)

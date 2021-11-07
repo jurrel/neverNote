@@ -25,7 +25,6 @@ function EditNotesPage() {
     const [validationErrors, setValidationErrors] = useState([]);
     const string = 'string';
 
-    console.log('weeew', note)
     useEffect(() => {
         dispatch(getANote(id))
         dispatch(getNotebookAndNotes());

@@ -13,7 +13,6 @@ function NotebookAllNotesPageMapping({note}) {
 
     useEffect(() => {
         dispatch(getNotes())
-        setTitle(note?.title)
     }, [dispatch, note?.title]);
 
 
