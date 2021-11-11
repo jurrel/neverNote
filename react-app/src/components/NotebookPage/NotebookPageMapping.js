@@ -73,7 +73,8 @@ function NotebookPageMapping({notebook, notesList, toggleNotes, updateToggleNote
                     {toggleNotes && toggleNotes[index] === true ?
                         notesList.map((note, index) => (
                                     <BrowserRouter>
-                                        <a key={index} href={`/notes/${note.id}`}>
+                                        <a key={index} href={`/${note.notebook_id}/notes`}>
+                                            {console.log('this is notes', note)}
                                             <div onClick={(e) => setClic(note.id)} className="notebook-text"> <i class="fa fa-file-text"></i>Title: {note.title}</div>
                                         </a >
                                     </BrowserRouter>

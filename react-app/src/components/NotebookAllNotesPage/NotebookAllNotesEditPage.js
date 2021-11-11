@@ -9,14 +9,13 @@ import ReactQuill from 'react-quill'
 function NotebookAllNotesEditPage({setActiveNote, title, setTitle}) {
   const dispatch = useDispatch();
 console.log('what is activentoe', setActiveNote)
-  // const [title, setTitle] = useState(setActiveNote?.title );
   const [content, setContent] = useState(setActiveNote?.content)
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([])
 
   useEffect(() => {
         setValidationErrors([]);
-        dispatch(getANote(setActiveNote?.id))
+        // dispatch(getANote(setActiveNote?.id))
         setTitle(setActiveNote?.title)
         setContent(setActiveNote?.content)
     }, [dispatch, setActiveNote?.title, setActiveNote?.content, setActiveNote?.id]);

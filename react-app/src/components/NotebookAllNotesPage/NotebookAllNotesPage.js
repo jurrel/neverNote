@@ -10,22 +10,32 @@ import NotebookAllNotesEditPage from './NotebookAllNotesEditPage'
 function NotebookAllNotesPage(){
   const dispatch = useDispatch();
   const userNotebook = useSelector((state) => state.notebook)
-  const notes = useSelector((state) => state.notebook.notes)
-  console.log('yeeeet', userNotebook)
+  const notes = useSelector((state) => state.note)
   const [activeNote, setActiveNote] = useState('')
 
   const [title, setTitle] = useState(activeNote?.title );
 
   const { id } = useParams();
 
-  const sortedNotes = notes?.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+  // console.log("NotebookAllNotesPage", id, notes);
+
+  const notes1 = [];
+  for(var k in notes) {
+    // console.log("NotebookAllNotesPage22", k, notes[k].notebook_id, id);
+    if( notes[k].notebook_id == id)
+      notes1.push(notes[k]);
+  }
+
+  // console.log("NotebookAllNotesPage11", notes1);
 
 
+  const sortedNotes = notes1?.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))
 
-  // console.log('yettie', userNotes)
+
 
   const getActiveNote = () => {
-    return notes?.find((note) => note?.id === activeNote);
+    // return notes?.find((note) => note?.id === activeNote);
+    return notes[activeNote];
   }
   useEffect(()=> {
     dispatch(getNotebookAndNotes(id));
