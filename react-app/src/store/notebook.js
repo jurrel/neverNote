@@ -126,18 +126,6 @@ const notebookReducer = (state=initialState, action) => {
             const editNotebook = {...state}
             editNotebook[action.notebook.id] = action.notebook
             return editNotebook
-        // case LOAD_NOTEBOOK_ALL_NOTES:
-        //     const loadNotesAndNotebooks = {}
-        //     action.notebook.notes.forEach(note => {
-        //         loadNotesAndNotebooks[note.id] = note
-        //     });
-        //     return loadNotesAndNotebooks
-        // case LOAD_NOTEBOOK_ALL_NOTES:
-        //     const loadNotesAndNotebooks = {}
-        //     action.notebook.notes.forEach(note => {
-        //         loadNotesAndNotebooks[note.id] = note
-        //     });
-        //     return loadNotesAndNotebooks
         case LOAD_NOTEBOOK_ALL_NOTES:
             const loadNotesAndNotebooks = {...state}
             loadNotesAndNotebooks["notebook"] = action.notebook.notebook

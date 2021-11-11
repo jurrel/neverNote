@@ -22,7 +22,7 @@ function NotebookAllNotesPage(){
     if( notes[k].notebook_id == id)
       notes1.push(notes[k]);
   }
-
+  const notesLength = notes1.length
 
   const sortedNotes = notes1?.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))
 
@@ -41,8 +41,9 @@ function NotebookAllNotesPage(){
       <div className="notebook-all-notes-pages-background">
         <div className="notebook-all-notes-pages-container">
           <div className="notebook-all-notes-sidebar">
-            <h1>{userNotebook?.notebook?.title}</h1>
             <div className="notebook-all-notes-scrollbar">
+            <h1 className="notebook-all-notes-title">{userNotebook?.notebook?.title}</h1>
+            <h3 className="notebook-all-notes-length">{notesLength} Notes</h3>
             {sortedNotes?.map((note)=>{
                   return  (
                       <div className={`selected-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>

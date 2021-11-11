@@ -21,14 +21,24 @@
 }
 
 .notebook-all-notes-sidebar {
-  width: 20%;
-  height: 94%;
-  border-right: 1px solid white;
+	width: 20%;
+  	height: 100%;
+  	border-right: 1px solid white;
+	padding: 10px;
 }
 
 .notebook-all-notes-scrollbar {
-  height: 98.5%;
-  overflow-y: scroll;
+	height: 100%;
+	overflow-y: scroll;
 	overflow-x: hidden;
-	/* overflow-y: hidden; */
+}
+
+.notebook-all-notes-title {
+	color: white;
+
+}
+.notebook-all-notes-length {
+	color: white;
+	border-bottom: 1px solid white;
+
 }

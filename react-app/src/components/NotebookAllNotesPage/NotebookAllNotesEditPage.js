@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
-import { editANote, getNotes, deleteANote, getANote} from '../../store/note';
-import {getNotebookAndNotes} from '../../store/notebook';
-import { useParams } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+import { editANote} from '../../store/note';
 
 import ReactQuill from 'react-quill'
 

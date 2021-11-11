@@ -1,7 +1,7 @@
 import './NotePage.css'
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
-import { editANote, getNotes, deleteANote} from '../../store/note';
+import { useDispatch} from 'react-redux';
+import { editANote, getNotes} from '../../store/note';
 import ReactQuill from 'react-quill'
 
 function NotePageEdit({activeNote, setActiveNote}) {
