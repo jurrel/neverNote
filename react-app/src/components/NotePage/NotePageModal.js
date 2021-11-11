@@ -45,7 +45,6 @@ function EditPageModal({note}) {
             user_id: user?.['users']?.['id'],
             notebook_id: note.notebook_id
         }
-        console.log('payload',payload)
         let updateNote = await dispatch(editANote(payload))
         if (updateNote) {
             setTitle('');

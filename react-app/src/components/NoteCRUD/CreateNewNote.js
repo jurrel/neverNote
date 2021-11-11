@@ -29,7 +29,6 @@ function CreateNewNote(){
             id: notebookId,
             user_id: user?.['users']?.['id']
         }
-        console.log('what returns in the payload', payload)
         let newNote = await dispatch(createNote(payload))
         if (newNote) {
             setTitle('')

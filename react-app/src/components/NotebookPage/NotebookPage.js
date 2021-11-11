@@ -18,7 +18,6 @@ function NotebookPage() {
 
     const numNotebooks = notebooks.length
 
-    console.log({toggleNotes})
     useEffect(()=> {
         dispatch(getNotebooks());
         dispatch(getNotes());
@@ -35,7 +34,6 @@ function NotebookPage() {
         setToggleNotes(notes);
     };
 
-    console.log('user', userNotebook)
     return(
         <>
             <div className="notebook-page-background">

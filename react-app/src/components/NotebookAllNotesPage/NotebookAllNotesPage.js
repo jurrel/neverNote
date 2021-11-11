@@ -17,16 +17,11 @@ function NotebookAllNotesPage(){
 
   const { id } = useParams();
 
-  // console.log("NotebookAllNotesPage", id, notes);
-
   const notes1 = [];
   for(var k in notes) {
-    // console.log("NotebookAllNotesPage22", k, notes[k].notebook_id, id);
     if( notes[k].notebook_id == id)
       notes1.push(notes[k]);
   }
-
-  // console.log("NotebookAllNotesPage11", notes1);
 
 
   const sortedNotes = notes1?.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))
@@ -34,7 +29,6 @@ function NotebookAllNotesPage(){
 
 
   const getActiveNote = () => {
-    // return notes?.find((note) => note?.id === activeNote);
     return notes[activeNote];
   }
   useEffect(()=> {
@@ -42,8 +36,7 @@ function NotebookAllNotesPage(){
     dispatch(getNotes())
   },[dispatch,setTitle,title]);
 
-    console.log('what is active', activeNote?.content)
-    console.log('go')
+
     return (
       <div className="notebook-all-notes-pages-background">
         <div className="notebook-all-notes-pages-container">
