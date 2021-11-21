@@ -33,12 +33,12 @@ If it's a user's first time on the website, they should click the green button o
 A user name their notebook anything they want as long as it's between 1-15 characters long. 
 
 If the user already has some notesbooks, they can click the notebooks tab and see the already existing notebooks.
-![Screen Shot 2021-10-04 at 4 28 13 AM](https://user-images.githubusercontent.com/41484889/135843828-5323abd6-71a5-4381-ab41-4fabab1b6a62.png)
+![Screen Shot 2021-10-04 at 4 28 13 AM](https://user-images.githubusercontent.com/41484889/142781436-f749ba94-6d34-453c-a0d6-73ead4a6e301.PNG)
 
 Users can go a step further and click the notes related to the notebooks which will prompt them to this page
-![Screen Shot 2021-10-04 at 4 29 49 AM](https://user-images.githubusercontent.com/41484889/135844021-28aafa03-f485-48ee-8b2e-781cceb9f366.png)
+![Screen Shot 2021-10-04 at 4 29 49 AM](https://user-images.githubusercontent.com/41484889/142781533-ee5db063-9274-4523-ab19-63a95d657546.PNG)
 
 All notes can be seen through the notes tab.
-![Screen Shot 2021-10-04 at 4 31 39 AM](https://user-images.githubusercontent.com/41484889/135844351-9d7d9d1e-3aa8-444b-b9e7-bbbdd226e2d5.png)
+![Screen Shot 2021-10-04 at 4 31 39 AM](https://user-images.githubusercontent.com/41484889/142781571-be996f06-9da6-4811-b99c-f26e94278af8.PNG)
 Any note from this tab can be edited and deleted on the stop. Also if a user wanted to they would be able to create a note for a notebook by clicking the New Note text that is in green. Notes can only be created once a Notebook exists. 
 
