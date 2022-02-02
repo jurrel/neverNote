@@ -7,7 +7,7 @@ TURN NEVER INTO FOREVER! Taking notes is a way to remember all the importants th
 ## Technologies
 * Flask 
 * SQL Alchemy 
-* Pythong 
+* Python 
 * React
 * Redux 
 * Vanilla CSS
